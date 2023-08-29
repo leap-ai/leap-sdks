@@ -7,7 +7,7 @@ specPath: api-fixed.yaml
 generators:
   java:
     version: 1.0.0
-    groupId: ai.tryleap
+    groupId: com.konfigthis.leap
     artifactId: leap-java-sdk
     clientName: Leap
     outputDirectory: java
@@ -25,7 +25,7 @@ generators:
       repoId: leap-sdks/tree/main/python
   typescript:
     version: 1.0.0
-    npmName: leap-typescript-sdk
+    npmName: "@leap-ai/sdk"
     outputDirectory: typescript
     clientName: Leap
     git:
