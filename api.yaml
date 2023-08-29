@@ -1,812 +1,613 @@
-openapi: 3.0.0
-servers:
-  - url: "http://petstore.swagger.io/v2"
-info:
-  description: >-
-    This is a sample server Petstore server. For this sample, you can use the api key
-    `special-key` to test the authorization filters.
-  version: 1.0.0
-  title: OpenAPI Petstore
-  license:
-    name: Apache-2.0
-    url: "https://www.apache.org/licenses/LICENSE-2.0.html"
-tags:
-  - name: pet
-    description: Everything about your Pets
-  - name: store
-    description: Access to Petstore orders
-  - name: user
-    description: Operations about user
-  - description: miscellaneous namespace
-    name: miscellaneous
-paths:
-  /pagination:
-    get:
-      tags:
-        - miscellaneous
-      summary: Pagination sandbox
-      operationId: misc_paginate
-      description: Iterate through a bunch of items
-      requestBody:
-        content:
-          application/json:
+|
+  openapi: 3.0.0
+  paths:
+    /api/v1/images/models/{modelId}/inferences:
+      post:
+        operationId: InferencesController_create
+        summary: Generate an Image
+        description: >-
+          Generate an image by providing a text description. Generations usually
+          take bettween 4-20 seconds per image. Total generation time depends on
+          the number of `steps` and `noOfImages` you select. This endpoint will
+          submit the generation job and return immediately. To retrieve the
+          results you must provide a webhook URL or query/poll the [Get a Single
+          Image
+          Job](https://reference.tryleap.ai/reference/inferencescontroller_findone-1)
+          endpoint.
+        tags: &ref_0
+          - Generate Images
+        parameters:
+          - name: modelId
+            required: true
+            in: path
+            description: >-
+              The ID of the model to use to generate images. This can be a custom
+              model, or a public model. To view the list of public models, visit:
+              https://docs.tryleap.ai/public-models
+            example: 26a1a203-3a46-42cb-8cfa-f4de075907d8
             schema:
-              $ref: '#/components/schemas/PaginateRequest'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaginateResponse'
-  /pet:
-    post:
-      tags:
-        - pet
-      summary: Add a new pet to the store
-      description: ""
-      operationId: addPet
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "405":
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - "write:pets"
-            - "read:pets"
-      requestBody:
-        $ref: "#/components/requestBodies/Pet"
-    put:
-      tags:
-        - pet
-      summary: Update an existing pet
-      description: ""
-      operationId: updatePet
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Pet not found
-        "405":
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - "write:pets"
-            - "read:pets"
-      requestBody:
-        $ref: "#/components/requestBodies/Pet"
-  /pet/findByStatus:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by status
-      description: Multiple status values can be provided with comma separated strings
-      operationId: findPetsByStatus
-      parameters:
-        - name: status
-          in: query
-          description: Status values that need to be considered for filter
-          required: true
-          style: form
-          explode: false
-          deprecated: true
-          schema:
-            type: array
-            items:
               type: string
-              enum:
-                - available
-                - pending
-                - sold
-              default: available
-      responses:
-        "200":
-          description: successful operation
+        requestBody:
+          required: true
           content:
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Pet"
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Pet"
-        "400":
-          description: Invalid status value
-      security:
-        - petstore_auth:
-            - "read:pets"
-  /pet/findByTags:
-    get:
-      tags:
-        - pet
-      summary: Finds Pets by tags
-      description: >-
-        Multiple tags can be provided with comma separated strings. Use tag1,
-        tag2, tag3 for testing.
-      operationId: findPetsByTags
-      parameters:
-        - name: tags
-          in: query
-          description: Tags to filter by
-          required: true
-          style: form
-          explode: false
-          schema:
-            type: array
-            items:
+                $ref: '#/components/schemas/CreateInferenceDto'
+              examples:
+                Create a new inference:
+                  value:
+                    prompt: A photo of an astronaut riding a horse
+                    steps: 50
+                    height: 1024
+                    width: 1024
+                    numberOfImages: 1
+        responses:
+          '200':
+            description: Successfully submitted image generation job.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/InferenceEntity'
+        security:
+          - bearer: []
+      get:
+        operationId: InferencesController_findAll
+        summary: List All Image Jobs
+        description: Fetch a list of inference jobs for a specific model.
+        tags: *ref_0
+        parameters:
+          - name: modelId
+            required: true
+            in: path
+            description: >-
+              The ID of the model to generate images. This can be a custom model
+              or a public model. Visit: https://docs.tryleap.ai/public-models to
+              view the list of public models.
+            example: 26a1a203-3a46-42cb-8cfa-f4de075907d8
+            schema:
               type: string
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Pet"
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Pet"
-        "400":
-          description: Invalid tag value
-      security:
-        - petstore_auth:
-            - "read:pets"
-      deprecated: true
-  "/pet/{petId}":
-    get:
-      tags:
-        - pet
-      summary: Find pet by ID
-      description: Returns a single pet
-      operationId: getPetById
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Pet"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Pet not found
-      security:
-        - api_key: []
-    post:
-      tags:
-        - pet
-      summary: Updates a pet in the store with form data
-      description: ""
-      operationId: updatePetWithForm
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet that needs to be updated
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "405":
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - "write:pets"
-            - "read:pets"
-      requestBody:
-        content:
-          application/x-www-form-urlencoded:
+          - name: onlyFinished
+            required: false
+            in: query
+            description: >-
+              If set to true, only finished inferences will be returned. If set to
+              false or not set, all inference jobs will be returned.
             schema:
-              type: object
-              properties:
-                name:
-                  description: Updated name of the pet
-                  type: string
-                status:
-                  description: Updated status of the pet
-                  type: string
-    delete:
-      tags:
-        - pet
-      summary: Deletes a pet
-      description: ""
-      operationId: deletePet
-      parameters:
-        - name: api_key
-          in: header
-          required: false
-          schema:
-            type: string
-        - name: petId
-          in: path
-          description: Pet id to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "400":
-          description: Invalid pet value
-      security:
-        - petstore_auth:
-            - "write:pets"
-            - "read:pets"
-  "/pet/{petId}/uploadImage":
-    post:
-      tags:
-        - pet
-      summary: uploads an image
-      description: ""
-      operationId: uploadFile
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to update
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ApiResponse"
-      security:
-        - petstore_auth:
-            - "write:pets"
-            - "read:pets"
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                additionalMetadata:
-                  description: Additional data to pass to server
-                  type: string
-                file:
-                  description: file to upload
-                  type: string
-                  format: binary
-  /store/inventory:
-    get:
-      tags:
-        - store
-      summary: Returns pet inventories by status
-      description: Returns a map of status codes to quantities
-      operationId: getInventory
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties:
-                  type: integer
-                  format: int32
-      security:
-        - api_key: []
-  /store/order:
-    post:
-      tags:
-        - store
-      summary: Place an order for a pet
-      description: ""
-      operationId: placeOrder
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Order"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Order"
-        "400":
-          description: Invalid Order
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Order"
-        description: order placed for purchasing the pet
-        required: true
-  "/store/order/{orderId}":
-    get:
-      tags:
-        - store
-      summary: Find purchase order by ID
-      description: >-
-        For valid response try integer IDs with value <= 5 or > 10. Other values
-        will generated exceptions
-      operationId: getOrderById
-      parameters:
-        - name: orderId
-          in: path
-          description: ID of pet that needs to be fetched
-          required: true
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-            maximum: 5
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/Order"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Order"
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Order not found
-    delete:
-      tags:
-        - store
-      summary: Delete purchase order by ID
-      description: >-
-        For valid response try integer IDs with value < 1000. Anything above
-        1000 or nonintegers will generate API errors
-      operationId: deleteOrder
-      parameters:
-        - name: orderId
-          in: path
-          description: ID of the order that needs to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        "400":
-          description: Invalid ID supplied
-        "404":
-          description: Order not found
-  /user:
-    post:
-      tags:
-        - user
-      summary: Create user
-      description: This can only be done by the logged in user.
-      operationId: createUser
-      responses:
-        default:
-          description: successful operation
-      security:
-        - api_key: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-        description: Created user object
-        required: true
-  /user/createWithArray:
-    post:
-      tags:
-        - user
-      summary: Creates list of users with given input array
-      description: ""
-      operationId: createUsersWithArrayInput
-      responses:
-        default:
-          description: successful operation
-      security:
-        - api_key: []
-      requestBody:
-        $ref: "#/components/requestBodies/UserArray"
-  /user/createWithList:
-    post:
-      tags:
-        - user
-      summary: Creates list of users with given input array
-      description: ""
-      operationId: createUsersWithListInput
-      responses:
-        default:
-          description: successful operation
-      security:
-        - api_key: []
-      requestBody:
-        $ref: "#/components/requestBodies/UserArray"
-  /user/login:
-    get:
-      tags:
-        - user
-      summary: Logs user into the system
-      description: ""
-      operationId: loginUser
-      parameters:
-        - name: username
-          in: query
-          description: The user name for login
-          required: true
-          schema:
-            type: string
-            pattern: '^[a-zA-Z0-9]+[a-zA-Z0-9\.\-_]*[a-zA-Z0-9]+$'
-        - name: password
-          in: query
-          description: The password for login in clear text
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: successful operation
-          headers:
-            Set-Cookie:
-              description: >-
-                Cookie authentication key for use with the `api_key`
-                apiKey authentication.
-              schema:
-                type: string
-                example: AUTH_KEY=abcde12345; Path=/; HttpOnly
-            X-Rate-Limit:
-              description: calls per hour allowed by the user
-              schema:
-                type: integer
-                format: int32
-            X-Expires-After:
-              description: date in UTC when token expires
-              schema:
-                type: string
-                format: date-time
-          content:
-            application/xml:
-              schema:
-                type: string
-            application/json:
-              schema:
-                type: string
-        "400":
-          description: Invalid username/password supplied
-  /user/logout:
-    get:
-      tags:
-        - user
-      summary: Logs out current logged in user session
-      description: ""
-      operationId: logoutUser
-      responses:
-        default:
-          description: successful operation
-      security:
-        - api_key: []
-  "/user/{username}":
-    get:
-      tags:
-        - user
-      summary: Get user by user name
-      description: ""
-      operationId: getUserByName
-      parameters:
-        - name: username
-          in: path
-          description: The name that needs to be fetched. Use user1 for testing.
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: successful operation
-          content:
-            application/xml:
-              schema:
-                $ref: "#/components/schemas/User"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-        "400":
-          description: Invalid username supplied
-        "404":
-          description: User not found
-    put:
-      tags:
-        - user
-      summary: Updated user
-      description: This can only be done by the logged in user.
-      operationId: updateUser
-      parameters:
-        - name: username
-          in: path
-          description: name that need to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        "400":
-          description: Invalid user supplied
-        "404":
-          description: User not found
-      security:
-        - api_key: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UserCreateRequest"
-        description: Updated user object
-        required: true
-    delete:
-      tags:
-        - user
-      summary: Delete user
-      description: This can only be done by the logged in user.
-      operationId: deleteUser
-      parameters:
-        - name: username
-          in: path
-          description: The name that needs to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        "400":
-          description: Invalid username supplied
-        "404":
-          description: User not found
-      security:
-        - api_key: []
-externalDocs:
-  description: Find out more about Swagger
-  url: "http://swagger.io"
-components:
-  requestBodies:
-    UserArray:
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: "#/components/schemas/User"
-      description: List of user object
-      required: true
-    Pet:
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/Pet"
-        application/xml:
-          schema:
-            $ref: "#/components/schemas/Pet"
-      description: Pet object that needs to be added to the store
-      required: true
-  securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: "http://petstore.swagger.io/api/oauth/dialog"
-          scopes:
-            "write:pets": modify pets in your account
-            "read:pets": read your pets
-    api_key:
-      type: apiKey
-      name: api_key
-      in: header
-  schemas:
-    Order:
-      title: Pet Order
-      description: An order for a pets from the pet store
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        petId:
-          type: integer
-          format: int64
-        quantity:
-          type: integer
-          format: int32
-        shipDate:
-          type: string
-          format: date-time
-        status:
-          type: string
-          description: Order Status
-          enum:
-            - placed
-            - approved
-            - delivered
-        complete:
-          type: boolean
-          default: false
-      xml:
-        name: Order
-    Category:
-      title: Pet category
-      description: A category for a pet
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-          pattern: '^[a-zA-Z0-9]+[a-zA-Z0-9\.\-_]*[a-zA-Z0-9]+$'
-      xml:
-        name: Category
-    UserCreateRequest:
-      title: a User
-      description: A User who is purchasing from the pet store
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        password:
-          type: string
-        phone:
-          type: string
-        userStatus:
-          type: integer
-          format: int32
-          description: User Status
-      xml:
-        name: User
-    User:
-      title: a User
-      description: A User who is purchasing from the pet store
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        username:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        password:
-          type: string
-        phone:
-          type: string
-        userStatus:
-          type: integer
-          format: int32
-          description: User Status
-      xml:
-        name: User
-    Tag:
-      title: Pet Tag
-      description: A tag for a pet
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-      xml:
-        name: Tag
-    Pet:
-      title: a Pet
-      description: A pet for sale in the pet store
-      type: object
-      required:
-        - name
-        - photoUrls
-      properties:
-        id:
-          type: integer
-          format: int64
-        category:
-          $ref: "#/components/schemas/Category"
-        name:
-          type: string
-          example: doggie
-        photoUrls:
-          type: array
-          xml:
-            name: photoUrl
-            wrapped: true
-          items:
-            type: string
-        tags:
-          type: array
-          xml:
-            name: tag
-            wrapped: true
-          items:
-            $ref: "#/components/schemas/Tag"
-        status:
-          type: string
-          description: pet status in the store
-          deprecated: true
-          enum:
-            - available
-            - pending
-            - sold
-      xml:
-        name: Pet
-    ApiResponse:
-      title: An uploaded response
-      description: Describes the result of uploading an image resource
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        type:
-          type: string
-        message:
-          type: string
-    PaginateRequest:
-      type: object
-      properties:
-        first:
-          type: integer
-        after:
-          type: string
-    PaginateResponse:
-      type: object
-      properties:
-        edges:
-          type: object
-          properties:
-            node:
-              type: object
-              properties:
-                message:
-                  type: string
-        pageInfo:
-          type: object
-          properties:
-            hasNextPage:
               type: boolean
-            hasPreviousPage:
-              type: boolean
-            startCursor:
+          - name: page
+            required: false
+            in: query
+            description: The page to request.
+            allowEmptyValue: true
+            schema:
+              type: number
+          - name: pageSize
+            required: false
+            in: query
+            description: The number of items to return per page.
+            allowEmptyValue: true
+            schema:
+              type: number
+        responses:
+          '200':
+            description: Successfully retrieved list of image generation jobs.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/InferenceEntity'
+        security:
+          - bearer: []
+    /api/v1/images/models/{modelId}/inferences/{inferenceId}:
+      get:
+        operationId: InferencesController_findOne
+        summary: Get Single Image Job
+        description: >-
+          Retrieve a single image generation job, including the urls for the
+          images generated.
+        tags: *ref_0
+        parameters:
+          - name: modelId
+            required: true
+            in: path
+            description: >-
+              The ID of the model to use to generate images. This can be a custom
+              model, or a public model. To view the list of public models, visit:
+              https://docs.tryleap.ai/public-models
+            example: 26a1a203-3a46-42cb-8cfa-f4de075907d8
+            schema:
               type: string
-            endCursor:
+          - name: inferenceId
+            required: true
+            in: path
+            description: >-
+              The ID of the image generation job to retrieve. This is the same ID
+              that is returned when you submit a new image generation job.
+            example: a047df00-8bdd-4d57-a9bd-6eebef36ecaa
+            schema:
               type: string
+        responses:
+          '200':
+            description: Successfully retrieved image generation job.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/InferenceEntity'
+        security:
+          - bearer: []
+      delete:
+        operationId: InferencesController_remove
+        summary: Delete Image Job
+        description: Delete the image job and all related images.
+        tags: *ref_0
+        parameters:
+          - name: modelId
+            required: true
+            in: path
+            description: >-
+              The ID of the model to use to generate images. This can be a custom
+              model, or a public model. To view the list of public models, visit:
+              https://docs.tryleap.ai/public-models
+            example: 26a1a203-3a46-42cb-8cfa-f4de075907d8
+            schema:
+              type: string
+          - name: inferenceId
+            required: true
+            in: path
+            description: >-
+              The ID of the image generation job to retrieve. This is the same ID
+              that is returned when you submit a new image generation job.
+            example: a047df00-8bdd-4d57-a9bd-6eebef36ecaa
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Successfully deleted image generation job.
+        security:
+          - bearer: []
+    /api/v2/images/models/new:
+      post:
+        operationId: train-model
+        summary: Train Model
+        description: >-
+          Upload a few image samples, and train a new model. Training usually
+          takes 20-40 minutes. To be notified when the model completes training
+          you must provide a `webhookUrl` in the training request, or check for
+          completion by calling [Get a Single
+          Model](https://reference.tryleap.ai/reference/get-model-1). After
+          training completes, you can use the model to generate images with
+          [Generate
+          Images](https://reference.tryleap.ai/reference/inferencescontroller_create-1).
+        tags: &ref_1
+          - Train Image Models
+        parameters: []
+        requestBody:
+          required: true
+          content:
+            multipart/form-data:
+              schema:
+                $ref: '#/components/schemas/CreateAndTrainModelDto'
+        responses:
+          '200':
+            description: Successfully submitted training job.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ModelV2Entity'
+        security: &ref_3
+          - &ref_2
+            bearer: []
+    /api/v2/images/models:
+      get:
+        operationId: list-all-models
+        summary: List All Models
+        description: This endpoint will return a list of all models for the workspace.
+        tags: *ref_1
+        parameters: []
+        responses:
+          '200':
+            description: Successfully retrieved models.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ListModelsV2Response'
+        security:
+          - *ref_2
+          - bearer: []
+    /api/v2/images/models/{modelId}:
+      get:
+        operationId: get-model
+        summary: Get a Single Model
+        description: This endpoint will return a single model.
+        tags: *ref_1
+        parameters:
+          - name: modelId
+            required: true
+            in: path
+            description: The ID of the model to retrieve.
+            example: 5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Successfully retrieved the model.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ModelV2Entity'
+          '404':
+            description: Model does not exist
+        security: *ref_3
+      delete:
+        operationId: delete-model
+        summary: Delete a Model
+        description: This endpoint will delete a model. This is not reversible.
+        tags: *ref_1
+        parameters:
+          - name: modelId
+            required: true
+            in: path
+            description: The ID of the model to delete.
+            example: 5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Successfully deleted the model
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ModelV2Entity'
+        security: *ref_3
+    /api/v1/music:
+      post:
+        operationId: MusicController_createAudio
+        summary: Generate Music
+        description: >-
+          Generate music by providing a text description. Generations usually take
+          bettween 1-3 minutes. Total generation time depends on the `duration`
+          you select. This endpoint will submit the generation job and return
+          immediately. To retrieve the results you must provide a webhook URL or
+          query/poll the [Get a Music Generation
+          Job](https://reference.tryleap.ai/reference/musiccontroller_findoneaudio)
+          endpoint.
+        tags: &ref_4
+          - Generate Music
+        parameters: []
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateMusicgenInferenceDto'
+        responses:
+          '200':
+            description: Successfully submitted music generation job.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/MusicgenInferenceEntity'
+        security:
+          - bearer: []
+      get:
+        operationId: MusicController_findAllAudio
+        summary: List Music Generation Jobs
+        description: List all music generation jobs for a workspace.
+        tags: *ref_4
+        parameters: []
+        responses:
+          '200':
+            description: Successfully retrieved music generation jobs.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/MusicgenInferenceEntity'
+        security:
+          - bearer: []
+    /api/v1/music/{inferenceId}:
+      get:
+        operationId: MusicController_findOneAudio
+        summary: Get a Music Generation Job
+        description: Get a specific music generation job.
+        tags: *ref_4
+        parameters:
+          - name: inferenceId
+            required: true
+            in: path
+            description: >-
+              The ID of the music generation job to retrieve. This is the same ID
+              returned when you submit a job.
+            schema:
+              type: string
+        responses:
+          '200':
+            description: Successfully retrieved music generation job.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/MusicgenInferenceEntity'
+  info:
+    title: Leap
+    description: The Official Leap API
+    version: '1.0'
+    contact: {}
+  tags: []
+  servers:
+    - url: https://api.tryleap.ai
+      description: Production
+  components:
+    securitySchemes:
+      bearer:
+        scheme: bearer
+        bearerFormat: JWT
+        type: http
+    schemas:
+      CreateInferenceDto:
+        type: object
+        properties:
+          prompt:
+            type: string
+            description: A text description of the image you what you want to generate.
+            example: A photo of an astronaut riding a horse
+            default: A photo of an astronaut riding a horse
+          negativePrompt:
+            type: string
+            description: A text description of what the image should try to avoid generating.
+            example: asymmetric, bad hands, bad hair
+            default: asymmetric, watermarks
+          steps:
+            type: number
+            description: >-
+              How many steps the AI will take to generate the image. Lower is
+              faster but less detailed, higher is slower more detailed.
+            example: 50
+            default: 50
+          width:
+            type: number
+            description: >-
+              The width of the image to use for the inference. Must be a multiple
+              of 8. For best results use 1024x1024 for SDXL, and 512x512 for other
+              models.
+            example: 1024
+            default: 1024
+          height:
+            type: number
+            description: >-
+              The height of the image to use for the inference. Must be a multiple
+              of 8. For best results use 1024x1024 for SDXL, and 512x512 for other
+              models.
+            example: 1024
+            default: 1024
+          numberOfImages:
+            type: number
+            description: The number of images to generate, up to 4.
+            example: 1
+            default: 1
+          promptStrength:
+            type: number
+            description: >-
+              The higher the prompt strength, the closer the generated image will
+              be to the prompt. Must be between 0 and 30.
+            example: 7
+            default: 7
+          seed:
+            type: number
+            description: >-
+              A random number to use as a seed when generating the image. This is
+              helpful if you want to generate the same image multiple times. If
+              you want to generate different images, keep this empty or provide a
+              random number.
+            example: 4523184
+            default: 4523184
+          webhookUrl:
+            type: string
+            description: >-
+              An optional webhook URL that will be called with a POST request when
+              the image generation request completes.
+        required:
+          - prompt
+      InferenceImageEntity:
+        type: object
+        properties:
+          id:
+            type: string
+          createdAt:
+            type: string
+          uri:
+            type: string
+        required:
+          - id
+          - createdAt
+          - uri
+      InferenceEntity:
+        type: object
+        properties:
+          id:
+            type: string
+          createdAt:
+            format: date-time
+            type: string
+          prompt:
+            type: string
+          negativePrompt:
+            type: string
+          seed:
+            type: number
+          width:
+            type: number
+          height:
+            type: number
+          promptStrength:
+            type: number
+          numberOfImages:
+            type: number
+          state:
+            type: string
+            enum:
+              - failed
+              - finished
+              - processing
+              - queued
+          steps:
+            type: number
+          images:
+            type: array
+            items:
+              $ref: '#/components/schemas/InferenceImageEntity'
+          modelId:
+            type: array
+            items:
+              type: string
+          upscalingOption:
+            type: string
+            enum:
+              - x1
+              - x2
+              - x4
+        required:
+          - id
+          - createdAt
+          - prompt
+          - negativePrompt
+          - seed
+          - width
+          - height
+          - promptStrength
+          - numberOfImages
+          - state
+          - steps
+          - images
+          - modelId
+          - upscalingOption
+      CreateAndTrainModelDto:
+        type: object
+        properties:
+          name:
+            type: string
+            description: Provide a name so you can more easily identify the model.
+            example: Alex Avatar Model
+          subjectKeyword:
+            type: string
+            description: >-
+              This is the keyword you will use during image generation to trigger
+              your custom subject. For example "a photo of @me".
+            example: '@me'
+          subjectType:
+            type: string
+            description: >-
+              The subject type - a short description, usually a noun, that
+              describes what the underlying model is learning. For example:
+              person, man, woman, cat, dog, icon, style. Defaults to "person".
+            default: person
+          webhookUrl:
+            type: string
+            description: >-
+              An optional webhook URL that will be called with a POST request when
+              the model completes training or fails.
+            example: https://example.com/api/webhook
+          imageSampleUrls:
+            type: array
+            description: >-
+              An array of strings containing the URLs of the images to upload.
+              Either this or imageSampleFiles is required, but not both.
+            format: string
+            items:
+              type: string
+              format: string
+          imageSampleFiles:
+            type: array
+            description: >-
+              An array of files containing the images to upload. Either this or
+              imageSampleUrls is required, but not both.
+            format: binary
+            items:
+              type: string
+              format: binary
+      ModelV2Entity:
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+          createdAt:
+            type: string
+          subjectKeyword:
+            type: string
+          subjectType:
+            type: string
+          status:
+            type: string
+          imageSamples:
+            type: array
+            items:
+              type: string
+        required:
+          - id
+          - name
+          - createdAt
+          - subjectKeyword
+          - subjectType
+          - status
+          - imageSamples
+      ListModelsV2Response:
+        type: object
+        properties:
+          models:
+            type: array
+            items:
+              $ref: '#/components/schemas/ModelV2Entity'
+        required:
+          - models
+      CreateMusicgenInferenceDto:
+        type: object
+        properties:
+          prompt:
+            type: string
+            description: A description of the music you want to generate.
+            example: An electronic music soundtrack with a trumpet solo
+            default: An electronic music soundtrack with a trumpet solo
+          mode:
+            type: string
+            description: >-
+              Select a mode, each option generates different results. Melody is
+              best for melody, music is best for full songs
+            default: melody
+            enum:
+              - melody
+              - music
+          duration:
+            type: number
+            description: Duration of the generated audio in seconds. Max 30 seconds.
+            default: 28
+        required:
+          - prompt
+          - mode
+          - duration
+      MusicgenInferenceEntity:
+        type: object
+        properties:
+          id:
+            type: string
+          createdAt:
+            format: date-time
+            type: string
+          prompt:
+            type: string
+          state:
+            type: string
+            enum:
+              - failed
+              - finished
+              - processing
+              - queued
+          media_uri:
+            type: string
+        required:
+          - id
+          - createdAt
+          - prompt
+          - state
