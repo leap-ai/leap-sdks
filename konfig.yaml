@@ -4,6 +4,10 @@ outputDirectory: /tmp/leap-sdks-out
 specRemotePath: https://api.tryleap.ai/api-json
 specInputPath: api.json
 specPath: api-fixed.json
+fixConfig:
+  modify:
+    $.paths./api/v2/images/models.get.security:
+      - bearer: []
 generators:
   java:
     version: 1.0.0

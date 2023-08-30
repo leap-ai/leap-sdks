@@ -1,0 +1,31 @@
+examples: {}
+examples_2: {}
+operationIds:
+  /api/v2/images/models:
+    get: TrainImageModels_listAllModels
+  /api/v2/images/models/new:
+    post: TrainImageModels_trainModel
+  /api/v2/images/models/{modelId}:
+    delete: TrainImageModels_deleteModel
+    get: TrainImageModels_getModel
+operationTags: {}
+renameTags: {}
+requestSchemaNames: {}
+responseDescriptions: {}
+responseSchemaNames:
+  /api/v1/images/models/{modelId}/inferences:
+    get:
+      '200':
+        application/json: InferencesControllerFindAllResponse
+  /api/v1/music:
+    get:
+      '200':
+        application/json: MusicControllerFindAllAudioResponse
+securityParameters:
+  onlyFinished:
+    query: false
+  page:
+    query: false
+  pageSize:
+    query: false
+validServerUrls: {}
