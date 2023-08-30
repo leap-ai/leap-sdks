@@ -1,6 +1,7 @@
 openapi: 3.0.0
 info:
-  contact: {}
+  contact:
+    url: https://tryleap.ai/
   description: The Official Leap API
   title: Leap
   version: "1.0"

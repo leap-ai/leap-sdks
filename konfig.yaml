@@ -3,6 +3,7 @@
 outputDirectory: /tmp/leap-sdks-out
 specRemotePath: https://api.tryleap.ai/api-json
 specInputPath: api.json
+infoContactUrl: https://tryleap.ai/
 specPath: api-fixed.json
 fixConfig:
   modify:
