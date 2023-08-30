@@ -11,7 +11,7 @@
     Created by: https://tryleap.ai/
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 # import ApiClient
 from leap.api_client import ApiClient
