@@ -20,7 +20,6 @@ generators:
       userId: konfig-dev
       repoId: leap-sdks/tree/main/sdks/java
   python:
-    disabled: true
     version: 1.0.0
     packageName: leap
     projectName: leap
