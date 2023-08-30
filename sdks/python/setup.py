@@ -39,7 +39,7 @@ setup(
     description="Leap",
     author="Konfig",
     author_email="engineering@konfigthis.com",
-    url="https://github.com/konfig-dev/leap-sdks/tree/main/sdks/python",
+    url="https://github.com/leap-ai/leap-sdks/tree/main/sdks/python",
     keywords=["Konfig", "Leap"],
     license="MIT",
     python_requires=">=3.7",

@@ -17,7 +17,7 @@ generators:
     clientName: Leap
     outputDirectory: sdks/java
     git:
-      userId: konfig-dev
+      userId: leap-ai
       repoId: leap-sdks/tree/main/sdks/java
   python:
     version: 1.0.0
@@ -26,7 +26,7 @@ generators:
     outputDirectory: sdks/python
     clientName: Leap
     git:
-      userId: konfig-dev
+      userId: leap-ai
       repoId: leap-sdks/tree/main/sdks/python
   typescript:
     version: 1.0.0
@@ -34,7 +34,7 @@ generators:
     outputDirectory: sdks/typescript
     clientName: Leap
     git:
-      userId: konfig-dev
+      userId: leap-ai
       repoId: leap-sdks/tree/main/sdks/typescript
   csharp:
     disabled: true
@@ -44,5 +44,5 @@ generators:
     outputDirectory: sdks/csharp
     logoPath: logo.png
     git:
-      userId: konfig-dev
+      userId: leap-ai
       repoId: leap-sdks/tree/main/sdks/csharp
