@@ -112,6 +112,10 @@ public class ApiClient extends ApiClientCustom {
         authentications = Collections.unmodifiableMap(authentications);
 
         if (configuration != null) {
+            if (configuration.token != null) {
+                this.setBearerToken(configuration.token);
+            }
+
             setVerifyingSsl(configuration.verifyingSsl);
             setBasePath(configuration.host);
         }
