@@ -609,6 +609,15 @@
               "queued"
             ]
           },
+          "status": {
+            "type": "string",
+            "enum": [
+              "failed",
+              "finished",
+              "processing",
+              "queued"
+            ]
+          },
           "steps": {
             "type": "number"
           },
@@ -644,6 +653,7 @@
           "promptStrength",
           "numberOfImages",
           "state",
+          "status",
           "steps",
           "images",
           "modelId",
