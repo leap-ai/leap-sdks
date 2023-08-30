@@ -16,6 +16,8 @@ from pprint import pprint
 from leap import Leap
 
 MOCK_SERVER_URL = "http://localhost:4010"
+
+
 class TestSimple(unittest.TestCase):
     def setUp(self):
         pass
@@ -24,21 +26,108 @@ class TestSimple(unittest.TestCase):
         leap = Leap(
             # Defining the host is optional and defaults to https://api.tryleap.ai
             # See configuration.py for a list of all supported configuration parameters.
-            host = "https://api.tryleap.ai",
-
+            host="https://api.tryleap.ai",
             # Configure Bearer authorization (JWT): bearer
-            access_token = 'YOUR_BEARER_TOKEN'
+            access_token="YOUR_BEARER_TOKEN",
         )
         self.assertIsNotNone(leap)
 
     def test_multiple_requests(self):
-        leap = Leap(
-            host=MOCK_SERVER_URL,
-            access_token="TEST"
-        )
+        leap = Leap(host=MOCK_SERVER_URL, access_token="TEST")
         inference = leap.generate_images.create(model_id="test", prompt="A red bird")
-        images = leap.generate_images.find_one(model_id="test", inference_id=inference.body["id"])
+        images = leap.generate_images.find_one(
+            model_id="test", inference_id=inference.body["id"]
+        )
         self.assertIsNotNone(images.body)
+
+    def test_train_model_multipart(self):
+        self.skipTest("multipart/form-data not supported by prism")
+        leap = Leap(host="http://localhost:8080", access_token="TEST")
+        # open file at ../../../../logo.png
+        file = open("logo.png", "rb")
+
+        res = leap.train_image_models.train_model(
+            name="Alex Avatar Model",  # optional
+            subject_keyword="@me",  # optional
+            subject_type="person",  # optional
+            webhook_url="https://example.com/api/webhook",  # optional
+            image_sample_files=[file],  # optional
+        )
+        print(res)
+
+    def test_generate_music(self):
+        leap = Leap(host=MOCK_SERVER_URL, access_token="TEST")
+
+        create_audio_response = leap.generate_music.create_audio(
+            prompt="An electronic music soundtrack with a trumpet solo",  # required
+            mode="melody",  # required
+            duration=28,  # required
+        )
+
+        find_all_audio_response = leap.generate_music.find_all_audio()
+
+        find_one_audio_response = leap.generate_music.find_one_audio(
+            inference_id="inferenceId_example",  # required
+        )
+
+        self.assertIsNotNone(create_audio_response.body)
+        self.assertIsNotNone(find_all_audio_response.body)
+        self.assertIsNotNone(find_one_audio_response.body)
+
+    def test_generate_images(self):
+        leap = Leap(host=MOCK_SERVER_URL, access_token="TEST")
+
+        create_response = leap.generate_images.create(
+            prompt="A photo of an astronaut riding a horse",  # required
+            model_id="26a1a203-3a46-42cb-8cfa-f4de075907d8",  # required
+            negative_prompt="asymmetric, bad hands, bad hair",  # optional
+            steps=50,  # optional
+            width=1024,  # optional
+            height=1024,  # optional
+            number_of_images=1,  # optional
+            prompt_strength=7,  # optional
+            seed=4523184,  # optional
+            webhook_url="string_example",  # optional
+        )
+
+        find_all_response = leap.generate_images.find_all(
+            model_id="26a1a203-3a46-42cb-8cfa-f4de075907d8",  # required
+            only_finished=True,  # optional
+            page=3.14,  # optional
+            page_size=3.14,  # optional
+        )
+
+        find_one_response = leap.generate_images.find_one(
+            model_id="26a1a203-3a46-42cb-8cfa-f4de075907d8",  # required
+            inference_id="a047df00-8bdd-4d57-a9bd-6eebef36ecaa",  # required
+        )
+
+        remove_response = leap.generate_images.remove(
+            model_id="26a1a203-3a46-42cb-8cfa-f4de075907d8",  # required
+            inference_id="a047df00-8bdd-4d57-a9bd-6eebef36ecaa",  # required
+        )
+
+        self.assertIsNotNone(create_response.body)
+        self.assertIsNotNone(find_all_response.body)
+        self.assertIsNotNone(find_one_response.body)
+        self.assertIsNotNone(remove_response.body)
+
+    def test_train_model(self):
+        leap = Leap(host=MOCK_SERVER_URL, access_token="TEST")
+
+        delete_model_response = leap.train_image_models.delete_model(
+            model_id="5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e",  # required
+        )
+
+        get_model_response = leap.train_image_models.get_model(
+            model_id="5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e",  # required
+        )
+
+        list_all_models_response = leap.train_image_models.list_all_models()
+
+        self.assertIsNotNone(delete_model_response.body)
+        self.assertIsNotNone(get_model_response.body)
+        self.assertIsNotNone(list_all_models_response.body)
 
     def tearDown(self):
         pass
