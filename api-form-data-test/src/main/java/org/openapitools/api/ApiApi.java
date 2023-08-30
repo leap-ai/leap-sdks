@@ -506,6 +506,7 @@ public interface ApiApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    // parse request and print out all fields
                     String exampleString = "{ \"subjectKeyword\" : \"subjectKeyword\", \"createdAt\" : \"createdAt\", \"name\" : \"name\", \"id\" : \"id\", \"subjectType\" : \"subjectType\", \"imageSamples\" : [ \"imageSamples\", \"imageSamples\" ], \"status\" : \"status\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
