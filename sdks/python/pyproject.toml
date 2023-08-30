@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "leap"
+name = "leap-python-sdk"
 version = "1.0.0"
 description = "Client for Leap"
 authors = ["Konfig <engineering@konfigthis.com>"]

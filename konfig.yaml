@@ -22,7 +22,7 @@ generators:
   python:
     version: 1.0.0
     packageName: leap
-    projectName: leap
+    projectName: leap-python-sdk
     outputDirectory: sdks/python
     clientName: Leap
     git:
