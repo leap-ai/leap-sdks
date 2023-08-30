@@ -180,9 +180,9 @@ const leap = new Leap({
 
 const trainModelResponse = await leap.trainImageModels.trainModel({
   name: "Alex Avatar Model",
-  subject_keyword: "@me",
-  subject_type: "person",
-  webhook_url: "https://example.com/api/webhook",
+  subjectKeyword: "@me",
+  subjectType: "person",
+  webhookUrl: "https://example.com/api/webhook",
 });
 
 console.log(trainModelResponse);

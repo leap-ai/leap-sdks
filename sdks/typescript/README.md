@@ -32,12 +32,12 @@ const leap = new Leap({
 const createResponse = await leap.generateImages.create({
   modelId: "modelId_example",
   prompt: "A photo of an astronaut riding a horse",
-  negative_prompt: "asymmetric, bad hands, bad hair",
+  negativePrompt: "asymmetric, bad hands, bad hair",
   steps: 50,
   width: 1024,
   height: 1024,
-  number_of_images: 1,
-  prompt_strength: 7,
+  numberOfImages: 1,
+  promptStrength: 7,
   seed: 4523184,
 });
 
