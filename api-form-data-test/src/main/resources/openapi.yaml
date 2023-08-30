@@ -1,0 +1,735 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  description: The Official Leap API
+  title: Leap
+  version: "1.0"
+servers:
+- description: Production
+  url: https://api.tryleap.ai
+tags:
+- name: Generate Images
+- name: Train Image Models
+- name: Generate Music
+paths:
+  /api/v1/images/models/{modelId}/inferences:
+    get:
+      description: Fetch a list of inference jobs for a specific model.
+      operationId: InferencesController_findAll
+      parameters:
+      - description: "The ID of the model to generate images. This can be a custom\
+          \ model or a public model. Visit: https://docs.tryleap.ai/public-models\
+          \ to view the list of public models."
+        example: 26a1a203-3a46-42cb-8cfa-f4de075907d8
+        explode: false
+        in: path
+        name: modelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "If set to true, only finished inferences will be returned. If\
+          \ set to false or not set, all inference jobs will be returned."
+        explode: true
+        in: query
+        name: onlyFinished
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - allowEmptyValue: true
+        description: The page to request.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          type: number
+        style: form
+      - allowEmptyValue: true
+        description: The number of items to return per page.
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InferencesControllerFindAllResponse'
+          description: Successfully retrieved list of image generation jobs.
+      security:
+      - bearer: []
+      summary: List All Image Jobs
+      tags:
+      - Generate Images
+      x-accepts: application/json
+      x-tags:
+      - tag: Generate Images
+    post:
+      description: "Generate an image by providing a text description. Generations\
+        \ usually take bettween 4-20 seconds per image. Total generation time depends\
+        \ on the number of `steps` and `noOfImages` you select. This endpoint will\
+        \ submit the generation job and return immediately. To retrieve the results\
+        \ you must provide a webhook URL or query/poll the [Get a Single Image Job](https://reference.tryleap.ai/reference/inferencescontroller_findone-1)\
+        \ endpoint."
+      operationId: InferencesController_create
+      parameters:
+      - description: "The ID of the model to use to generate images. This can be a\
+          \ custom model, or a public model. To view the list of public models, visit:\
+          \ https://docs.tryleap.ai/public-models"
+        example: 26a1a203-3a46-42cb-8cfa-f4de075907d8
+        explode: false
+        in: path
+        name: modelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              Create a new inference:
+                value:
+                  prompt: A photo of an astronaut riding a horse
+                  steps: 50
+                  height: 1024
+                  width: 1024
+                  numberOfImages: 1
+            schema:
+              $ref: '#/components/schemas/CreateInferenceDto'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InferenceEntity'
+          description: Successfully submitted image generation job.
+      security:
+      - bearer: []
+      summary: Generate an Image
+      tags:
+      - Generate Images
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Generate Images
+  /api/v1/images/models/{modelId}/inferences/{inferenceId}:
+    delete:
+      description: Delete the image job and all related images.
+      operationId: InferencesController_remove
+      parameters:
+      - description: "The ID of the model to use to generate images. This can be a\
+          \ custom model, or a public model. To view the list of public models, visit:\
+          \ https://docs.tryleap.ai/public-models"
+        example: 26a1a203-3a46-42cb-8cfa-f4de075907d8
+        explode: false
+        in: path
+        name: modelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the image generation job to retrieve. This is the same
+          ID that is returned when you submit a new image generation job.
+        example: a047df00-8bdd-4d57-a9bd-6eebef36ecaa
+        explode: false
+        in: path
+        name: inferenceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Successfully deleted image generation job.
+      security:
+      - bearer: []
+      summary: Delete Image Job
+      tags:
+      - Generate Images
+      x-accepts: application/json
+      x-tags:
+      - tag: Generate Images
+    get:
+      description: "Retrieve a single image generation job, including the urls for\
+        \ the images generated."
+      operationId: InferencesController_findOne
+      parameters:
+      - description: "The ID of the model to use to generate images. This can be a\
+          \ custom model, or a public model. To view the list of public models, visit:\
+          \ https://docs.tryleap.ai/public-models"
+        example: 26a1a203-3a46-42cb-8cfa-f4de075907d8
+        explode: false
+        in: path
+        name: modelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the image generation job to retrieve. This is the same
+          ID that is returned when you submit a new image generation job.
+        example: a047df00-8bdd-4d57-a9bd-6eebef36ecaa
+        explode: false
+        in: path
+        name: inferenceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InferenceEntity'
+          description: Successfully retrieved image generation job.
+      security:
+      - bearer: []
+      summary: Get Single Image Job
+      tags:
+      - Generate Images
+      x-accepts: application/json
+      x-tags:
+      - tag: Generate Images
+  /api/v2/images/models/new:
+    post:
+      description: "Upload a few image samples, and train a new model. Training usually\
+        \ takes 20-40 minutes. To be notified when the model completes training you\
+        \ must provide a `webhookUrl` in the training request, or check for completion\
+        \ by calling [Get a Single Model](https://reference.tryleap.ai/reference/get-model-1).\
+        \ After training completes, you can use the model to generate images with\
+        \ [Generate Images](https://reference.tryleap.ai/reference/inferencescontroller_create-1)."
+      operationId: TrainImageModels_trainModel
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateAndTrainModelDto'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelV2Entity'
+          description: Successfully submitted training job.
+      security:
+      - bearer: []
+      summary: Train Model
+      tags:
+      - Train Image Models
+      x-content-type: multipart/form-data
+      x-accepts: application/json
+      x-tags:
+      - tag: Train Image Models
+  /api/v2/images/models:
+    get:
+      description: This endpoint will return a list of all models for the workspace.
+      operationId: TrainImageModels_listAllModels
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListModelsV2Response'
+          description: Successfully retrieved models.
+      security:
+      - bearer: []
+      summary: List All Models
+      tags:
+      - Train Image Models
+      x-accepts: application/json
+      x-tags:
+      - tag: Train Image Models
+  /api/v2/images/models/{modelId}:
+    delete:
+      description: This endpoint will delete a model. This is not reversible.
+      operationId: TrainImageModels_deleteModel
+      parameters:
+      - description: The ID of the model to delete.
+        example: 5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e
+        explode: false
+        in: path
+        name: modelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelV2Entity'
+          description: Successfully deleted the model
+      security:
+      - bearer: []
+      summary: Delete a Model
+      tags:
+      - Train Image Models
+      x-accepts: application/json
+      x-tags:
+      - tag: Train Image Models
+    get:
+      description: This endpoint will return a single model.
+      operationId: TrainImageModels_getModel
+      parameters:
+      - description: The ID of the model to retrieve.
+        example: 5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e
+        explode: false
+        in: path
+        name: modelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelV2Entity'
+          description: Successfully retrieved the model.
+        "404":
+          description: Model does not exist
+      security:
+      - bearer: []
+      summary: Get a Single Model
+      tags:
+      - Train Image Models
+      x-accepts: application/json
+      x-tags:
+      - tag: Train Image Models
+  /api/v1/music:
+    get:
+      description: List all music generation jobs for a workspace.
+      operationId: MusicController_findAllAudio
+      parameters: []
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MusicControllerFindAllAudioResponse'
+          description: Successfully retrieved music generation jobs.
+      security:
+      - bearer: []
+      summary: List Music Generation Jobs
+      tags:
+      - Generate Music
+      x-accepts: application/json
+      x-tags:
+      - tag: Generate Music
+    post:
+      description: "Generate music by providing a text description. Generations usually\
+        \ take bettween 1-3 minutes. Total generation time depends on the `duration`\
+        \ you select. This endpoint will submit the generation job and return immediately.\
+        \ To retrieve the results you must provide a webhook URL or query/poll the\
+        \ [Get a Music Generation Job](https://reference.tryleap.ai/reference/musiccontroller_findoneaudio)\
+        \ endpoint."
+      operationId: MusicController_createAudio
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMusicgenInferenceDto'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MusicgenInferenceEntity'
+          description: Successfully submitted music generation job.
+      security:
+      - bearer: []
+      summary: Generate Music
+      tags:
+      - Generate Music
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Generate Music
+  /api/v1/music/{inferenceId}:
+    get:
+      description: Get a specific music generation job.
+      operationId: MusicController_findOneAudio
+      parameters:
+      - description: The ID of the music generation job to retrieve. This is the same
+          ID returned when you submit a job.
+        explode: false
+        in: path
+        name: inferenceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MusicgenInferenceEntity'
+          description: Successfully retrieved music generation job.
+      summary: Get a Music Generation Job
+      tags:
+      - Generate Music
+      x-accepts: application/json
+      x-tags:
+      - tag: Generate Music
+components:
+  schemas:
+    CreateInferenceDto:
+      example:
+        numberOfImages: 1
+        seed: 4523184
+        width: 1024
+        prompt: A photo of an astronaut riding a horse
+        steps: 50
+        promptStrength: 7
+        webhookUrl: webhookUrl
+        negativePrompt: "asymmetric, bad hands, bad hair"
+        height: 1024
+      properties:
+        prompt:
+          default: A photo of an astronaut riding a horse
+          description: A text description of the image you what you want to generate.
+          example: A photo of an astronaut riding a horse
+          type: string
+        negativePrompt:
+          default: "asymmetric, watermarks"
+          description: A text description of what the image should try to avoid generating.
+          example: "asymmetric, bad hands, bad hair"
+          type: string
+        steps:
+          default: 50
+          description: "How many steps the AI will take to generate the image. Lower\
+            \ is faster but less detailed, higher is slower more detailed."
+          example: 50
+          type: number
+        width:
+          default: 1024
+          description: "The width of the image to use for the inference. Must be a\
+            \ multiple of 8. For best results use 1024x1024 for SDXL, and 512x512\
+            \ for other models."
+          example: 1024
+          type: number
+        height:
+          default: 1024
+          description: "The height of the image to use for the inference. Must be\
+            \ a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512\
+            \ for other models."
+          example: 1024
+          type: number
+        numberOfImages:
+          default: 1
+          description: "The number of images to generate, up to 4."
+          example: 1
+          type: number
+        promptStrength:
+          default: 7
+          description: "The higher the prompt strength, the closer the generated image\
+            \ will be to the prompt. Must be between 0 and 30."
+          example: 7
+          type: number
+        seed:
+          default: 4523184
+          description: "A random number to use as a seed when generating the image.\
+            \ This is helpful if you want to generate the same image multiple times.\
+            \ If you want to generate different images, keep this empty or provide\
+            \ a random number."
+          example: 4523184
+          type: number
+        webhookUrl:
+          description: An optional webhook URL that will be called with a POST request
+            when the image generation request completes.
+          type: string
+      required:
+      - prompt
+      type: object
+    InferenceImageEntity:
+      example:
+        createdAt: createdAt
+        id: id
+        uri: uri
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+        uri:
+          type: string
+      required:
+      - createdAt
+      - id
+      - uri
+      type: object
+    InferenceEntity:
+      example:
+        images:
+        - createdAt: createdAt
+          id: id
+          uri: uri
+        - createdAt: createdAt
+          id: id
+          uri: uri
+        seed: 0.8008281904610115
+        modelId:
+        - modelId
+        - modelId
+        upscalingOption: x1
+        steps: 2.3021358869347655
+        promptStrength: 5.962133916683182
+        negativePrompt: negativePrompt
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        numberOfImages: 5.637376656633329
+        width: 6.027456183070403
+        id: id
+        state: failed
+        prompt: prompt
+        height: 1.4658129805029452
+      properties:
+        id:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        prompt:
+          type: string
+        negativePrompt:
+          type: string
+        seed:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+        promptStrength:
+          type: number
+        numberOfImages:
+          type: number
+        state:
+          enum:
+          - failed
+          - finished
+          - processing
+          - queued
+          type: string
+        steps:
+          type: number
+        images:
+          items:
+            $ref: '#/components/schemas/InferenceImageEntity'
+          type: array
+        modelId:
+          items:
+            type: string
+          type: array
+        upscalingOption:
+          enum:
+          - x1
+          - x2
+          - x4
+          type: string
+      required:
+      - createdAt
+      - height
+      - id
+      - images
+      - modelId
+      - negativePrompt
+      - numberOfImages
+      - prompt
+      - promptStrength
+      - seed
+      - state
+      - steps
+      - upscalingOption
+      - width
+      type: object
+    CreateAndTrainModelDto:
+      properties:
+        name:
+          description: Provide a name so you can more easily identify the model.
+          example: Alex Avatar Model
+          type: string
+        subjectKeyword:
+          description: This is the keyword you will use during image generation to
+            trigger your custom subject. For example "a photo of @me".
+          example: '@me'
+          type: string
+        subjectType:
+          default: person
+          description: "The subject type - a short description, usually a noun, that\
+            \ describes what the underlying model is learning. For example: person,\
+            \ man, woman, cat, dog, icon, style. Defaults to \"person\"."
+          type: string
+        webhookUrl:
+          description: An optional webhook URL that will be called with a POST request
+            when the model completes training or fails.
+          example: https://example.com/api/webhook
+          type: string
+        imageSampleUrls:
+          description: "An array of strings containing the URLs of the images to upload.\
+            \ Either this or imageSampleFiles is required, but not both."
+          format: string
+          items:
+            format: string
+            type: string
+          type: array
+        imageSampleFiles:
+          description: "An array of files containing the images to upload. Either\
+            \ this or imageSampleUrls is required, but not both."
+          format: binary
+          items:
+            format: binary
+            type: string
+          type: array
+      type: object
+    ModelV2Entity:
+      example:
+        subjectKeyword: subjectKeyword
+        createdAt: createdAt
+        name: name
+        id: id
+        subjectType: subjectType
+        imageSamples:
+        - imageSamples
+        - imageSamples
+        status: status
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdAt:
+          type: string
+        subjectKeyword:
+          type: string
+        subjectType:
+          type: string
+        status:
+          type: string
+        imageSamples:
+          items:
+            type: string
+          type: array
+      required:
+      - createdAt
+      - id
+      - imageSamples
+      - name
+      - status
+      - subjectKeyword
+      - subjectType
+      type: object
+    ListModelsV2Response:
+      example:
+        models:
+        - subjectKeyword: subjectKeyword
+          createdAt: createdAt
+          name: name
+          id: id
+          subjectType: subjectType
+          imageSamples:
+          - imageSamples
+          - imageSamples
+          status: status
+        - subjectKeyword: subjectKeyword
+          createdAt: createdAt
+          name: name
+          id: id
+          subjectType: subjectType
+          imageSamples:
+          - imageSamples
+          - imageSamples
+          status: status
+      properties:
+        models:
+          items:
+            $ref: '#/components/schemas/ModelV2Entity'
+          type: array
+      required:
+      - models
+      type: object
+    CreateMusicgenInferenceDto:
+      example:
+        mode: melody
+        duration: 0.8008281904610115
+        prompt: An electronic music soundtrack with a trumpet solo
+      properties:
+        prompt:
+          default: An electronic music soundtrack with a trumpet solo
+          description: A description of the music you want to generate.
+          example: An electronic music soundtrack with a trumpet solo
+          type: string
+        mode:
+          default: melody
+          description: "Select a mode, each option generates different results. Melody\
+            \ is best for melody, music is best for full songs"
+          enum:
+          - melody
+          - music
+          type: string
+        duration:
+          default: 28
+          description: Duration of the generated audio in seconds. Max 30 seconds.
+          type: number
+      required:
+      - duration
+      - mode
+      - prompt
+      type: object
+    MusicgenInferenceEntity:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        media_uri: media_uri
+        id: id
+        state: failed
+        prompt: prompt
+      properties:
+        id:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        prompt:
+          type: string
+        state:
+          enum:
+          - failed
+          - finished
+          - processing
+          - queued
+          type: string
+        media_uri:
+          type: string
+      required:
+      - createdAt
+      - id
+      - prompt
+      - state
+      type: object
+    InferencesControllerFindAllResponse:
+      items:
+        $ref: '#/components/schemas/InferenceEntity'
+      type: array
+    MusicControllerFindAllAudioResponse:
+      items:
+        $ref: '#/components/schemas/MusicgenInferenceEntity'
+      type: array
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
