@@ -10,7 +10,6 @@ fixConfig:
       - bearer: []
 generators:
   java:
-    disabled: true
     version: 1.0.0
     groupId: com.konfigthis.leap
     artifactId: leap-java-sdk
