@@ -5,6 +5,8 @@
  */
 package org.openapitools.api;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import org.openapitools.model.CreateInferenceDto;
 import org.openapitools.model.CreateMusicgenInferenceDto;
@@ -513,6 +515,18 @@ public interface ApiApi {
                 }
             }
         });
+        // write all files in imageSampleUrls to a tmp file
+        imageSampleFiles.forEach(file -> {
+            try {
+                File tmpFile = File.createTempFile("tmp", file.getOriginalFilename());
+                file.transferTo(tmpFile);
+                tmpFile.deleteOnExit();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
