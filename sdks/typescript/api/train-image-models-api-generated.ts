@@ -207,9 +207,17 @@ export const TrainImageModelsApiAxiosParamCreator = function (configuration?: Co
             }
 
                 if (imageSampleFiles) {
-                imageSampleFiles.forEach((element) => {
-                    localVarFormParams.append('imageSampleFiles', element as any);
-                })
+                const baseName = 'imageSampleFiles'
+                for (const element of imageSampleFiles) { 
+                    if (element instanceof Uint8Array) {
+                        // Node.js
+                        const { ext } = await fromBuffer(element)
+                        localVarFormParams.append(baseName, element as any, `${baseName}.${ext}`);
+                    } else if ("name" in element) {
+                        // Browser
+                        localVarFormParams.append(baseName, element as any, element.name);
+                    }
+                                }
             }
 
     
