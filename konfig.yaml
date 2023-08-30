@@ -14,15 +14,15 @@ generators:
     groupId: com.konfigthis.leap
     artifactId: leap-java-sdk
     clientName: Leap
-    outputDirectory: java
+    outputDirectory: sdks/java
     git:
       userId: konfig-dev
       repoId: leap-sdks/tree/main/java
   python:
     version: 1.0.0
-    packageName: leap_client
-    projectName: leap-python-sdk
-    outputDirectory: python
+    packageName: leap
+    projectName: leap
+    outputDirectory: sdks/python
     clientName: Leap
     git:
       userId: konfig-dev
@@ -30,7 +30,7 @@ generators:
   typescript:
     version: 1.0.0
     npmName: "@leap-ai/sdk"
-    outputDirectory: typescript
+    outputDirectory: sdks/typescript
     clientName: Leap
     git:
       userId: konfig-dev
@@ -39,7 +39,7 @@ generators:
     version: 1.0.0
     packageName: Leap.Net
     clientName: Leap
-    outputDirectory: csharp
+    outputDirectory: sdks/csharp
     logoPath: logo.png
     git:
       userId: konfig-dev
