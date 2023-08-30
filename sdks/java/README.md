@@ -1,6 +1,7 @@
 # leap-java-sdk
 
 [![Maven Central](https://img.shields.io/badge/Maven%20Central-v1.0.0-blue)](https://central.sonatype.com/artifact/com.konfigthis.leap/leap-java-sdk/1.0.0)
+[![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](https://tryleap.ai/)
 
 The Official Leap API
 

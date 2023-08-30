@@ -1,6 +1,7 @@
 # @leap-ai/sdk@1.0.0
 
 [![npm](https://img.shields.io/badge/npm-v1.0.0-blue)](https://www.npmjs.com/package/@leap-ai/sdk/v/1.0.0)
+[![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](https://tryleap.ai/)
 
 The Official Leap API
 ## Installing
