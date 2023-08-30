@@ -107,7 +107,7 @@ public class CreateMusicgenInferenceDto {
 
   public static final String SERIALIZED_NAME_DURATION = "duration";
   @SerializedName(SERIALIZED_NAME_DURATION)
-  private Double duration = new Double("28");
+  private Double duration = 28d;
 
   public CreateMusicgenInferenceDto() {
   }

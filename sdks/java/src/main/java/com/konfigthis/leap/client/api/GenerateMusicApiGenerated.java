@@ -147,7 +147,7 @@ public class GenerateMusicApiGenerated {
     public class CreateAudioRequestBuilder {
         private final String prompt;
         private final String mode;
-        private final double duration;
+        private final Double duration;
 
         private CreateAudioRequestBuilder(String prompt, String mode, double duration) {
             this.prompt = prompt;

@@ -60,27 +60,27 @@ public class CreateInferenceDto {
 
   public static final String SERIALIZED_NAME_STEPS = "steps";
   @SerializedName(SERIALIZED_NAME_STEPS)
-  private Double steps = new Double("50");
+  private Double steps = 50d;
 
   public static final String SERIALIZED_NAME_WIDTH = "width";
   @SerializedName(SERIALIZED_NAME_WIDTH)
-  private Double width = new Double("1024");
+  private Double width = 1024d;
 
   public static final String SERIALIZED_NAME_HEIGHT = "height";
   @SerializedName(SERIALIZED_NAME_HEIGHT)
-  private Double height = new Double("1024");
+  private Double height = 1024d;
 
   public static final String SERIALIZED_NAME_NUMBER_OF_IMAGES = "numberOfImages";
   @SerializedName(SERIALIZED_NAME_NUMBER_OF_IMAGES)
-  private Double numberOfImages = new Double("1");
+  private Double numberOfImages = 1d;
 
   public static final String SERIALIZED_NAME_PROMPT_STRENGTH = "promptStrength";
   @SerializedName(SERIALIZED_NAME_PROMPT_STRENGTH)
-  private Double promptStrength = new Double("7");
+  private Double promptStrength = 7d;
 
   public static final String SERIALIZED_NAME_SEED = "seed";
   @SerializedName(SERIALIZED_NAME_SEED)
-  private Double seed = new Double("4523184");
+  private Double seed = 4523184d;
 
   public static final String SERIALIZED_NAME_WEBHOOK_URL = "webhookUrl";
   @SerializedName(SERIALIZED_NAME_WEBHOOK_URL)

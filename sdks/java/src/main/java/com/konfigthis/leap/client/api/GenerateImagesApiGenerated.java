@@ -154,12 +154,12 @@ public class GenerateImagesApiGenerated {
         private final String prompt;
         private final String modelId;
         private String negativePrompt;
-        private double steps;
-        private double width;
-        private double height;
-        private double numberOfImages;
-        private double promptStrength;
-        private double seed;
+        private Double steps;
+        private Double width;
+        private Double height;
+        private Double numberOfImages;
+        private Double promptStrength;
+        private Double seed;
         private String webhookUrl;
 
         private CreateRequestBuilder(String prompt, String modelId) {
@@ -182,7 +182,7 @@ public class GenerateImagesApiGenerated {
          * @param steps How many steps the AI will take to generate the image. Lower is faster but less detailed, higher is slower more detailed. (optional, default to 50)
          * @return CreateRequestBuilder
          */
-        public CreateRequestBuilder steps(double steps) {
+        public CreateRequestBuilder steps(Double steps) {
             this.steps = steps;
             return this;
         }
@@ -192,7 +192,7 @@ public class GenerateImagesApiGenerated {
          * @param width The width of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models. (optional, default to 1024)
          * @return CreateRequestBuilder
          */
-        public CreateRequestBuilder width(double width) {
+        public CreateRequestBuilder width(Double width) {
             this.width = width;
             return this;
         }
@@ -202,7 +202,7 @@ public class GenerateImagesApiGenerated {
          * @param height The height of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models. (optional, default to 1024)
          * @return CreateRequestBuilder
          */
-        public CreateRequestBuilder height(double height) {
+        public CreateRequestBuilder height(Double height) {
             this.height = height;
             return this;
         }
@@ -212,7 +212,7 @@ public class GenerateImagesApiGenerated {
          * @param numberOfImages The number of images to generate, up to 4. (optional, default to 1)
          * @return CreateRequestBuilder
          */
-        public CreateRequestBuilder numberOfImages(double numberOfImages) {
+        public CreateRequestBuilder numberOfImages(Double numberOfImages) {
             this.numberOfImages = numberOfImages;
             return this;
         }
@@ -222,7 +222,7 @@ public class GenerateImagesApiGenerated {
          * @param promptStrength The higher the prompt strength, the closer the generated image will be to the prompt. Must be between 0 and 30. (optional, default to 7)
          * @return CreateRequestBuilder
          */
-        public CreateRequestBuilder promptStrength(double promptStrength) {
+        public CreateRequestBuilder promptStrength(Double promptStrength) {
             this.promptStrength = promptStrength;
             return this;
         }
@@ -232,7 +232,7 @@ public class GenerateImagesApiGenerated {
          * @param seed A random number to use as a seed when generating the image. This is helpful if you want to generate the same image multiple times. If you want to generate different images, keep this empty or provide a random number. (optional, default to 4523184)
          * @return CreateRequestBuilder
          */
-        public CreateRequestBuilder seed(double seed) {
+        public CreateRequestBuilder seed(Double seed) {
             this.seed = seed;
             return this;
         }
