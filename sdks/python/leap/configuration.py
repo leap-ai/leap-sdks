@@ -86,6 +86,7 @@ class Configuration(object):
 
     def __init__(self, host=None,
                  api_key=None, api_key_prefix=None,
+                 access_token=None,
                  username=None, password=None,
                  discard_unknown_keys=False,
                  disabled_client_side_validations="",
@@ -121,6 +122,9 @@ class Configuration(object):
         """
         self.refresh_api_key_hook = None
         """function hook to refresh API key if expired
+        """
+        self.access_token = access_token
+        """Token for HTTP Basic Bearer Authentication
         """
         self.username = username
         """Username for HTTP basic authentication
