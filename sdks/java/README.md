@@ -150,35 +150,20 @@ public class Example {
               .webhookUrl(webhookUrl)
               .execute();
       System.out.println(result);
-
       System.out.println(result.getId());
-
       System.out.println(result.getCreatedAt());
-
       System.out.println(result.getPrompt());
-
       System.out.println(result.getNegativePrompt());
-
       System.out.println(result.getSeed());
-
       System.out.println(result.getWidth());
-
       System.out.println(result.getHeight());
-
       System.out.println(result.getPromptStrength());
-
       System.out.println(result.getNumberOfImages());
-
       System.out.println(result.getState());
-
       System.out.println(result.getSteps());
-
       System.out.println(result.getImages());
-
       System.out.println(result.getModelId());
-
       System.out.println(result.getUpscalingOption());
-
     } catch (ApiException e) {
       System.err.println("Exception when calling GenerateImagesApi#create");
       System.err.println("Status code: " + e.getStatusCode());
@@ -247,16 +232,3 @@ Class | Method | HTTP request | Description
  - [ListModelsV2Response](docs/ListModelsV2Response.md)
  - [ModelV2Entity](docs/ModelV2Entity.md)
  - [MusicgenInferenceEntity](docs/MusicgenInferenceEntity.md)
-
-
-## Documentation for Authorization
-
-Authentication schemes defined for the API:
-### bearer
-
-- **Type**: HTTP basic authentication
-
-
-## Recommendation
-
-It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.

@@ -48,21 +48,13 @@ public class Example {
               .deleteModel(modelId)
               .execute();
       System.out.println(result);
-
       System.out.println(result.getId());
-
       System.out.println(result.getName());
-
       System.out.println(result.getCreatedAt());
-
       System.out.println(result.getSubjectKeyword());
-
       System.out.println(result.getSubjectType());
-
       System.out.println(result.getStatus());
-
       System.out.println(result.getImageSamples());
-
     } catch (ApiException e) {
       System.err.println("Exception when calling TrainImageModelsApi#deleteModel");
       System.err.println("Status code: " + e.getStatusCode());
@@ -156,21 +148,13 @@ public class Example {
               .getModel(modelId)
               .execute();
       System.out.println(result);
-
       System.out.println(result.getId());
-
       System.out.println(result.getName());
-
       System.out.println(result.getCreatedAt());
-
       System.out.println(result.getSubjectKeyword());
-
       System.out.println(result.getSubjectType());
-
       System.out.println(result.getStatus());
-
       System.out.println(result.getImageSamples());
-
     } catch (ApiException e) {
       System.err.println("Exception when calling TrainImageModelsApi#getModel");
       System.err.println("Status code: " + e.getStatusCode());
@@ -264,9 +248,7 @@ public class Example {
               .listAllModels()
               .execute();
       System.out.println(result);
-
       System.out.println(result.getModels());
-
     } catch (ApiException e) {
       System.err.println("Exception when calling TrainImageModelsApi#listAllModels");
       System.err.println("Status code: " + e.getStatusCode());
@@ -368,21 +350,13 @@ public class Example {
               .imageSampleFiles(imageSampleFiles)
               .execute();
       System.out.println(result);
-
       System.out.println(result.getId());
-
       System.out.println(result.getName());
-
       System.out.println(result.getCreatedAt());
-
       System.out.println(result.getSubjectKeyword());
-
       System.out.println(result.getSubjectType());
-
       System.out.println(result.getStatus());
-
       System.out.println(result.getImageSamples());
-
     } catch (ApiException e) {
       System.err.println("Exception when calling TrainImageModelsApi#trainModel");
       System.err.println("Status code: " + e.getStatusCode());

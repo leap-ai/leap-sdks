@@ -49,17 +49,11 @@ public class Example {
               .createAudio(prompt, mode, duration)
               .execute();
       System.out.println(result);
-
       System.out.println(result.getId());
-
       System.out.println(result.getCreatedAt());
-
       System.out.println(result.getPrompt());
-
       System.out.println(result.getState());
-
       System.out.println(result.getMediaUri());
-
     } catch (ApiException e) {
       System.err.println("Exception when calling GenerateMusicApi#createAudio");
       System.err.println("Status code: " + e.getStatusCode());
@@ -152,7 +146,6 @@ public class Example {
               .findAllAudio()
               .execute();
       System.out.println(result);
-
     } catch (ApiException e) {
       System.err.println("Exception when calling GenerateMusicApi#findAllAudio");
       System.err.println("Status code: " + e.getStatusCode());
@@ -239,17 +232,11 @@ public class Example {
               .findOneAudio(inferenceId)
               .execute();
       System.out.println(result);
-
       System.out.println(result.getId());
-
       System.out.println(result.getCreatedAt());
-
       System.out.println(result.getPrompt());
-
       System.out.println(result.getState());
-
       System.out.println(result.getMediaUri());
-
     } catch (ApiException e) {
       System.err.println("Exception when calling GenerateMusicApi#findOneAudio");
       System.err.println("Status code: " + e.getStatusCode());
