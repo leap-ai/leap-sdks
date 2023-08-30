@@ -10,6 +10,7 @@ fixConfig:
       - bearer: []
 generators:
   java:
+    disabled: true
     version: 1.0.0
     groupId: com.konfigthis.leap
     artifactId: leap-java-sdk
@@ -19,6 +20,7 @@ generators:
       userId: konfig-dev
       repoId: leap-sdks/tree/main/java
   python:
+    disabled: true
     version: 1.0.0
     packageName: leap
     projectName: leap
@@ -36,6 +38,7 @@ generators:
       userId: konfig-dev
       repoId: leap-sdks/tree/main/typescript
   csharp:
+    disabled: true
     version: 1.0.0
     packageName: Leap.Net
     clientName: Leap
