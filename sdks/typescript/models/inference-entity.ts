@@ -83,6 +83,12 @@ export interface InferenceEntity {
     'state': InferenceEntityStateEnum;
     /**
      * 
+     * @type {string}
+     * @memberof InferenceEntity
+     */
+    'status': InferenceEntityStatusEnum;
+    /**
+     * 
      * @type {number}
      * @memberof InferenceEntity
      */
@@ -108,6 +114,7 @@ export interface InferenceEntity {
 }
 
 type InferenceEntityStateEnum = 'failed' | 'finished' | 'processing' | 'queued'
+type InferenceEntityStatusEnum = 'failed' | 'finished' | 'processing' | 'queued'
 type InferenceEntityUpscalingOptionEnum = 'x1' | 'x2' | 'x4'
 
 

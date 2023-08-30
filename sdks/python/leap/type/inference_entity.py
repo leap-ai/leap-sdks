@@ -38,6 +38,8 @@ class RequiredInferenceEntity(TypedDict):
 
     state: str
 
+    status: str
+
     steps: typing.Union[int, float]
 
     images: typing.List[InferenceImageEntity]

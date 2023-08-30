@@ -75,6 +75,7 @@ public class Example {
       System.out.println(result.getPromptStrength());
       System.out.println(result.getNumberOfImages());
       System.out.println(result.getState());
+      System.out.println(result.getStatus());
       System.out.println(result.getSteps());
       System.out.println(result.getImages());
       System.out.println(result.getModelId());
@@ -297,6 +298,7 @@ public class Example {
       System.out.println(result.getPromptStrength());
       System.out.println(result.getNumberOfImages());
       System.out.println(result.getState());
+      System.out.println(result.getStatus());
       System.out.println(result.getSteps());
       System.out.println(result.getImages());
       System.out.println(result.getModelId());

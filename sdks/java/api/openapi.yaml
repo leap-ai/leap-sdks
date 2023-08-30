@@ -524,6 +524,7 @@ components:
         state: failed
         prompt: prompt
         height: 1.4658129805029452
+        status: failed
       properties:
         id:
           type: string
@@ -545,6 +546,13 @@ components:
         numberOfImages:
           type: number
         state:
+          enum:
+          - failed
+          - finished
+          - processing
+          - queued
+          type: string
+        status:
           enum:
           - failed
           - finished
@@ -579,6 +587,7 @@ components:
       - promptStrength
       - seed
       - state
+      - status
       - steps
       - upscalingOption
       - width

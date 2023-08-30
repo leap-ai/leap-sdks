@@ -145,6 +145,61 @@ public class InferenceEntity {
   @SerializedName(SERIALIZED_NAME_STATE)
   private StateEnum state;
 
+  /**
+   * Gets or Sets status
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    FAILED("failed"),
+    
+    FINISHED("finished"),
+    
+    PROCESSING("processing"),
+    
+    QUEUED("queued");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private StatusEnum status;
+
   public static final String SERIALIZED_NAME_STEPS = "steps";
   @SerializedName(SERIALIZED_NAME_STEPS)
   private Double steps;
@@ -573,6 +628,37 @@ public class InferenceEntity {
   }
 
 
+  public InferenceEntity status(StatusEnum status) {
+
+    
+    
+    
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Get status
+   * @return status
+  **/
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(StatusEnum status) {
+
+    
+    
+    
+    this.status = status;
+  }
+
+
   public InferenceEntity steps(Double steps) {
 
     
@@ -781,6 +867,7 @@ public class InferenceEntity {
         Objects.equals(this.promptStrength, inferenceEntity.promptStrength) &&
         Objects.equals(this.numberOfImages, inferenceEntity.numberOfImages) &&
         Objects.equals(this.state, inferenceEntity.state) &&
+        Objects.equals(this.status, inferenceEntity.status) &&
         Objects.equals(this.steps, inferenceEntity.steps) &&
         Objects.equals(this.images, inferenceEntity.images) &&
         Objects.equals(this.modelId, inferenceEntity.modelId) &&
@@ -790,7 +877,7 @@ public class InferenceEntity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdAt, prompt, negativePrompt, seed, width, height, promptStrength, numberOfImages, state, steps, images, modelId, upscalingOption, additionalProperties);
+    return Objects.hash(id, createdAt, prompt, negativePrompt, seed, width, height, promptStrength, numberOfImages, state, status, steps, images, modelId, upscalingOption, additionalProperties);
   }
 
   @Override
@@ -807,6 +894,7 @@ public class InferenceEntity {
     sb.append("    promptStrength: ").append(toIndentedString(promptStrength)).append("\n");
     sb.append("    numberOfImages: ").append(toIndentedString(numberOfImages)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    steps: ").append(toIndentedString(steps)).append("\n");
     sb.append("    images: ").append(toIndentedString(images)).append("\n");
     sb.append("    modelId: ").append(toIndentedString(modelId)).append("\n");
@@ -844,6 +932,7 @@ public class InferenceEntity {
     openapiFields.add("promptStrength");
     openapiFields.add("numberOfImages");
     openapiFields.add("state");
+    openapiFields.add("status");
     openapiFields.add("steps");
     openapiFields.add("images");
     openapiFields.add("modelId");
@@ -861,6 +950,7 @@ public class InferenceEntity {
     openapiRequiredFields.add("promptStrength");
     openapiRequiredFields.add("numberOfImages");
     openapiRequiredFields.add("state");
+    openapiRequiredFields.add("status");
     openapiRequiredFields.add("steps");
     openapiRequiredFields.add("images");
     openapiRequiredFields.add("modelId");
@@ -897,6 +987,9 @@ public class InferenceEntity {
       }
       if (!jsonObj.get("state").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `state` to be a primitive type in the JSON string but got `%s`", jsonObj.get("state").toString()));
+      }
+      if (!jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
       // ensure the json data is an array
       if (!jsonObj.get("images").isJsonArray()) {

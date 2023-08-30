@@ -123,6 +123,14 @@ public class InferenceEntityTest {
     }
 
     /**
+     * Test the property 'status'
+     */
+    @Test
+    public void statusTest() {
+        // TODO: test status
+    }
+
+    /**
      * Test the property 'steps'
      */
     @Test

@@ -17,6 +17,7 @@
 |**promptStrength** | **Double** |  |  |
 |**numberOfImages** | **Double** |  |  |
 |**state** | [**StateEnum**](#StateEnum) |  |  |
+|**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**steps** | **Double** |  |  |
 |**images** | [**List&lt;InferenceImageEntity&gt;**](InferenceImageEntity.md) |  |  |
 |**modelId** | **List&lt;String&gt;** |  |  |
@@ -25,6 +26,17 @@
 
 
 ## Enum: StateEnum
+
+| Name | Value |
+|---- | -----|
+| FAILED | &quot;failed&quot; |
+| FINISHED | &quot;finished&quot; |
+| PROCESSING | &quot;processing&quot; |
+| QUEUED | &quot;queued&quot; |
+
+
+
+## Enum: StatusEnum
 
 | Name | Value |
 |---- | -----|

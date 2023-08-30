@@ -47,6 +47,7 @@ class InferenceEntity(
             "state",
             "prompt",
             "height",
+            "status",
         }
         
         class properties:
@@ -62,6 +63,37 @@ class InferenceEntity(
             
             
             class state(
+                schemas.EnumBase,
+                schemas.StrSchema
+            ):
+            
+            
+                class MetaOapg:
+                    enum_value_to_name = {
+                        "failed": "FAILED",
+                        "finished": "FINISHED",
+                        "processing": "PROCESSING",
+                        "queued": "QUEUED",
+                    }
+                
+                @schemas.classproperty
+                def FAILED(cls):
+                    return cls("failed")
+                
+                @schemas.classproperty
+                def FINISHED(cls):
+                    return cls("finished")
+                
+                @schemas.classproperty
+                def PROCESSING(cls):
+                    return cls("processing")
+                
+                @schemas.classproperty
+                def QUEUED(cls):
+                    return cls("queued")
+            
+            
+            class status(
                 schemas.EnumBase,
                 schemas.StrSchema
             ):
@@ -158,6 +190,7 @@ class InferenceEntity(
                 "promptStrength": promptStrength,
                 "numberOfImages": numberOfImages,
                 "state": state,
+                "status": status,
                 "steps": steps,
                 "images": images,
                 "modelId": modelId,
@@ -178,6 +211,7 @@ class InferenceEntity(
     state: MetaOapg.properties.state
     prompt: MetaOapg.properties.prompt
     height: MetaOapg.properties.height
+    status: MetaOapg.properties.status
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["id"]) -> MetaOapg.properties.id: ...
@@ -210,6 +244,9 @@ class InferenceEntity(
     def __getitem__(self, name: typing_extensions.Literal["state"]) -> MetaOapg.properties.state: ...
     
     @typing.overload
+    def __getitem__(self, name: typing_extensions.Literal["status"]) -> MetaOapg.properties.status: ...
+    
+    @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["steps"]) -> MetaOapg.properties.steps: ...
     
     @typing.overload
@@ -224,7 +261,7 @@ class InferenceEntity(
     @typing.overload
     def __getitem__(self, name: str) -> schemas.UnsetAnyTypeSchema: ...
     
-    def __getitem__(self, name: typing.Union[typing_extensions.Literal["id", "createdAt", "prompt", "negativePrompt", "seed", "width", "height", "promptStrength", "numberOfImages", "state", "steps", "images", "modelId", "upscalingOption", ], str]):
+    def __getitem__(self, name: typing.Union[typing_extensions.Literal["id", "createdAt", "prompt", "negativePrompt", "seed", "width", "height", "promptStrength", "numberOfImages", "state", "status", "steps", "images", "modelId", "upscalingOption", ], str]):
         # dict_instance[name] accessor
         return super().__getitem__(name)
     
@@ -260,6 +297,9 @@ class InferenceEntity(
     def get_item_oapg(self, name: typing_extensions.Literal["state"]) -> MetaOapg.properties.state: ...
     
     @typing.overload
+    def get_item_oapg(self, name: typing_extensions.Literal["status"]) -> MetaOapg.properties.status: ...
+    
+    @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["steps"]) -> MetaOapg.properties.steps: ...
     
     @typing.overload
@@ -274,7 +314,7 @@ class InferenceEntity(
     @typing.overload
     def get_item_oapg(self, name: str) -> typing.Union[schemas.UnsetAnyTypeSchema, schemas.Unset]: ...
     
-    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["id", "createdAt", "prompt", "negativePrompt", "seed", "width", "height", "promptStrength", "numberOfImages", "state", "steps", "images", "modelId", "upscalingOption", ], str]):
+    def get_item_oapg(self, name: typing.Union[typing_extensions.Literal["id", "createdAt", "prompt", "negativePrompt", "seed", "width", "height", "promptStrength", "numberOfImages", "state", "status", "steps", "images", "modelId", "upscalingOption", ], str]):
         return super().get_item_oapg(name)
     
 
@@ -295,6 +335,7 @@ class InferenceEntity(
         state: typing.Union[MetaOapg.properties.state, str, ],
         prompt: typing.Union[MetaOapg.properties.prompt, str, ],
         height: typing.Union[MetaOapg.properties.height, decimal.Decimal, int, float, ],
+        status: typing.Union[MetaOapg.properties.status, str, ],
         _configuration: typing.Optional[schemas.Configuration] = None,
         **kwargs: typing.Union[schemas.AnyTypeSchema, dict, frozendict.frozendict, str, date, datetime, uuid.UUID, int, float, decimal.Decimal, None, list, tuple, bytes],
     ) -> 'InferenceEntity':
@@ -315,6 +356,7 @@ class InferenceEntity(
             state=state,
             prompt=prompt,
             height=height,
+            status=status,
             _configuration=_configuration,
             **kwargs,
         )

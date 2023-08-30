@@ -1,6 +1,6 @@
 # leap-python-sdk
 
-[![PyPI](https://img.shields.io/badge/PyPI-v1.0.1-blue)](https://pypi.org/project/leap-python-sdk/1.0.1)
+[![PyPI](https://img.shields.io/badge/PyPI-v1.1.0-blue)](https://pypi.org/project/leap-python-sdk/1.1.0)
 [![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](https://tryleap.ai/)
 
 The Official Leap API
@@ -13,7 +13,7 @@ Python >=3.7
 ## Installing
 
 ```sh
-pip install leap-python-sdk==1.0.1
+pip install leap-python-sdk==1.1.0
 ```
 
 ## Getting Started
@@ -55,6 +55,7 @@ try:
     pprint(create_response.body["prompt_strength"])
     pprint(create_response.body["number_of_images"])
     pprint(create_response.body["state"])
+    pprint(create_response.body["status"])
     pprint(create_response.body["steps"])
     pprint(create_response.body["images"])
     pprint(create_response.body["model_id"])
@@ -115,6 +116,7 @@ async def main():
         pprint(create_response.body["prompt_strength"])
         pprint(create_response.body["number_of_images"])
         pprint(create_response.body["state"])
+        pprint(create_response.body["status"])
         pprint(create_response.body["steps"])
         pprint(create_response.body["images"])
         pprint(create_response.body["model_id"])
