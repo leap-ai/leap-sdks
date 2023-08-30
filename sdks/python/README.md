@@ -1,6 +1,8 @@
 # leap@1.0.0
-The Official Leap API
 
+[![PyPI](https://img.shields.io/badge/PyPI-v1.0.0-blue)](https://pypi.org/project/leap/1.0.0)
+
+The Official Leap API
 
 ## Requirements
 
