@@ -27,10 +27,10 @@ import { ModelV2Entity } from '../models';
 import { paginate } from "../pagination/paginate";
 import { requestBeforeHook } from '../requestBeforeHook';
 /**
- * TrainImageModelsApi - axios parameter creator
+ * ImageModelsApi - axios parameter creator
  * @export
  */
-export const TrainImageModelsApiAxiosParamCreator = function (configuration?: Configuration) {
+export const ImageModelsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * This endpoint will delete a model. This is not reversible.
@@ -244,31 +244,31 @@ export const TrainImageModelsApiAxiosParamCreator = function (configuration?: Co
 };
 
 /**
- * TrainImageModelsApi - functional programming interface
+ * ImageModelsApi - functional programming interface
  * @export
  */
-export const TrainImageModelsApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = TrainImageModelsApiAxiosParamCreator(configuration)
+export const ImageModelsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ImageModelsApiAxiosParamCreator(configuration)
     return {
         /**
          * This endpoint will delete a model. This is not reversible.
          * @summary Delete a Model
-         * @param {TrainImageModelsApiDeleteModelRequest} requestParameters Request parameters.
+         * @param {ImageModelsApiDeleteModelRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteModel(requestParameters: TrainImageModelsApiDeleteModelRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelV2Entity>> {
+        async deleteModel(requestParameters: ImageModelsApiDeleteModelRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelV2Entity>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteModel(requestParameters.modelId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * This endpoint will return a single model.
          * @summary Get a Single Model
-         * @param {TrainImageModelsApiGetModelRequest} requestParameters Request parameters.
+         * @param {ImageModelsApiGetModelRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getModel(requestParameters: TrainImageModelsApiGetModelRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelV2Entity>> {
+        async getModel(requestParameters: ImageModelsApiGetModelRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelV2Entity>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getModel(requestParameters.modelId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -285,11 +285,11 @@ export const TrainImageModelsApiFp = function(configuration?: Configuration) {
         /**
          * Upload a few image samples, and train a new model. Training usually takes 20-40 minutes. To be notified when the model completes training you must provide a `webhookUrl` in the training request, or check for completion by calling [Get a Single Model](https://reference.tryleap.ai/reference/get-model-1). After training completes, you can use the model to generate images with [Generate Images](https://reference.tryleap.ai/reference/inferencescontroller_create-1).
          * @summary Train Model
-         * @param {TrainImageModelsApiTrainModelRequest} requestParameters Request parameters.
+         * @param {ImageModelsApiTrainModelRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async trainModel(requestParameters: TrainImageModelsApiTrainModelRequest = {}, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelV2Entity>> {
+        async trainModel(requestParameters: ImageModelsApiTrainModelRequest = {}, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ModelV2Entity>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.trainModel(requestParameters.name, requestParameters.subjectKeyword, requestParameters.subjectType, requestParameters.webhookUrl, requestParameters.imageSampleUrls, requestParameters.imageSampleFiles, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -297,30 +297,30 @@ export const TrainImageModelsApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * TrainImageModelsApi - factory interface
+ * ImageModelsApi - factory interface
  * @export
  */
-export const TrainImageModelsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = TrainImageModelsApiFp(configuration)
+export const ImageModelsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ImageModelsApiFp(configuration)
     return {
         /**
          * This endpoint will delete a model. This is not reversible.
          * @summary Delete a Model
-         * @param {TrainImageModelsApiDeleteModelRequest} requestParameters Request parameters.
+         * @param {ImageModelsApiDeleteModelRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteModel(requestParameters: TrainImageModelsApiDeleteModelRequest, options?: AxiosRequestConfig): AxiosPromise<ModelV2Entity> {
+        deleteModel(requestParameters: ImageModelsApiDeleteModelRequest, options?: AxiosRequestConfig): AxiosPromise<ModelV2Entity> {
             return localVarFp.deleteModel(requestParameters, options).then((request) => request(axios, basePath));
         },
         /**
          * This endpoint will return a single model.
          * @summary Get a Single Model
-         * @param {TrainImageModelsApiGetModelRequest} requestParameters Request parameters.
+         * @param {ImageModelsApiGetModelRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getModel(requestParameters: TrainImageModelsApiGetModelRequest, options?: AxiosRequestConfig): AxiosPromise<ModelV2Entity> {
+        getModel(requestParameters: ImageModelsApiGetModelRequest, options?: AxiosRequestConfig): AxiosPromise<ModelV2Entity> {
             return localVarFp.getModel(requestParameters, options).then((request) => request(axios, basePath));
         },
         /**
@@ -335,128 +335,128 @@ export const TrainImageModelsApiFactory = function (configuration?: Configuratio
         /**
          * Upload a few image samples, and train a new model. Training usually takes 20-40 minutes. To be notified when the model completes training you must provide a `webhookUrl` in the training request, or check for completion by calling [Get a Single Model](https://reference.tryleap.ai/reference/get-model-1). After training completes, you can use the model to generate images with [Generate Images](https://reference.tryleap.ai/reference/inferencescontroller_create-1).
          * @summary Train Model
-         * @param {TrainImageModelsApiTrainModelRequest} requestParameters Request parameters.
+         * @param {ImageModelsApiTrainModelRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        trainModel(requestParameters: TrainImageModelsApiTrainModelRequest = {}, options?: AxiosRequestConfig): AxiosPromise<ModelV2Entity> {
+        trainModel(requestParameters: ImageModelsApiTrainModelRequest = {}, options?: AxiosRequestConfig): AxiosPromise<ModelV2Entity> {
             return localVarFp.trainModel(requestParameters, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * Request parameters for deleteModel operation in TrainImageModelsApi.
+ * Request parameters for deleteModel operation in ImageModelsApi.
  * @export
- * @interface TrainImageModelsApiDeleteModelRequest
+ * @interface ImageModelsApiDeleteModelRequest
  */
-export type TrainImageModelsApiDeleteModelRequest = {
+export type ImageModelsApiDeleteModelRequest = {
     
     /**
     * The ID of the model to delete.
     * @type {string}
-    * @memberof TrainImageModelsApiDeleteModel
+    * @memberof ImageModelsApiDeleteModel
     */
     readonly modelId: string
     
 }
 
 /**
- * Request parameters for getModel operation in TrainImageModelsApi.
+ * Request parameters for getModel operation in ImageModelsApi.
  * @export
- * @interface TrainImageModelsApiGetModelRequest
+ * @interface ImageModelsApiGetModelRequest
  */
-export type TrainImageModelsApiGetModelRequest = {
+export type ImageModelsApiGetModelRequest = {
     
     /**
     * The ID of the model to retrieve.
     * @type {string}
-    * @memberof TrainImageModelsApiGetModel
+    * @memberof ImageModelsApiGetModel
     */
     readonly modelId: string
     
 }
 
 /**
- * Request parameters for trainModel operation in TrainImageModelsApi.
+ * Request parameters for trainModel operation in ImageModelsApi.
  * @export
- * @interface TrainImageModelsApiTrainModelRequest
+ * @interface ImageModelsApiTrainModelRequest
  */
-export type TrainImageModelsApiTrainModelRequest = {
+export type ImageModelsApiTrainModelRequest = {
     
     /**
     * Provide a name so you can more easily identify the model.
     * @type {string}
-    * @memberof TrainImageModelsApiTrainModel
+    * @memberof ImageModelsApiTrainModel
     */
     readonly name?: string
     
     /**
     * This is the keyword you will use during image generation to trigger your custom subject. For example \\\"a photo of @me\\\".
     * @type {string}
-    * @memberof TrainImageModelsApiTrainModel
+    * @memberof ImageModelsApiTrainModel
     */
     readonly subjectKeyword?: string
     
     /**
     * The subject type - a short description, usually a noun, that describes what the underlying model is learning. For example: person, man, woman, cat, dog, icon, style. Defaults to \\\"person\\\".
     * @type {string}
-    * @memberof TrainImageModelsApiTrainModel
+    * @memberof ImageModelsApiTrainModel
     */
     readonly subjectType?: string
     
     /**
     * An optional webhook URL that will be called with a POST request when the model completes training or fails.
     * @type {string}
-    * @memberof TrainImageModelsApiTrainModel
+    * @memberof ImageModelsApiTrainModel
     */
     readonly webhookUrl?: string
     
     /**
     * An array of strings containing the URLs of the images to upload. Either this or imageSampleFiles is required, but not both.
     * @type {Array<string>}
-    * @memberof TrainImageModelsApiTrainModel
+    * @memberof ImageModelsApiTrainModel
     */
     readonly imageSampleUrls?: Array<string>
     
     /**
     * An array of files containing the images to upload. Either this or imageSampleUrls is required, but not both.
     * @type {Array<Uint8Array | File>}
-    * @memberof TrainImageModelsApiTrainModel
+    * @memberof ImageModelsApiTrainModel
     */
     readonly imageSampleFiles?: Array<Uint8Array | File>
     
 }
 
 /**
- * TrainImageModelsApiGenerated - object-oriented interface
+ * ImageModelsApiGenerated - object-oriented interface
  * @export
- * @class TrainImageModelsApiGenerated
+ * @class ImageModelsApiGenerated
  * @extends {BaseAPI}
  */
-export class TrainImageModelsApiGenerated extends BaseAPI {
+export class ImageModelsApiGenerated extends BaseAPI {
     /**
      * This endpoint will delete a model. This is not reversible.
      * @summary Delete a Model
-     * @param {TrainImageModelsApiDeleteModelRequest} requestParameters Request parameters.
+     * @param {ImageModelsApiDeleteModelRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TrainImageModelsApiGenerated
+     * @memberof ImageModelsApiGenerated
      */
-    public deleteModel(requestParameters: TrainImageModelsApiDeleteModelRequest, options?: AxiosRequestConfig) {
-        return TrainImageModelsApiFp(this.configuration).deleteModel(requestParameters, options).then((request) => request(this.axios, this.basePath));
+    public deleteModel(requestParameters: ImageModelsApiDeleteModelRequest, options?: AxiosRequestConfig) {
+        return ImageModelsApiFp(this.configuration).deleteModel(requestParameters, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * This endpoint will return a single model.
      * @summary Get a Single Model
-     * @param {TrainImageModelsApiGetModelRequest} requestParameters Request parameters.
+     * @param {ImageModelsApiGetModelRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TrainImageModelsApiGenerated
+     * @memberof ImageModelsApiGenerated
      */
-    public getModel(requestParameters: TrainImageModelsApiGetModelRequest, options?: AxiosRequestConfig) {
-        return TrainImageModelsApiFp(this.configuration).getModel(requestParameters, options).then((request) => request(this.axios, this.basePath));
+    public getModel(requestParameters: ImageModelsApiGetModelRequest, options?: AxiosRequestConfig) {
+        return ImageModelsApiFp(this.configuration).getModel(requestParameters, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -464,21 +464,21 @@ export class TrainImageModelsApiGenerated extends BaseAPI {
      * @summary List All Models
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TrainImageModelsApiGenerated
+     * @memberof ImageModelsApiGenerated
      */
     public listAllModels(options?: AxiosRequestConfig) {
-        return TrainImageModelsApiFp(this.configuration).listAllModels(options).then((request) => request(this.axios, this.basePath));
+        return ImageModelsApiFp(this.configuration).listAllModels(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Upload a few image samples, and train a new model. Training usually takes 20-40 minutes. To be notified when the model completes training you must provide a `webhookUrl` in the training request, or check for completion by calling [Get a Single Model](https://reference.tryleap.ai/reference/get-model-1). After training completes, you can use the model to generate images with [Generate Images](https://reference.tryleap.ai/reference/inferencescontroller_create-1).
      * @summary Train Model
-     * @param {TrainImageModelsApiTrainModelRequest} requestParameters Request parameters.
+     * @param {ImageModelsApiTrainModelRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof TrainImageModelsApiGenerated
+     * @memberof ImageModelsApiGenerated
      */
-    public trainModel(requestParameters: TrainImageModelsApiTrainModelRequest = {}, options?: AxiosRequestConfig) {
-        return TrainImageModelsApiFp(this.configuration).trainModel(requestParameters, options).then((request) => request(this.axios, this.basePath));
+    public trainModel(requestParameters: ImageModelsApiTrainModelRequest = {}, options?: AxiosRequestConfig) {
+        return ImageModelsApiFp(this.configuration).trainModel(requestParameters, options).then((request) => request(this.axios, this.basePath));
     }
 }

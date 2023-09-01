@@ -15,7 +15,7 @@ from leap.paths.api_v2_images_models.get import ListAllModels
 from leap.paths.api_v2_images_models_new.post import TrainModel
 
 
-class TrainImageModelsApi(
+class ImageModelsApi(
     DeleteModel,
     GetModel,
     ListAllModels,

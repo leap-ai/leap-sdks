@@ -74,25 +74,25 @@ request_body_create_inference_dto = api_client.RequestBody(
     },
     required=True,
 )
-SchemaFor200ResponseBodyApplicationJson = InferenceEntitySchema
+SchemaFor201ResponseBodyApplicationJson = InferenceEntitySchema
 
 
 @dataclass
-class ApiResponseFor200(api_client.ApiResponse):
+class ApiResponseFor201(api_client.ApiResponse):
     body: InferenceEntity
 
 
 @dataclass
-class ApiResponseFor200Async(api_client.AsyncApiResponse):
+class ApiResponseFor201Async(api_client.AsyncApiResponse):
     body: InferenceEntity
 
 
-_response_for_200 = api_client.OpenApiResponse(
-    response_cls=ApiResponseFor200,
-    response_cls_async=ApiResponseFor200Async,
+_response_for_201 = api_client.OpenApiResponse(
+    response_cls=ApiResponseFor201,
+    response_cls_async=ApiResponseFor201Async,
     content={
         'application/json': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJson),
+            schema=SchemaFor201ResponseBodyApplicationJson),
     },
 )
 _all_accept_content_types = (
@@ -102,7 +102,7 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
 
-    def _create_mapped_args(
+    def _generate_mapped_args(
         self,
         prompt: str,
         model_id: str,
@@ -142,7 +142,7 @@ class BaseApi(api_client.Api):
         args.path = _path_params
         return args
 
-    async def _acreate_oapg(
+    async def _agenerate_oapg(
         self,
         body: typing.Any = None,
             path_params: typing.Optional[dict] = {},
@@ -152,7 +152,7 @@ class BaseApi(api_client.Api):
         content_type: str = 'application/json',
         stream: bool = False,
     ) -> typing.Union[
-        ApiResponseFor200Async,
+        ApiResponseFor201Async,
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
@@ -270,7 +270,7 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-    def _create_oapg(
+    def _generate_oapg(
         self,
         body: typing.Any = None,
             path_params: typing.Optional[dict] = {},
@@ -280,7 +280,7 @@ class BaseApi(api_client.Api):
         content_type: str = 'application/json',
         stream: bool = False,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor201,
         api_client.ApiResponseWithoutDeserialization,
     ]:
         """
@@ -367,10 +367,10 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-class Create(BaseApi):
+class Generate(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    async def acreate(
+    async def agenerate(
         self,
         prompt: str,
         model_id: str,
@@ -383,11 +383,11 @@ class Create(BaseApi):
         seed: typing.Optional[typing.Union[int, float]] = None,
         webhook_url: typing.Optional[str] = None,
     ) -> typing.Union[
-        ApiResponseFor200Async,
+        ApiResponseFor201Async,
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._create_mapped_args(
+        args = self._generate_mapped_args(
             prompt=prompt,
             model_id=model_id,
             negative_prompt=negative_prompt,
@@ -399,12 +399,12 @@ class Create(BaseApi):
             seed=seed,
             webhook_url=webhook_url,
         )
-        return await self._acreate_oapg(
+        return await self._agenerate_oapg(
             body=args.body,
             path_params=args.path,
         )
     
-    def create(
+    def generate(
         self,
         prompt: str,
         model_id: str,
@@ -417,10 +417,10 @@ class Create(BaseApi):
         seed: typing.Optional[typing.Union[int, float]] = None,
         webhook_url: typing.Optional[str] = None,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor201,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._create_mapped_args(
+        args = self._generate_mapped_args(
             prompt=prompt,
             model_id=model_id,
             negative_prompt=negative_prompt,
@@ -432,7 +432,7 @@ class Create(BaseApi):
             seed=seed,
             webhook_url=webhook_url,
         )
-        return self._create_oapg(
+        return self._generate_oapg(
             body=args.body,
             path_params=args.path,
         )
@@ -453,11 +453,11 @@ class ApiForpost(BaseApi):
         seed: typing.Optional[typing.Union[int, float]] = None,
         webhook_url: typing.Optional[str] = None,
     ) -> typing.Union[
-        ApiResponseFor200Async,
+        ApiResponseFor201Async,
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._create_mapped_args(
+        args = self._generate_mapped_args(
             prompt=prompt,
             model_id=model_id,
             negative_prompt=negative_prompt,
@@ -469,7 +469,7 @@ class ApiForpost(BaseApi):
             seed=seed,
             webhook_url=webhook_url,
         )
-        return await self._acreate_oapg(
+        return await self._agenerate_oapg(
             body=args.body,
             path_params=args.path,
         )
@@ -487,10 +487,10 @@ class ApiForpost(BaseApi):
         seed: typing.Optional[typing.Union[int, float]] = None,
         webhook_url: typing.Optional[str] = None,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor201,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._create_mapped_args(
+        args = self._generate_mapped_args(
             prompt=prompt,
             model_id=model_id,
             negative_prompt=negative_prompt,
@@ -502,7 +502,7 @@ class ApiForpost(BaseApi):
             seed=seed,
             webhook_url=webhook_url,
         )
-        return self._create_oapg(
+        return self._generate_oapg(
             body=args.body,
             path_params=args.path,
         )

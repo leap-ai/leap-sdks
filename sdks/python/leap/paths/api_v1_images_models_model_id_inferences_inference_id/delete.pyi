@@ -87,7 +87,7 @@ _response_for_200 = api_client.OpenApiResponse(
 
 class BaseApi(api_client.Api):
 
-    def _remove_mapped_args(
+    def _delete_mapped_args(
         self,
         model_id: str,
         inference_id: str,
@@ -101,7 +101,7 @@ class BaseApi(api_client.Api):
         args.path = _path_params
         return args
 
-    async def _aremove_oapg(
+    async def _adelete_oapg(
         self,
             path_params: typing.Optional[dict] = {},
         skip_deserialization: bool = False,
@@ -207,7 +207,7 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-    def _remove_oapg(
+    def _delete_oapg(
         self,
             path_params: typing.Optional[dict] = {},
         skip_deserialization: bool = False,
@@ -282,10 +282,10 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-class Remove(BaseApi):
+class Delete(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    async def aremove(
+    async def adelete(
         self,
         model_id: str,
         inference_id: str,
@@ -294,15 +294,15 @@ class Remove(BaseApi):
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._remove_mapped_args(
+        args = self._delete_mapped_args(
             model_id=model_id,
             inference_id=inference_id,
         )
-        return await self._aremove_oapg(
+        return await self._adelete_oapg(
             path_params=args.path,
         )
     
-    def remove(
+    def delete(
         self,
         model_id: str,
         inference_id: str,
@@ -310,11 +310,11 @@ class Remove(BaseApi):
         ApiResponseFor200,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._remove_mapped_args(
+        args = self._delete_mapped_args(
             model_id=model_id,
             inference_id=inference_id,
         )
-        return self._remove_oapg(
+        return self._delete_oapg(
             path_params=args.path,
         )
 
@@ -330,11 +330,11 @@ class ApiFordelete(BaseApi):
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._remove_mapped_args(
+        args = self._delete_mapped_args(
             model_id=model_id,
             inference_id=inference_id,
         )
-        return await self._aremove_oapg(
+        return await self._adelete_oapg(
             path_params=args.path,
         )
     
@@ -346,11 +346,11 @@ class ApiFordelete(BaseApi):
         ApiResponseFor200,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._remove_mapped_args(
+        args = self._delete_mapped_args(
             model_id=model_id,
             inference_id=inference_id,
         )
-        return self._remove_oapg(
+        return self._delete_oapg(
             path_params=args.path,
         )
 

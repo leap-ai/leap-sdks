@@ -63,13 +63,13 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
 
-    def _find_all_audio_mapped_args(
+    def _list_all_mapped_args(
         self,
     ) -> api_client.MappedArgs:
         args: api_client.MappedArgs = api_client.MappedArgs()
         return args
 
-    async def _afind_all_audio_oapg(
+    async def _alist_all_oapg(
         self,
         skip_deserialization: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
@@ -164,7 +164,7 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-    def _find_all_audio_oapg(
+    def _list_all_oapg(
         self,
         skip_deserialization: bool = False,
         timeout: typing.Optional[typing.Union[int, typing.Tuple]] = None,
@@ -228,30 +228,30 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-class FindAllAudio(BaseApi):
+class ListAll(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    async def afind_all_audio(
+    async def alist_all(
         self,
     ) -> typing.Union[
         ApiResponseFor200Async,
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._find_all_audio_mapped_args(
+        args = self._list_all_mapped_args(
         )
-        return await self._afind_all_audio_oapg(
+        return await self._alist_all_oapg(
         )
     
-    def find_all_audio(
+    def list_all(
         self,
     ) -> typing.Union[
         ApiResponseFor200,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._find_all_audio_mapped_args(
+        args = self._list_all_mapped_args(
         )
-        return self._find_all_audio_oapg(
+        return self._list_all_oapg(
         )
 
 class ApiForget(BaseApi):
@@ -264,9 +264,9 @@ class ApiForget(BaseApi):
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._find_all_audio_mapped_args(
+        args = self._list_all_mapped_args(
         )
-        return await self._afind_all_audio_oapg(
+        return await self._alist_all_oapg(
         )
     
     def get(
@@ -275,8 +275,8 @@ class ApiForget(BaseApi):
         ApiResponseFor200,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._find_all_audio_mapped_args(
+        args = self._list_all_mapped_args(
         )
-        return self._find_all_audio_oapg(
+        return self._list_all_oapg(
         )
 

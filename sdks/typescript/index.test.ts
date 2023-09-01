@@ -13,7 +13,7 @@ describe("@leap-ai/sdk", () => {
       accessToken: "TEST",
       basePath: MOCK_SERVER_URL,
     });
-    const response = await leap.generateImages.create({
+    const response = await leap.images.generate({
       modelId: "26a1a203-3a46-42cb-8cfa-f4de075907d8",
       prompt: "A red bird",
     });
@@ -24,11 +24,11 @@ describe("@leap-ai/sdk", () => {
       accessToken: "TEST",
       basePath: MOCK_SERVER_URL,
     });
-    const response = await leap.generateImages.create({
+    const response = await leap.images.generate({
       modelId: "26a1a203-3a46-42cb-8cfa-f4de075907d8",
       prompt: "A red bird",
     });
-    const images = await leap.generateImages.findOne({
+    const images = await leap.images.findOne({
       modelId: "26a1a203-3a46-42cb-8cfa-f4de075907d8",
       inferenceId: response.data.id,
     });
@@ -41,15 +41,15 @@ describe("@leap-ai/sdk", () => {
       basePath: MOCK_SERVER_URL,
     });
 
-    const createAudioResponse = await leap.generateMusic.createAudio({
+    const createAudioResponse = await leap.music.generate({
       prompt: "An electronic music soundtrack with a trumpet solo",
       mode: "melody",
       duration: 28,
     });
 
-    const findAllAudioResponse = await leap.generateMusic.findAllAudio();
+    const findAllAudioResponse = await leap.music.listAll();
 
-    const findOneAudioResponse = await leap.generateMusic.findOneAudio({
+    const findOneAudioResponse = await leap.music.findOne({
       inferenceId: "inferenceId_example",
     });
 
@@ -71,7 +71,7 @@ describe("@leap-ai/sdk", () => {
     );
     const image = fs.readFileSync(filePath);
 
-    const trainModelResponse = await leap.trainImageModels.trainModel({
+    const trainModelResponse = await leap.imageModels.trainModel({
       name: "Alex Avatar Model",
       subjectKeyword: "@me",
       subjectType: "person",
@@ -87,13 +87,13 @@ describe("@leap-ai/sdk", () => {
       basePath: MOCK_SERVER_URL,
     });
 
-    const listAllModelsResponse = await leap.trainImageModels.listAllModels();
+    const listAllModelsResponse = await leap.imageModels.listAllModels();
 
-    const getModelResponse = await leap.trainImageModels.getModel({
+    const getModelResponse = await leap.imageModels.getModel({
       modelId: "modelId_example",
     });
 
-    const deleteModelResponse = await leap.trainImageModels.deleteModel({
+    const deleteModelResponse = await leap.imageModels.deleteModel({
       modelId: "modelId_example",
     });
 

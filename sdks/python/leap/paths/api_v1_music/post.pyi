@@ -76,7 +76,7 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
 
-    def _create_audio_mapped_args(
+    def _generate_mapped_args(
         self,
         prompt: str,
         mode: str,
@@ -93,7 +93,7 @@ class BaseApi(api_client.Api):
         args.body = _body
         return args
 
-    async def _acreate_audio_oapg(
+    async def _agenerate_oapg(
         self,
         body: typing.Any = None,
         skip_deserialization: bool = False,
@@ -206,7 +206,7 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-    def _create_audio_oapg(
+    def _generate_oapg(
         self,
         body: typing.Any = None,
         skip_deserialization: bool = False,
@@ -288,10 +288,10 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-class CreateAudio(BaseApi):
+class Generate(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    async def acreate_audio(
+    async def agenerate(
         self,
         prompt: str,
         mode: str,
@@ -301,16 +301,16 @@ class CreateAudio(BaseApi):
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._create_audio_mapped_args(
+        args = self._generate_mapped_args(
             prompt=prompt,
             mode=mode,
             duration=duration,
         )
-        return await self._acreate_audio_oapg(
+        return await self._agenerate_oapg(
             body=args.body,
         )
     
-    def create_audio(
+    def generate(
         self,
         prompt: str,
         mode: str,
@@ -319,12 +319,12 @@ class CreateAudio(BaseApi):
         ApiResponseFor200,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._create_audio_mapped_args(
+        args = self._generate_mapped_args(
             prompt=prompt,
             mode=mode,
             duration=duration,
         )
-        return self._create_audio_oapg(
+        return self._generate_oapg(
             body=args.body,
         )
 
@@ -341,12 +341,12 @@ class ApiForpost(BaseApi):
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._create_audio_mapped_args(
+        args = self._generate_mapped_args(
             prompt=prompt,
             mode=mode,
             duration=duration,
         )
-        return await self._acreate_audio_oapg(
+        return await self._agenerate_oapg(
             body=args.body,
         )
     
@@ -359,12 +359,12 @@ class ApiForpost(BaseApi):
         ApiResponseFor200,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._create_audio_mapped_args(
+        args = self._generate_mapped_args(
             prompt=prompt,
             mode=mode,
             duration=duration,
         )
-        return self._create_audio_oapg(
+        return self._generate_oapg(
             body=args.body,
         )
 

@@ -139,7 +139,7 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
 
-    def _find_all_mapped_args(
+    def _list_all_mapped_args(
         self,
         model_id: str,
         only_finished: typing.Optional[bool] = None,
@@ -161,7 +161,7 @@ class BaseApi(api_client.Api):
         args.path = _path_params
         return args
 
-    async def _afind_all_oapg(
+    async def _alist_all_oapg(
         self,
             query_params: typing.Optional[dict] = {},
             path_params: typing.Optional[dict] = {},
@@ -289,7 +289,7 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-    def _find_all_oapg(
+    def _list_all_oapg(
         self,
             query_params: typing.Optional[dict] = {},
             path_params: typing.Optional[dict] = {},
@@ -386,10 +386,10 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-class FindAll(BaseApi):
+class ListAll(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    async def afind_all(
+    async def alist_all(
         self,
         model_id: str,
         only_finished: typing.Optional[bool] = None,
@@ -400,18 +400,18 @@ class FindAll(BaseApi):
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._find_all_mapped_args(
+        args = self._list_all_mapped_args(
             model_id=model_id,
             only_finished=only_finished,
             page=page,
             page_size=page_size,
         )
-        return await self._afind_all_oapg(
+        return await self._alist_all_oapg(
             query_params=args.query,
             path_params=args.path,
         )
     
-    def find_all(
+    def list_all(
         self,
         model_id: str,
         only_finished: typing.Optional[bool] = None,
@@ -421,13 +421,13 @@ class FindAll(BaseApi):
         ApiResponseFor200,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._find_all_mapped_args(
+        args = self._list_all_mapped_args(
             model_id=model_id,
             only_finished=only_finished,
             page=page,
             page_size=page_size,
         )
-        return self._find_all_oapg(
+        return self._list_all_oapg(
             query_params=args.query,
             path_params=args.path,
         )
@@ -446,13 +446,13 @@ class ApiForget(BaseApi):
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._find_all_mapped_args(
+        args = self._list_all_mapped_args(
             model_id=model_id,
             only_finished=only_finished,
             page=page,
             page_size=page_size,
         )
-        return await self._afind_all_oapg(
+        return await self._alist_all_oapg(
             query_params=args.query,
             path_params=args.path,
         )
@@ -467,13 +467,13 @@ class ApiForget(BaseApi):
         ApiResponseFor200,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._find_all_mapped_args(
+        args = self._list_all_mapped_args(
             model_id=model_id,
             only_finished=only_finished,
             page=page,
             page_size=page_size,
         )
-        return self._find_all_oapg(
+        return self._list_all_oapg(
             query_params=args.query,
             path_params=args.path,
         )

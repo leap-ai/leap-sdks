@@ -11,24 +11,24 @@
 
 import { AxiosRequestConfig } from "axios";
 import {
-  GenerateImagesApi,
-  GenerateMusicApi,
-  TrainImageModelsApi,
+  ImageModelsApi,
+  ImagesApi,
+  MusicApi,
 } from "./api";
 import { Configuration, ConfigurationParameters } from "./configuration";
 import { LeapCustom } from "./client-custom";
 
 export class Leap extends LeapCustom {
-  readonly generateImages: GenerateImagesApi;
-  readonly generateMusic: GenerateMusicApi;
-  readonly trainImageModels: TrainImageModelsApi;
+  readonly imageModels: ImageModelsApi;
+  readonly images: ImagesApi;
+  readonly music: MusicApi;
 
   constructor(configurationParameters: ConfigurationParameters = {}) {
     super(configurationParameters);
     const configuration = new Configuration(configurationParameters);
-    this.generateImages = new GenerateImagesApi(configuration);
-    this.generateMusic = new GenerateMusicApi(configuration);
-    this.trainImageModels = new TrainImageModelsApi(configuration);
+    this.imageModels = new ImageModelsApi(configuration);
+    this.images = new ImagesApi(configuration);
+    this.music = new MusicApi(configuration);
   }
 
 }

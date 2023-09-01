@@ -1,14 +1,14 @@
 package com.konfigthis.leap.client;
 
-import com.konfigthis.leap.client.api.GenerateImagesApi;
-import com.konfigthis.leap.client.api.GenerateMusicApi;
-import com.konfigthis.leap.client.api.TrainImageModelsApi;
+import com.konfigthis.leap.client.api.ImageModelsApi;
+import com.konfigthis.leap.client.api.ImagesApi;
+import com.konfigthis.leap.client.api.MusicApi;
 
 public class Leap {
     private ApiClient apiClient;
-    public final GenerateImagesApi generateImages;
-    public final GenerateMusicApi generateMusic;
-    public final TrainImageModelsApi trainImageModels;
+    public final ImageModelsApi imageModels;
+    public final ImagesApi images;
+    public final MusicApi music;
 
     public Leap() {
         this(null);
@@ -16,9 +16,9 @@ public class Leap {
 
     public Leap(Configuration configuration) {
         this.apiClient = new ApiClient(null, configuration);
-        this.generateImages = new GenerateImagesApi(this.apiClient);
-        this.generateMusic = new GenerateMusicApi(this.apiClient);
-        this.trainImageModels = new TrainImageModelsApi(this.apiClient);
+        this.imageModels = new ImageModelsApi(this.apiClient);
+        this.images = new ImagesApi(this.apiClient);
+        this.music = new MusicApi(this.apiClient);
     }
 
 }
