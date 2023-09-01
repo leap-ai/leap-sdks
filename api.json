@@ -224,9 +224,6 @@
         "operationId": "train-model",
         "summary": "Train Model",
         "description": "Upload a few image samples, and train a new model. Training usually takes 20-40 minutes. To be notified when the model completes training you must provide a `webhookUrl` in the training request, or check for completion by calling [Get a Single Model](https://reference.tryleap.ai/reference/get-model-1). After training completes, you can use the model to generate images with [Generate Images](https://reference.tryleap.ai/reference/inferencescontroller_create-1).",
-        "tags": [
-          "Train Image Models"
-        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -250,6 +247,9 @@
             }
           }
         },
+        "tags": [
+          "Image Models"
+        ],
         "security": [
           {
             "bearer": []
@@ -262,9 +262,6 @@
         "operationId": "list-all-models",
         "summary": "List All Models",
         "description": "This endpoint will return a list of all models for the workspace.",
-        "tags": [
-          "Train Image Models"
-        ],
         "parameters": [],
         "responses": {
           "200": {
@@ -278,6 +275,9 @@
             }
           }
         },
+        "tags": [
+          "Image Models"
+        ],
         "security": [
           {
             "bearer": []
@@ -293,9 +293,6 @@
         "operationId": "get-model",
         "summary": "Get a Single Model",
         "description": "This endpoint will return a single model.",
-        "tags": [
-          "Train Image Models"
-        ],
         "parameters": [
           {
             "name": "modelId",
@@ -323,6 +320,9 @@
             "description": "Model does not exist"
           }
         },
+        "tags": [
+          "Image Models"
+        ],
         "security": [
           {
             "bearer": []
@@ -333,9 +333,6 @@
         "operationId": "delete-model",
         "summary": "Delete a Model",
         "description": "This endpoint will delete a model. This is not reversible.",
-        "tags": [
-          "Train Image Models"
-        ],
         "parameters": [
           {
             "name": "modelId",
@@ -360,6 +357,9 @@
             }
           }
         },
+        "tags": [
+          "Image Models"
+        ],
         "security": [
           {
             "bearer": []
@@ -369,12 +369,9 @@
     },
     "/api/v1/music": {
       "post": {
-        "operationId": "MusicController_createAudio",
+        "operationId": "MusicController_generate",
         "summary": "Generate Music",
         "description": "Generate music by providing a text description. Generations usually take bettween 1-3 minutes. Total generation time depends on the `duration` you select. This endpoint will submit the generation job and return immediately. To retrieve the results you must provide a webhook URL or query/poll the [Get a Music Generation Job](https://reference.tryleap.ai/reference/musiccontroller_findoneaudio) endpoint.",
-        "tags": [
-          "Generate Music"
-        ],
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -398,6 +395,9 @@
             }
           }
         },
+        "tags": [
+          "Music"
+        ],
         "security": [
           {
             "bearer": []
@@ -405,12 +405,9 @@
         ]
       },
       "get": {
-        "operationId": "MusicController_findAllAudio",
+        "operationId": "MusicController_listAll",
         "summary": "List Music Generation Jobs",
         "description": "List all music generation jobs for a workspace.",
-        "tags": [
-          "Generate Music"
-        ],
         "parameters": [],
         "responses": {
           "200": {
@@ -427,6 +424,9 @@
             }
           }
         },
+        "tags": [
+          "Music"
+        ],
         "security": [
           {
             "bearer": []
@@ -436,12 +436,9 @@
     },
     "/api/v1/music/{inferenceId}": {
       "get": {
-        "operationId": "MusicController_findOneAudio",
+        "operationId": "MusicController_findOne",
         "summary": "Get a Music Generation Job",
         "description": "Get a specific music generation job.",
-        "tags": [
-          "Generate Music"
-        ],
         "parameters": [
           {
             "name": "inferenceId",
@@ -464,7 +461,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Music"
+        ]
       }
     }
   },
