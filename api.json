@@ -20,9 +20,17 @@
         ],
         "requestBody": {
           "required": true,
+          "description": "The parameters to use to generate the image.",
           "content": {
             "application/json": {
               "schema": {
+                "example": {
+                  "prompt": "A photo of an astronaut riding a horse",
+                  "steps": 50,
+                  "height": 1024,
+                  "width": 1024,
+                  "numberOfImages": 1
+                },
                 "$ref": "#/components/schemas/CreateInferenceDto"
               },
               "examples": {
@@ -221,7 +229,7 @@
     },
     "/api/v2/images/models/new": {
       "post": {
-        "operationId": "train-model",
+        "operationId": "train",
         "summary": "Train Model",
         "description": "Upload a few image samples, and train a new model. Training usually takes 20-40 minutes. To be notified when the model completes training you must provide a `webhookUrl` in the training request, or check for completion by calling [Get a Single Model](https://reference.tryleap.ai/reference/get-model-1). After training completes, you can use the model to generate images with [Generate Images](https://reference.tryleap.ai/reference/inferencescontroller_create-1).",
         "parameters": [],
@@ -236,7 +244,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Successfully submitted training job.",
             "content": {
               "application/json": {
@@ -259,7 +267,7 @@
     },
     "/api/v2/images/models": {
       "get": {
-        "operationId": "list-all-models",
+        "operationId": "list-all",
         "summary": "List All Models",
         "description": "This endpoint will return a list of all models for the workspace.",
         "parameters": [],
@@ -290,7 +298,7 @@
     },
     "/api/v2/images/models/{modelId}": {
       "get": {
-        "operationId": "get-model",
+        "operationId": "find-one",
         "summary": "Get a Single Model",
         "description": "This endpoint will return a single model.",
         "parameters": [
@@ -330,7 +338,7 @@
         ]
       },
       "delete": {
-        "operationId": "delete-model",
+        "operationId": "delete",
         "summary": "Delete a Model",
         "description": "This endpoint will delete a model. This is not reversible.",
         "parameters": [
