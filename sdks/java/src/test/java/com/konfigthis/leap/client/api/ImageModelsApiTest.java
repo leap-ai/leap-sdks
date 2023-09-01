@@ -29,18 +29,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for TrainImageModelsApi
+ * API tests for ImageModelsApi
  */
 @Disabled
-public class TrainImageModelsApiTest {
+public class ImageModelsApiTest {
 
-    private static TrainImageModelsApi api;
+    private static ImageModelsApi api;
 
     
     @BeforeAll
     public static void beforeClass() {
         ApiClient apiClient = Configuration.getDefaultApiClient();
-        api = new TrainImageModelsApi(apiClient);
+        api = new ImageModelsApi(apiClient);
     }
 
     /**

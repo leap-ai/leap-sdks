@@ -1,5 +1,5 @@
 <a name="__pageTop"></a>
-# leap.apis.tags.train_image_models_api.TrainImageModelsApi
+# leap.apis.tags.image_models_api.ImageModelsApi
 
 All URIs are relative to *https://api.tryleap.ai*
 
@@ -32,7 +32,7 @@ leap = Leap(
 
 try:
     # Delete a Model
-    delete_model_response = leap.train_image_models.delete_model(
+    delete_model_response = leap.image_models.delete_model(
         model_id="5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e",  # required
     )
     pprint(delete_model_response.body)
@@ -47,7 +47,7 @@ try:
     pprint(delete_model_response.status)
     pprint(delete_model_response.round_trip_time)
 except ApiException as e:
-    print("Exception when calling TrainImageModelsApi.delete_model: %s\n" % e)
+    print("Exception when calling ImageModelsApi.delete_model: %s\n" % e)
     pprint(e.body)
     pprint(e.headers)
     pprint(e.status)
@@ -126,7 +126,7 @@ leap = Leap(
 
 try:
     # Get a Single Model
-    get_model_response = leap.train_image_models.get_model(
+    get_model_response = leap.image_models.get_model(
         model_id="5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e",  # required
     )
     pprint(get_model_response.body)
@@ -141,7 +141,7 @@ try:
     pprint(get_model_response.status)
     pprint(get_model_response.round_trip_time)
 except ApiException as e:
-    print("Exception when calling TrainImageModelsApi.get_model: %s\n" % e)
+    print("Exception when calling ImageModelsApi.get_model: %s\n" % e)
     pprint(e.body)
     pprint(e.headers)
     pprint(e.status)
@@ -228,14 +228,14 @@ leap = Leap(
 
 try:
     # List All Models
-    list_all_models_response = leap.train_image_models.list_all_models()
+    list_all_models_response = leap.image_models.list_all_models()
     pprint(list_all_models_response.body)
     pprint(list_all_models_response.body["models"])
     pprint(list_all_models_response.headers)
     pprint(list_all_models_response.status)
     pprint(list_all_models_response.round_trip_time)
 except ApiException as e:
-    print("Exception when calling TrainImageModelsApi.list_all_models: %s\n" % e)
+    print("Exception when calling ImageModelsApi.list_all_models: %s\n" % e)
     pprint(e.body)
     pprint(e.headers)
     pprint(e.status)
@@ -293,7 +293,7 @@ leap = Leap(
 
 try:
     # Train Model
-    train_model_response = leap.train_image_models.train_model(
+    train_model_response = leap.image_models.train_model(
         name="Alex Avatar Model",  # optional
         subject_keyword="@me",  # optional
         subject_type="person",  # optional
@@ -313,7 +313,7 @@ try:
     pprint(train_model_response.status)
     pprint(train_model_response.round_trip_time)
 except ApiException as e:
-    print("Exception when calling TrainImageModelsApi.train_model: %s\n" % e)
+    print("Exception when calling ImageModelsApi.train_model: %s\n" % e)
     pprint(e.body)
     pprint(e.headers)
     pprint(e.status)

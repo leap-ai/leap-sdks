@@ -6,6 +6,6 @@ import enum
 
 
 class TagValues(str, enum.Enum):
-    GENERATE_IMAGES = "Generate Images"
-    TRAIN_IMAGE_MODELS = "Train Image Models"
-    GENERATE_MUSIC = "Generate Music"
+    IMAGES = "Images"
+    IMAGE_MODELS = "Image Models"
+    MUSIC = "Music"

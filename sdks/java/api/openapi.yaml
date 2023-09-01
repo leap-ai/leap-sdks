@@ -10,14 +10,14 @@ servers:
 - description: Production
   url: https://api.tryleap.ai
 tags:
-- name: Generate Images
-- name: Train Image Models
-- name: Generate Music
+- name: Images
+- name: Image Models
+- name: Music
 paths:
   /api/v1/images/models/{modelId}/inferences:
     get:
       description: Fetch a list of inference jobs for a specific model.
-      operationId: InferencesController_findAll
+      operationId: InferencesController_listAll
       parameters:
       - description: "The ID of the model to generate images. This can be a custom\
           \ model or a public model. Visit: https://docs.tryleap.ai/public-models\
@@ -69,7 +69,7 @@ paths:
       - bearer: []
       summary: List All Image Jobs
       tags:
-      - Generate Images
+      - Images
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-v1-images-models-modelId-inferences
       x-accepts: application/json
@@ -80,7 +80,7 @@ paths:
         \ submit the generation job and return immediately. To retrieve the results\
         \ you must provide a webhook URL or query/poll the [Get a Single Image Job](https://reference.tryleap.ai/reference/inferencescontroller_findone-1)\
         \ endpoint."
-      operationId: InferencesController_create
+      operationId: InferencesController_generate
       parameters:
       - description: "The ID of the model to use to generate images. This can be a\
           \ custom model, or a public model. To view the list of public models, visit:\
@@ -109,7 +109,7 @@ paths:
               $ref: '#/components/schemas/CreateInferenceDto'
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
@@ -119,7 +119,7 @@ paths:
       - bearer: []
       summary: Generate an Image
       tags:
-      - Generate Images
+      - Images
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--api-v1-images-models-modelId-inferences
       x-content-type: application/json
@@ -127,7 +127,7 @@ paths:
   /api/v1/images/models/{modelId}/inferences/{inferenceId}:
     delete:
       description: Delete the image job and all related images.
-      operationId: InferencesController_remove
+      operationId: InferencesController_delete
       parameters:
       - description: "The ID of the model to use to generate images. This can be a\
           \ custom model, or a public model. To view the list of public models, visit:\
@@ -159,7 +159,7 @@ paths:
       - bearer: []
       summary: Delete Image Job
       tags:
-      - Generate Images
+      - Images
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-delete--api-v1-images-models-modelId-inferences-inferenceId
       x-accepts: application/json
@@ -202,7 +202,7 @@ paths:
       - bearer: []
       summary: Get Single Image Job
       tags:
-      - Generate Images
+      - Images
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-v1-images-models-modelId-inferences-inferenceId
       x-accepts: application/json
@@ -233,7 +233,7 @@ paths:
       - bearer: []
       summary: Train Model
       tags:
-      - Train Image Models
+      - Image Models
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--api-v2-images-models-new
       x-content-type: multipart/form-data
@@ -254,7 +254,7 @@ paths:
       - bearer: []
       summary: List All Models
       tags:
-      - Train Image Models
+      - Image Models
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-v2-images-models
       x-accepts: application/json
@@ -284,7 +284,7 @@ paths:
       - bearer: []
       summary: Delete a Model
       tags:
-      - Train Image Models
+      - Image Models
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-delete--api-v2-images-models-modelId
       x-accepts: application/json
@@ -315,14 +315,14 @@ paths:
       - bearer: []
       summary: Get a Single Model
       tags:
-      - Train Image Models
+      - Image Models
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-v2-images-models-modelId
       x-accepts: application/json
   /api/v1/music:
     get:
       description: List all music generation jobs for a workspace.
-      operationId: MusicController_findAllAudio
+      operationId: MusicController_listAll
       parameters: []
       responses:
         "200":
@@ -335,7 +335,7 @@ paths:
       - bearer: []
       summary: List Music Generation Jobs
       tags:
-      - Generate Music
+      - Music
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-v1-music
       x-accepts: application/json
@@ -346,7 +346,7 @@ paths:
         \ To retrieve the results you must provide a webhook URL or query/poll the\
         \ [Get a Music Generation Job](https://reference.tryleap.ai/reference/musiccontroller_findoneaudio)\
         \ endpoint."
-      operationId: MusicController_createAudio
+      operationId: MusicController_generate
       parameters: []
       requestBody:
         content:
@@ -365,7 +365,7 @@ paths:
       - bearer: []
       summary: Generate Music
       tags:
-      - Generate Music
+      - Music
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-post--api-v1-music
       x-content-type: application/json
@@ -373,7 +373,7 @@ paths:
   /api/v1/music/{inferenceId}:
     get:
       description: Get a specific music generation job.
-      operationId: MusicController_findOneAudio
+      operationId: MusicController_findOne
       parameters:
       - description: The ID of the music generation job to retrieve. This is the same
           ID returned when you submit a job.
@@ -393,7 +393,7 @@ paths:
           description: Successfully retrieved music generation job.
       summary: Get a Music Generation Job
       tags:
-      - Generate Music
+      - Music
       x-konfig-operation-can-have-single-parameter: true
       x-konfig-single-parameter-schema: konfig-generated-schema-single-parameter-schema-get--api-v1-music-inferenceId
       x-accepts: application/json

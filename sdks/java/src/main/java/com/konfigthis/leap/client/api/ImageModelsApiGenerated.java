@@ -37,16 +37,16 @@ import java.util.List;
 import java.util.Map;
 import javax.ws.rs.core.GenericType;
 
-public class TrainImageModelsApiGenerated {
+public class ImageModelsApiGenerated {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public TrainImageModelsApiGenerated() throws IllegalArgumentException {
+    public ImageModelsApiGenerated() throws IllegalArgumentException {
         this(Configuration.getDefaultApiClient());
     }
 
-    public TrainImageModelsApiGenerated(ApiClient apiClient) throws IllegalArgumentException {
+    public ImageModelsApiGenerated(ApiClient apiClient) throws IllegalArgumentException {
         this.localVarApiClient = apiClient;
     }
 

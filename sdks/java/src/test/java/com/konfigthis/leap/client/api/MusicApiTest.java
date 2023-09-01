@@ -28,18 +28,33 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for GenerateMusicApi
+ * API tests for MusicApi
  */
 @Disabled
-public class GenerateMusicApiTest {
+public class MusicApiTest {
 
-    private static GenerateMusicApi api;
+    private static MusicApi api;
 
     
     @BeforeAll
     public static void beforeClass() {
         ApiClient apiClient = Configuration.getDefaultApiClient();
-        api = new GenerateMusicApi(apiClient);
+        api = new MusicApi(apiClient);
+    }
+
+    /**
+     * Get a Music Generation Job
+     *
+     * Get a specific music generation job.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void findOneTest() throws ApiException {
+        String inferenceId = null;
+        MusicgenInferenceEntity response = api.findOne(inferenceId)
+                .execute();
+        // TODO: test validations
     }
 
     /**
@@ -50,11 +65,11 @@ public class GenerateMusicApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createAudioTest() throws ApiException {
+    public void generateTest() throws ApiException {
         String prompt = null;
         String mode = null;
         Double duration = null;
-        MusicgenInferenceEntity response = api.createAudio(prompt, mode, duration)
+        MusicgenInferenceEntity response = api.generate(prompt, mode, duration)
                 .execute();
         // TODO: test validations
     }
@@ -67,23 +82,8 @@ public class GenerateMusicApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void findAllAudioTest() throws ApiException {
-        List<MusicgenInferenceEntity> response = api.findAllAudio()
-                .execute();
-        // TODO: test validations
-    }
-
-    /**
-     * Get a Music Generation Job
-     *
-     * Get a specific music generation job.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void findOneAudioTest() throws ApiException {
-        String inferenceId = null;
-        MusicgenInferenceEntity response = api.findOneAudio(inferenceId)
+    public void listAllTest() throws ApiException {
+        List<MusicgenInferenceEntity> response = api.listAll()
                 .execute();
         // TODO: test validations
     }

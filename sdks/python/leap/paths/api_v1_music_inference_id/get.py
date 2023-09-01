@@ -94,7 +94,7 @@ _all_accept_content_types = (
 
 class BaseApi(api_client.Api):
 
-    def _find_one_audio_mapped_args(
+    def _find_one_mapped_args(
         self,
         inference_id: str,
     ) -> api_client.MappedArgs:
@@ -105,7 +105,7 @@ class BaseApi(api_client.Api):
         args.path = _path_params
         return args
 
-    async def _afind_one_audio_oapg(
+    async def _afind_one_oapg(
         self,
             path_params: typing.Optional[dict] = {},
         skip_deserialization: bool = False,
@@ -213,7 +213,7 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-    def _find_one_audio_oapg(
+    def _find_one_oapg(
         self,
             path_params: typing.Optional[dict] = {},
         skip_deserialization: bool = False,
@@ -290,10 +290,10 @@ class BaseApi(api_client.Api):
         return api_response
 
 
-class FindOneAudio(BaseApi):
+class FindOne(BaseApi):
     # this class is used by api classes that refer to endpoints with operationId fn names
 
-    async def afind_one_audio(
+    async def afind_one(
         self,
         inference_id: str,
     ) -> typing.Union[
@@ -301,24 +301,24 @@ class FindOneAudio(BaseApi):
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._find_one_audio_mapped_args(
+        args = self._find_one_mapped_args(
             inference_id=inference_id,
         )
-        return await self._afind_one_audio_oapg(
+        return await self._afind_one_oapg(
             path_params=args.path,
         )
     
-    def find_one_audio(
+    def find_one(
         self,
         inference_id: str,
     ) -> typing.Union[
         ApiResponseFor200,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._find_one_audio_mapped_args(
+        args = self._find_one_mapped_args(
             inference_id=inference_id,
         )
-        return self._find_one_audio_oapg(
+        return self._find_one_oapg(
             path_params=args.path,
         )
 
@@ -333,10 +333,10 @@ class ApiForget(BaseApi):
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
-        args = self._find_one_audio_mapped_args(
+        args = self._find_one_mapped_args(
             inference_id=inference_id,
         )
-        return await self._afind_one_audio_oapg(
+        return await self._afind_one_oapg(
             path_params=args.path,
         )
     
@@ -347,10 +347,10 @@ class ApiForget(BaseApi):
         ApiResponseFor200,
         api_client.ApiResponseWithoutDeserialization,
     ]:
-        args = self._find_one_audio_mapped_args(
+        args = self._find_one_mapped_args(
             inference_id=inference_id,
         )
-        return self._find_one_audio_oapg(
+        return self._find_one_oapg(
             path_params=args.path,
         )
 

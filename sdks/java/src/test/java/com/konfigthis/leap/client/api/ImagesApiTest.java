@@ -28,69 +28,32 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for GenerateImagesApi
+ * API tests for ImagesApi
  */
 @Disabled
-public class GenerateImagesApiTest {
+public class ImagesApiTest {
 
-    private static GenerateImagesApi api;
+    private static ImagesApi api;
 
     
     @BeforeAll
     public static void beforeClass() {
         ApiClient apiClient = Configuration.getDefaultApiClient();
-        api = new GenerateImagesApi(apiClient);
+        api = new ImagesApi(apiClient);
     }
 
     /**
-     * Generate an Image
+     * Delete Image Job
      *
-     * Generate an image by providing a text description. Generations usually take bettween 4-20 seconds per image. Total generation time depends on the number of &#x60;steps&#x60; and &#x60;noOfImages&#x60; you select. This endpoint will submit the generation job and return immediately. To retrieve the results you must provide a webhook URL or query/poll the [Get a Single Image Job](https://reference.tryleap.ai/reference/inferencescontroller_findone-1) endpoint.
+     * Delete the image job and all related images.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void createTest() throws ApiException {
-        String prompt = null;
+    public void deleteTest() throws ApiException {
         String modelId = null;
-        String negativePrompt = null;
-        Double steps = null;
-        Double width = null;
-        Double height = null;
-        Double numberOfImages = null;
-        Double promptStrength = null;
-        Double seed = null;
-        String webhookUrl = null;
-        InferenceEntity response = api.create(prompt, modelId)
-                .negativePrompt(negativePrompt)
-                .steps(steps)
-                .width(width)
-                .height(height)
-                .numberOfImages(numberOfImages)
-                .promptStrength(promptStrength)
-                .seed(seed)
-                .webhookUrl(webhookUrl)
-                .execute();
-        // TODO: test validations
-    }
-
-    /**
-     * List All Image Jobs
-     *
-     * Fetch a list of inference jobs for a specific model.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void findAllTest() throws ApiException {
-        String modelId = null;
-        Boolean onlyFinished = null;
-        Double page = null;
-        Double pageSize = null;
-        List<InferenceEntity> response = api.findAll(modelId)
-                .onlyFinished(onlyFinished)
-                .page(page)
-                .pageSize(pageSize)
+        String inferenceId = null;
+        api.delete(modelId, inferenceId)
                 .execute();
         // TODO: test validations
     }
@@ -112,17 +75,54 @@ public class GenerateImagesApiTest {
     }
 
     /**
-     * Delete Image Job
+     * Generate an Image
      *
-     * Delete the image job and all related images.
+     * Generate an image by providing a text description. Generations usually take bettween 4-20 seconds per image. Total generation time depends on the number of &#x60;steps&#x60; and &#x60;noOfImages&#x60; you select. This endpoint will submit the generation job and return immediately. To retrieve the results you must provide a webhook URL or query/poll the [Get a Single Image Job](https://reference.tryleap.ai/reference/inferencescontroller_findone-1) endpoint.
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void removeTest() throws ApiException {
+    public void generateTest() throws ApiException {
+        String prompt = null;
         String modelId = null;
-        String inferenceId = null;
-        api.remove(modelId, inferenceId)
+        String negativePrompt = null;
+        Double steps = null;
+        Double width = null;
+        Double height = null;
+        Double numberOfImages = null;
+        Double promptStrength = null;
+        Double seed = null;
+        String webhookUrl = null;
+        InferenceEntity response = api.generate(prompt, modelId)
+                .negativePrompt(negativePrompt)
+                .steps(steps)
+                .width(width)
+                .height(height)
+                .numberOfImages(numberOfImages)
+                .promptStrength(promptStrength)
+                .seed(seed)
+                .webhookUrl(webhookUrl)
+                .execute();
+        // TODO: test validations
+    }
+
+    /**
+     * List All Image Jobs
+     *
+     * Fetch a list of inference jobs for a specific model.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void listAllTest() throws ApiException {
+        String modelId = null;
+        Boolean onlyFinished = null;
+        Double page = null;
+        Double pageSize = null;
+        List<InferenceEntity> response = api.listAll(modelId)
+                .onlyFinished(onlyFinished)
+                .page(page)
+                .pageSize(pageSize)
                 .execute();
         // TODO: test validations
     }

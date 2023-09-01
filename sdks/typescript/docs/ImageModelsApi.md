@@ -1,13 +1,13 @@
-# TrainImageModelsApi
+# ImageModelsApi
 
 All URIs are relative to *https://api.tryleap.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteModel**](TrainImageModelsApi.md#deleteModel) | **DELETE** /api/v2/images/models/{modelId} | Delete a Model
-[**getModel**](TrainImageModelsApi.md#getModel) | **GET** /api/v2/images/models/{modelId} | Get a Single Model
-[**listAllModels**](TrainImageModelsApi.md#listAllModels) | **GET** /api/v2/images/models | List All Models
-[**trainModel**](TrainImageModelsApi.md#trainModel) | **POST** /api/v2/images/models/new | Train Model
+[**deleteModel**](ImageModelsApi.md#deleteModel) | **DELETE** /api/v2/images/models/{modelId} | Delete a Model
+[**getModel**](ImageModelsApi.md#getModel) | **GET** /api/v2/images/models/{modelId} | Get a Single Model
+[**listAllModels**](ImageModelsApi.md#listAllModels) | **GET** /api/v2/images/models | List All Models
+[**trainModel**](ImageModelsApi.md#trainModel) | **POST** /api/v2/images/models/new | Train Model
 
 
 # **deleteModel**
@@ -29,7 +29,7 @@ const leap = new Leap({
   accessToken: "ACCESS_TOKEN",
 });
 
-const deleteModelResponse = await leap.trainImageModels.deleteModel({
+const deleteModelResponse = await leap.imageModels.deleteModel({
   modelId: "modelId_example",
 });
 
@@ -80,7 +80,7 @@ const leap = new Leap({
   accessToken: "ACCESS_TOKEN",
 });
 
-const getModelResponse = await leap.trainImageModels.getModel({
+const getModelResponse = await leap.imageModels.getModel({
   modelId: "modelId_example",
 });
 
@@ -132,7 +132,7 @@ const leap = new Leap({
   accessToken: "ACCESS_TOKEN",
 });
 
-const listAllModelsResponse = await leap.trainImageModels.listAllModels();
+const listAllModelsResponse = await leap.imageModels.listAllModels();
 
 console.log(listAllModelsResponse);
 ```
@@ -178,7 +178,7 @@ const leap = new Leap({
   accessToken: "ACCESS_TOKEN",
 });
 
-const trainModelResponse = await leap.trainImageModels.trainModel({
+const trainModelResponse = await leap.imageModels.trainModel({
   name: "Alex Avatar Model",
   subjectKeyword: "@me",
   subjectType: "person",

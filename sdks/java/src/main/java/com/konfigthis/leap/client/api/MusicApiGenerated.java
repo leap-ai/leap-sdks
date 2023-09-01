@@ -36,16 +36,16 @@ import java.util.List;
 import java.util.Map;
 import javax.ws.rs.core.GenericType;
 
-public class GenerateMusicApiGenerated {
+public class MusicApiGenerated {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public GenerateMusicApiGenerated() throws IllegalArgumentException {
+    public MusicApiGenerated() throws IllegalArgumentException {
         this(Configuration.getDefaultApiClient());
     }
 
-    public GenerateMusicApiGenerated(ApiClient apiClient) throws IllegalArgumentException {
+    public MusicApiGenerated(ApiClient apiClient) throws IllegalArgumentException {
         this.localVarApiClient = apiClient;
     }
 
@@ -73,327 +73,7 @@ public class GenerateMusicApiGenerated {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    private okhttp3.Call createAudioCall(CreateMusicgenInferenceDto createMusicgenInferenceDto, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = createMusicgenInferenceDto;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/music";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "bearer" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call createAudioValidateBeforeCall(CreateMusicgenInferenceDto createMusicgenInferenceDto, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'createMusicgenInferenceDto' is set
-        if (createMusicgenInferenceDto == null) {
-            throw new ApiException("Missing the required parameter 'createMusicgenInferenceDto' when calling createAudio(Async)");
-        }
-
-        return createAudioCall(createMusicgenInferenceDto, _callback);
-
-    }
-
-
-    private ApiResponse<MusicgenInferenceEntity> createAudioWithHttpInfo(CreateMusicgenInferenceDto createMusicgenInferenceDto) throws ApiException {
-        okhttp3.Call localVarCall = createAudioValidateBeforeCall(createMusicgenInferenceDto, null);
-        Type localVarReturnType = new TypeToken<MusicgenInferenceEntity>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    private okhttp3.Call createAudioAsync(CreateMusicgenInferenceDto createMusicgenInferenceDto, final ApiCallback<MusicgenInferenceEntity> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = createAudioValidateBeforeCall(createMusicgenInferenceDto, _callback);
-        Type localVarReturnType = new TypeToken<MusicgenInferenceEntity>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-
-    public class CreateAudioRequestBuilder {
-        private final String prompt;
-        private final String mode;
-        private final Double duration;
-
-        private CreateAudioRequestBuilder(String prompt, String mode, double duration) {
-            this.prompt = prompt;
-            this.mode = mode;
-            this.duration = duration;
-        }
-
-        /**
-         * Build call for createAudio
-         * @param _callback ApiCallback API callback
-         * @return Call to execute
-         * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully submitted music generation job. </td><td>  -  </td></tr>
-         </table>
-         */
-        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            CreateMusicgenInferenceDto createMusicgenInferenceDto = buildBodyParams();
-            return createAudioCall(createMusicgenInferenceDto, _callback);
-        }
-
-        private CreateMusicgenInferenceDto buildBodyParams() {
-            CreateMusicgenInferenceDto createMusicgenInferenceDto = new CreateMusicgenInferenceDto();
-            createMusicgenInferenceDto.prompt(this.prompt);
-            if (this.mode != null)
-            createMusicgenInferenceDto.mode(CreateMusicgenInferenceDto.ModeEnum.fromValue(this.mode));
-            createMusicgenInferenceDto.duration(this.duration);
-            return createMusicgenInferenceDto;
-        }
-
-        /**
-         * Execute createAudio request
-         * @return MusicgenInferenceEntity
-         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully submitted music generation job. </td><td>  -  </td></tr>
-         </table>
-         */
-        public MusicgenInferenceEntity execute() throws ApiException {
-            CreateMusicgenInferenceDto createMusicgenInferenceDto = buildBodyParams();
-            ApiResponse<MusicgenInferenceEntity> localVarResp = createAudioWithHttpInfo(createMusicgenInferenceDto);
-            return localVarResp.getResponseBody();
-        }
-
-        /**
-         * Execute createAudio request with HTTP info returned
-         * @return ApiResponse&lt;MusicgenInferenceEntity&gt;
-         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully submitted music generation job. </td><td>  -  </td></tr>
-         </table>
-         */
-        public ApiResponse<MusicgenInferenceEntity> executeWithHttpInfo() throws ApiException {
-            CreateMusicgenInferenceDto createMusicgenInferenceDto = buildBodyParams();
-            return createAudioWithHttpInfo(createMusicgenInferenceDto);
-        }
-
-        /**
-         * Execute createAudio request (asynchronously)
-         * @param _callback The callback to be executed when the API call finishes
-         * @return The request call
-         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully submitted music generation job. </td><td>  -  </td></tr>
-         </table>
-         */
-        public okhttp3.Call executeAsync(final ApiCallback<MusicgenInferenceEntity> _callback) throws ApiException {
-            CreateMusicgenInferenceDto createMusicgenInferenceDto = buildBodyParams();
-            return createAudioAsync(createMusicgenInferenceDto, _callback);
-        }
-    }
-
-    /**
-     * Generate Music
-     * Generate music by providing a text description. Generations usually take bettween 1-3 minutes. Total generation time depends on the &#x60;duration&#x60; you select. This endpoint will submit the generation job and return immediately. To retrieve the results you must provide a webhook URL or query/poll the [Get a Music Generation Job](https://reference.tryleap.ai/reference/musiccontroller_findoneaudio) endpoint.
-     * @param createMusicgenInferenceDto  (required)
-     * @return CreateAudioRequestBuilder
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully submitted music generation job. </td><td>  -  </td></tr>
-     </table>
-     */
-    public CreateAudioRequestBuilder createAudio(String prompt, String mode, double duration) throws IllegalArgumentException {
-        if (prompt == null) throw new IllegalArgumentException("\"prompt\" is required but got null");
-            
-
-        if (mode == null) throw new IllegalArgumentException("\"mode\" is required but got null");
-            
-
-        
-        return new CreateAudioRequestBuilder(prompt, mode, duration);
-    }
-    private okhttp3.Call findAllAudioCall(final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/v1/music";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "bearer" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call findAllAudioValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return findAllAudioCall(_callback);
-
-    }
-
-
-    private ApiResponse<List<MusicgenInferenceEntity>> findAllAudioWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = findAllAudioValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<List<MusicgenInferenceEntity>>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    private okhttp3.Call findAllAudioAsync(final ApiCallback<List<MusicgenInferenceEntity>> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = findAllAudioValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<List<MusicgenInferenceEntity>>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-
-    public class FindAllAudioRequestBuilder {
-
-        private FindAllAudioRequestBuilder() {
-        }
-
-        /**
-         * Build call for findAllAudio
-         * @param _callback ApiCallback API callback
-         * @return Call to execute
-         * @throws ApiException If fail to serialize the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved music generation jobs. </td><td>  -  </td></tr>
-         </table>
-         */
-        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return findAllAudioCall(_callback);
-        }
-
-
-        /**
-         * Execute findAllAudio request
-         * @return List&lt;MusicgenInferenceEntity&gt;
-         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved music generation jobs. </td><td>  -  </td></tr>
-         </table>
-         */
-        public List<MusicgenInferenceEntity> execute() throws ApiException {
-            ApiResponse<List<MusicgenInferenceEntity>> localVarResp = findAllAudioWithHttpInfo();
-            return localVarResp.getResponseBody();
-        }
-
-        /**
-         * Execute findAllAudio request with HTTP info returned
-         * @return ApiResponse&lt;List&lt;MusicgenInferenceEntity&gt;&gt;
-         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved music generation jobs. </td><td>  -  </td></tr>
-         </table>
-         */
-        public ApiResponse<List<MusicgenInferenceEntity>> executeWithHttpInfo() throws ApiException {
-            return findAllAudioWithHttpInfo();
-        }
-
-        /**
-         * Execute findAllAudio request (asynchronously)
-         * @param _callback The callback to be executed when the API call finishes
-         * @return The request call
-         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-         * @http.response.details
-         <table summary="Response Details" border="1">
-            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully retrieved music generation jobs. </td><td>  -  </td></tr>
-         </table>
-         */
-        public okhttp3.Call executeAsync(final ApiCallback<List<MusicgenInferenceEntity>> _callback) throws ApiException {
-            return findAllAudioAsync(_callback);
-        }
-    }
-
-    /**
-     * List Music Generation Jobs
-     * List all music generation jobs for a workspace.
-     * @return FindAllAudioRequestBuilder
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully retrieved music generation jobs. </td><td>  -  </td></tr>
-     </table>
-     */
-    public FindAllAudioRequestBuilder findAllAudio() throws IllegalArgumentException {
-        return new FindAllAudioRequestBuilder();
-    }
-    private okhttp3.Call findOneAudioCall(String inferenceId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findOneCall(String inferenceId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -439,40 +119,40 @@ public class GenerateMusicApiGenerated {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call findOneAudioValidateBeforeCall(String inferenceId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call findOneValidateBeforeCall(String inferenceId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'inferenceId' is set
         if (inferenceId == null) {
-            throw new ApiException("Missing the required parameter 'inferenceId' when calling findOneAudio(Async)");
+            throw new ApiException("Missing the required parameter 'inferenceId' when calling findOne(Async)");
         }
 
-        return findOneAudioCall(inferenceId, _callback);
+        return findOneCall(inferenceId, _callback);
 
     }
 
 
-    private ApiResponse<MusicgenInferenceEntity> findOneAudioWithHttpInfo(String inferenceId) throws ApiException {
-        okhttp3.Call localVarCall = findOneAudioValidateBeforeCall(inferenceId, null);
+    private ApiResponse<MusicgenInferenceEntity> findOneWithHttpInfo(String inferenceId) throws ApiException {
+        okhttp3.Call localVarCall = findOneValidateBeforeCall(inferenceId, null);
         Type localVarReturnType = new TypeToken<MusicgenInferenceEntity>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    private okhttp3.Call findOneAudioAsync(String inferenceId, final ApiCallback<MusicgenInferenceEntity> _callback) throws ApiException {
+    private okhttp3.Call findOneAsync(String inferenceId, final ApiCallback<MusicgenInferenceEntity> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = findOneAudioValidateBeforeCall(inferenceId, _callback);
+        okhttp3.Call localVarCall = findOneValidateBeforeCall(inferenceId, _callback);
         Type localVarReturnType = new TypeToken<MusicgenInferenceEntity>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
-    public class FindOneAudioRequestBuilder {
+    public class FindOneRequestBuilder {
         private final String inferenceId;
 
-        private FindOneAudioRequestBuilder(String inferenceId) {
+        private FindOneRequestBuilder(String inferenceId) {
             this.inferenceId = inferenceId;
         }
 
         /**
-         * Build call for findOneAudio
+         * Build call for findOne
          * @param _callback ApiCallback API callback
          * @return Call to execute
          * @throws ApiException If fail to serialize the request body object
@@ -483,12 +163,12 @@ public class GenerateMusicApiGenerated {
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
-            return findOneAudioCall(inferenceId, _callback);
+            return findOneCall(inferenceId, _callback);
         }
 
 
         /**
-         * Execute findOneAudio request
+         * Execute findOne request
          * @return MusicgenInferenceEntity
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
@@ -498,12 +178,12 @@ public class GenerateMusicApiGenerated {
          </table>
          */
         public MusicgenInferenceEntity execute() throws ApiException {
-            ApiResponse<MusicgenInferenceEntity> localVarResp = findOneAudioWithHttpInfo(inferenceId);
+            ApiResponse<MusicgenInferenceEntity> localVarResp = findOneWithHttpInfo(inferenceId);
             return localVarResp.getResponseBody();
         }
 
         /**
-         * Execute findOneAudio request with HTTP info returned
+         * Execute findOne request with HTTP info returned
          * @return ApiResponse&lt;MusicgenInferenceEntity&gt;
          * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
          * @http.response.details
@@ -513,11 +193,11 @@ public class GenerateMusicApiGenerated {
          </table>
          */
         public ApiResponse<MusicgenInferenceEntity> executeWithHttpInfo() throws ApiException {
-            return findOneAudioWithHttpInfo(inferenceId);
+            return findOneWithHttpInfo(inferenceId);
         }
 
         /**
-         * Execute findOneAudio request (asynchronously)
+         * Execute findOne request (asynchronously)
          * @param _callback The callback to be executed when the API call finishes
          * @return The request call
          * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -528,7 +208,7 @@ public class GenerateMusicApiGenerated {
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<MusicgenInferenceEntity> _callback) throws ApiException {
-            return findOneAudioAsync(inferenceId, _callback);
+            return findOneAsync(inferenceId, _callback);
         }
     }
 
@@ -536,17 +216,337 @@ public class GenerateMusicApiGenerated {
      * Get a Music Generation Job
      * Get a specific music generation job.
      * @param inferenceId The ID of the music generation job to retrieve. This is the same ID returned when you submit a job. (required)
-     * @return FindOneAudioRequestBuilder
+     * @return FindOneRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successfully retrieved music generation job. </td><td>  -  </td></tr>
      </table>
      */
-    public FindOneAudioRequestBuilder findOneAudio(String inferenceId) throws IllegalArgumentException {
+    public FindOneRequestBuilder findOne(String inferenceId) throws IllegalArgumentException {
         if (inferenceId == null) throw new IllegalArgumentException("\"inferenceId\" is required but got null");
             
 
-        return new FindOneAudioRequestBuilder(inferenceId);
+        return new FindOneRequestBuilder(inferenceId);
+    }
+    private okhttp3.Call generateCall(CreateMusicgenInferenceDto createMusicgenInferenceDto, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = createMusicgenInferenceDto;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/music";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call generateValidateBeforeCall(CreateMusicgenInferenceDto createMusicgenInferenceDto, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'createMusicgenInferenceDto' is set
+        if (createMusicgenInferenceDto == null) {
+            throw new ApiException("Missing the required parameter 'createMusicgenInferenceDto' when calling generate(Async)");
+        }
+
+        return generateCall(createMusicgenInferenceDto, _callback);
+
+    }
+
+
+    private ApiResponse<MusicgenInferenceEntity> generateWithHttpInfo(CreateMusicgenInferenceDto createMusicgenInferenceDto) throws ApiException {
+        okhttp3.Call localVarCall = generateValidateBeforeCall(createMusicgenInferenceDto, null);
+        Type localVarReturnType = new TypeToken<MusicgenInferenceEntity>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call generateAsync(CreateMusicgenInferenceDto createMusicgenInferenceDto, final ApiCallback<MusicgenInferenceEntity> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = generateValidateBeforeCall(createMusicgenInferenceDto, _callback);
+        Type localVarReturnType = new TypeToken<MusicgenInferenceEntity>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class GenerateRequestBuilder {
+        private final String prompt;
+        private final String mode;
+        private final Double duration;
+
+        private GenerateRequestBuilder(String prompt, String mode, double duration) {
+            this.prompt = prompt;
+            this.mode = mode;
+            this.duration = duration;
+        }
+
+        /**
+         * Build call for generate
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Successfully submitted music generation job. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            CreateMusicgenInferenceDto createMusicgenInferenceDto = buildBodyParams();
+            return generateCall(createMusicgenInferenceDto, _callback);
+        }
+
+        private CreateMusicgenInferenceDto buildBodyParams() {
+            CreateMusicgenInferenceDto createMusicgenInferenceDto = new CreateMusicgenInferenceDto();
+            createMusicgenInferenceDto.prompt(this.prompt);
+            if (this.mode != null)
+            createMusicgenInferenceDto.mode(CreateMusicgenInferenceDto.ModeEnum.fromValue(this.mode));
+            createMusicgenInferenceDto.duration(this.duration);
+            return createMusicgenInferenceDto;
+        }
+
+        /**
+         * Execute generate request
+         * @return MusicgenInferenceEntity
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Successfully submitted music generation job. </td><td>  -  </td></tr>
+         </table>
+         */
+        public MusicgenInferenceEntity execute() throws ApiException {
+            CreateMusicgenInferenceDto createMusicgenInferenceDto = buildBodyParams();
+            ApiResponse<MusicgenInferenceEntity> localVarResp = generateWithHttpInfo(createMusicgenInferenceDto);
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute generate request with HTTP info returned
+         * @return ApiResponse&lt;MusicgenInferenceEntity&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Successfully submitted music generation job. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<MusicgenInferenceEntity> executeWithHttpInfo() throws ApiException {
+            CreateMusicgenInferenceDto createMusicgenInferenceDto = buildBodyParams();
+            return generateWithHttpInfo(createMusicgenInferenceDto);
+        }
+
+        /**
+         * Execute generate request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Successfully submitted music generation job. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<MusicgenInferenceEntity> _callback) throws ApiException {
+            CreateMusicgenInferenceDto createMusicgenInferenceDto = buildBodyParams();
+            return generateAsync(createMusicgenInferenceDto, _callback);
+        }
+    }
+
+    /**
+     * Generate Music
+     * Generate music by providing a text description. Generations usually take bettween 1-3 minutes. Total generation time depends on the &#x60;duration&#x60; you select. This endpoint will submit the generation job and return immediately. To retrieve the results you must provide a webhook URL or query/poll the [Get a Music Generation Job](https://reference.tryleap.ai/reference/musiccontroller_findoneaudio) endpoint.
+     * @param createMusicgenInferenceDto  (required)
+     * @return GenerateRequestBuilder
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully submitted music generation job. </td><td>  -  </td></tr>
+     </table>
+     */
+    public GenerateRequestBuilder generate(String prompt, String mode, double duration) throws IllegalArgumentException {
+        if (prompt == null) throw new IllegalArgumentException("\"prompt\" is required but got null");
+            
+
+        if (mode == null) throw new IllegalArgumentException("\"mode\" is required but got null");
+            
+
+        
+        return new GenerateRequestBuilder(prompt, mode, duration);
+    }
+    private okhttp3.Call listAllCall(final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/v1/music";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "bearer" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listAllValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return listAllCall(_callback);
+
+    }
+
+
+    private ApiResponse<List<MusicgenInferenceEntity>> listAllWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = listAllValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<List<MusicgenInferenceEntity>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    private okhttp3.Call listAllAsync(final ApiCallback<List<MusicgenInferenceEntity>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listAllValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<List<MusicgenInferenceEntity>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    public class ListAllRequestBuilder {
+
+        private ListAllRequestBuilder() {
+        }
+
+        /**
+         * Build call for listAll
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Successfully retrieved music generation jobs. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return listAllCall(_callback);
+        }
+
+
+        /**
+         * Execute listAll request
+         * @return List&lt;MusicgenInferenceEntity&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Successfully retrieved music generation jobs. </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<MusicgenInferenceEntity> execute() throws ApiException {
+            ApiResponse<List<MusicgenInferenceEntity>> localVarResp = listAllWithHttpInfo();
+            return localVarResp.getResponseBody();
+        }
+
+        /**
+         * Execute listAll request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;MusicgenInferenceEntity&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Successfully retrieved music generation jobs. </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<MusicgenInferenceEntity>> executeWithHttpInfo() throws ApiException {
+            return listAllWithHttpInfo();
+        }
+
+        /**
+         * Execute listAll request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Successfully retrieved music generation jobs. </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<MusicgenInferenceEntity>> _callback) throws ApiException {
+            return listAllAsync(_callback);
+        }
+    }
+
+    /**
+     * List Music Generation Jobs
+     * List all music generation jobs for a workspace.
+     * @return ListAllRequestBuilder
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Successfully retrieved music generation jobs. </td><td>  -  </td></tr>
+     </table>
+     */
+    public ListAllRequestBuilder listAll() throws IllegalArgumentException {
+        return new ListAllRequestBuilder();
     }
 }

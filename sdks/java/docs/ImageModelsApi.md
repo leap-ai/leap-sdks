@@ -1,13 +1,13 @@
-# TrainImageModelsApi
+# ImageModelsApi
 
 All URIs are relative to *https://api.tryleap.ai*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**deleteModel**](TrainImageModelsApi.md#deleteModel) | **DELETE** /api/v2/images/models/{modelId} | Delete a Model |
-| [**getModel**](TrainImageModelsApi.md#getModel) | **GET** /api/v2/images/models/{modelId} | Get a Single Model |
-| [**listAllModels**](TrainImageModelsApi.md#listAllModels) | **GET** /api/v2/images/models | List All Models |
-| [**trainModel**](TrainImageModelsApi.md#trainModel) | **POST** /api/v2/images/models/new | Train Model |
+| [**deleteModel**](ImageModelsApi.md#deleteModel) | **DELETE** /api/v2/images/models/{modelId} | Delete a Model |
+| [**getModel**](ImageModelsApi.md#getModel) | **GET** /api/v2/images/models/{modelId} | Get a Single Model |
+| [**listAllModels**](ImageModelsApi.md#listAllModels) | **GET** /api/v2/images/models | List All Models |
+| [**trainModel**](ImageModelsApi.md#trainModel) | **POST** /api/v2/images/models/new | Train Model |
 
 
 <a name="deleteModel"></a>
@@ -27,7 +27,7 @@ import com.konfigthis.leap.client.Leap;
 import com.konfigthis.leap.client.Configuration;
 import com.konfigthis.leap.client.auth.*;
 import com.konfigthis.leap.client.model.*;
-import com.konfigthis.leap.client.api.TrainImageModelsApi;
+import com.konfigthis.leap.client.api.ImageModelsApi;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -44,7 +44,7 @@ public class Example {
     String modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e"; // The ID of the model to delete.
     try {
       ModelV2Entity result = client
-              .trainImageModels
+              .imageModels
               .deleteModel(modelId)
               .execute();
       System.out.println(result);
@@ -56,7 +56,7 @@ public class Example {
       System.out.println(result.getStatus());
       System.out.println(result.getImageSamples());
     } catch (ApiException e) {
-      System.err.println("Exception when calling TrainImageModelsApi#deleteModel");
+      System.err.println("Exception when calling ImageModelsApi#deleteModel");
       System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -66,7 +66,7 @@ public class Example {
     // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
     try {
       ApiResponse<ModelV2Entity> response = client
-              .trainImageModels
+              .imageModels
               .deleteModel(modelId)
               .executeWithHttpInfo();
       System.out.println(response.getResponseBody());
@@ -75,7 +75,7 @@ public class Example {
       System.out.println(response.getRoundTripTime());
       System.out.println(response.getRequest());
     } catch (ApiException e) {
-      System.err.println("Exception when calling TrainImageModelsApi#deleteModel");
+      System.err.println("Exception when calling ImageModelsApi#deleteModel");
       System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -127,7 +127,7 @@ import com.konfigthis.leap.client.Leap;
 import com.konfigthis.leap.client.Configuration;
 import com.konfigthis.leap.client.auth.*;
 import com.konfigthis.leap.client.model.*;
-import com.konfigthis.leap.client.api.TrainImageModelsApi;
+import com.konfigthis.leap.client.api.ImageModelsApi;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -144,7 +144,7 @@ public class Example {
     String modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e"; // The ID of the model to retrieve.
     try {
       ModelV2Entity result = client
-              .trainImageModels
+              .imageModels
               .getModel(modelId)
               .execute();
       System.out.println(result);
@@ -156,7 +156,7 @@ public class Example {
       System.out.println(result.getStatus());
       System.out.println(result.getImageSamples());
     } catch (ApiException e) {
-      System.err.println("Exception when calling TrainImageModelsApi#getModel");
+      System.err.println("Exception when calling ImageModelsApi#getModel");
       System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -166,7 +166,7 @@ public class Example {
     // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
     try {
       ApiResponse<ModelV2Entity> response = client
-              .trainImageModels
+              .imageModels
               .getModel(modelId)
               .executeWithHttpInfo();
       System.out.println(response.getResponseBody());
@@ -175,7 +175,7 @@ public class Example {
       System.out.println(response.getRoundTripTime());
       System.out.println(response.getRequest());
     } catch (ApiException e) {
-      System.err.println("Exception when calling TrainImageModelsApi#getModel");
+      System.err.println("Exception when calling ImageModelsApi#getModel");
       System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -228,7 +228,7 @@ import com.konfigthis.leap.client.Leap;
 import com.konfigthis.leap.client.Configuration;
 import com.konfigthis.leap.client.auth.*;
 import com.konfigthis.leap.client.model.*;
-import com.konfigthis.leap.client.api.TrainImageModelsApi;
+import com.konfigthis.leap.client.api.ImageModelsApi;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -244,13 +244,13 @@ public class Example {
     Leap client = new Leap(configuration);
     try {
       ListModelsV2Response result = client
-              .trainImageModels
+              .imageModels
               .listAllModels()
               .execute();
       System.out.println(result);
       System.out.println(result.getModels());
     } catch (ApiException e) {
-      System.err.println("Exception when calling TrainImageModelsApi#listAllModels");
+      System.err.println("Exception when calling ImageModelsApi#listAllModels");
       System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -260,7 +260,7 @@ public class Example {
     // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
     try {
       ApiResponse<ListModelsV2Response> response = client
-              .trainImageModels
+              .imageModels
               .listAllModels()
               .executeWithHttpInfo();
       System.out.println(response.getResponseBody());
@@ -269,7 +269,7 @@ public class Example {
       System.out.println(response.getRoundTripTime());
       System.out.println(response.getRequest());
     } catch (ApiException e) {
-      System.err.println("Exception when calling TrainImageModelsApi#listAllModels");
+      System.err.println("Exception when calling ImageModelsApi#listAllModels");
       System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -318,7 +318,7 @@ import com.konfigthis.leap.client.Leap;
 import com.konfigthis.leap.client.Configuration;
 import com.konfigthis.leap.client.auth.*;
 import com.konfigthis.leap.client.model.*;
-import com.konfigthis.leap.client.api.TrainImageModelsApi;
+import com.konfigthis.leap.client.api.ImageModelsApi;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -340,7 +340,7 @@ public class Example {
     List<File> imageSampleFiles = Arrays.asList(); // An array of files containing the images to upload. Either this or imageSampleUrls is required, but not both.
     try {
       ModelV2Entity result = client
-              .trainImageModels
+              .imageModels
               .trainModel()
               .name(name)
               .subjectKeyword(subjectKeyword)
@@ -358,7 +358,7 @@ public class Example {
       System.out.println(result.getStatus());
       System.out.println(result.getImageSamples());
     } catch (ApiException e) {
-      System.err.println("Exception when calling TrainImageModelsApi#trainModel");
+      System.err.println("Exception when calling ImageModelsApi#trainModel");
       System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -368,7 +368,7 @@ public class Example {
     // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
     try {
       ApiResponse<ModelV2Entity> response = client
-              .trainImageModels
+              .imageModels
               .trainModel()
               .name(name)
               .subjectKeyword(subjectKeyword)
@@ -383,7 +383,7 @@ public class Example {
       System.out.println(response.getRoundTripTime());
       System.out.println(response.getRequest());
     } catch (ApiException e) {
-      System.err.println("Exception when calling TrainImageModelsApi#trainModel");
+      System.err.println("Exception when calling ImageModelsApi#trainModel");
       System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

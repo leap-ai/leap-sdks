@@ -31,40 +31,23 @@ leap = Leap(
 )
 
 try:
-    # Generate an Image
-    create_response = leap.generate_images.create(
-        prompt="A photo of an astronaut riding a horse",  # required
-        model_id="26a1a203-3a46-42cb-8cfa-f4de075907d8",  # required
-        negative_prompt="asymmetric, bad hands, bad hair",  # optional
-        steps=50,  # optional
-        width=1024,  # optional
-        height=1024,  # optional
-        number_of_images=1,  # optional
-        prompt_strength=7,  # optional
-        seed=4523184,  # optional
-        webhook_url="string_example",  # optional
+    # Delete a Model
+    delete_model_response = leap.image_models.delete_model(
+        model_id="5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e",  # required
     )
-    pprint(create_response.body)
-    pprint(create_response.body["id"])
-    pprint(create_response.body["created_at"])
-    pprint(create_response.body["prompt"])
-    pprint(create_response.body["negative_prompt"])
-    pprint(create_response.body["seed"])
-    pprint(create_response.body["width"])
-    pprint(create_response.body["height"])
-    pprint(create_response.body["prompt_strength"])
-    pprint(create_response.body["number_of_images"])
-    pprint(create_response.body["state"])
-    pprint(create_response.body["status"])
-    pprint(create_response.body["steps"])
-    pprint(create_response.body["images"])
-    pprint(create_response.body["model_id"])
-    pprint(create_response.body["upscaling_option"])
-    pprint(create_response.headers)
-    pprint(create_response.status)
-    pprint(create_response.round_trip_time)
+    pprint(delete_model_response.body)
+    pprint(delete_model_response.body["id"])
+    pprint(delete_model_response.body["name"])
+    pprint(delete_model_response.body["created_at"])
+    pprint(delete_model_response.body["subject_keyword"])
+    pprint(delete_model_response.body["subject_type"])
+    pprint(delete_model_response.body["status"])
+    pprint(delete_model_response.body["image_samples"])
+    pprint(delete_model_response.headers)
+    pprint(delete_model_response.status)
+    pprint(delete_model_response.round_trip_time)
 except ApiException as e:
-    print("Exception when calling GenerateImagesApi.create: %s\n" % e)
+    print("Exception when calling ImageModelsApi.delete_model: %s\n" % e)
     pprint(e.body)
     pprint(e.headers)
     pprint(e.status)
@@ -92,40 +75,23 @@ leap = Leap(
 
 async def main():
     try:
-        # Generate an Image
-        create_response = await leap.generate_images.acreate(
-            prompt="A photo of an astronaut riding a horse",  # required
-            model_id="26a1a203-3a46-42cb-8cfa-f4de075907d8",  # required
-            negative_prompt="asymmetric, bad hands, bad hair",  # optional
-            steps=50,  # optional
-            width=1024,  # optional
-            height=1024,  # optional
-            number_of_images=1,  # optional
-            prompt_strength=7,  # optional
-            seed=4523184,  # optional
-            webhook_url="string_example",  # optional
+        # Delete a Model
+        delete_model_response = await leap.image_models.adelete_model(
+            model_id="5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e",  # required
         )
-        pprint(create_response.body)
-        pprint(create_response.body["id"])
-        pprint(create_response.body["created_at"])
-        pprint(create_response.body["prompt"])
-        pprint(create_response.body["negative_prompt"])
-        pprint(create_response.body["seed"])
-        pprint(create_response.body["width"])
-        pprint(create_response.body["height"])
-        pprint(create_response.body["prompt_strength"])
-        pprint(create_response.body["number_of_images"])
-        pprint(create_response.body["state"])
-        pprint(create_response.body["status"])
-        pprint(create_response.body["steps"])
-        pprint(create_response.body["images"])
-        pprint(create_response.body["model_id"])
-        pprint(create_response.body["upscaling_option"])
-        pprint(create_response.headers)
-        pprint(create_response.status)
-        pprint(create_response.round_trip_time)
+        pprint(delete_model_response.body)
+        pprint(delete_model_response.body["id"])
+        pprint(delete_model_response.body["name"])
+        pprint(delete_model_response.body["created_at"])
+        pprint(delete_model_response.body["subject_keyword"])
+        pprint(delete_model_response.body["subject_type"])
+        pprint(delete_model_response.body["status"])
+        pprint(delete_model_response.body["image_samples"])
+        pprint(delete_model_response.headers)
+        pprint(delete_model_response.status)
+        pprint(delete_model_response.round_trip_time)
     except ApiException as e:
-        print("Exception when calling GenerateImagesApi.create: %s\n" % e)
+        print("Exception when calling ImageModelsApi.delete_model: %s\n" % e)
         pprint(e.body)
         pprint(e.headers)
         pprint(e.status)
@@ -143,17 +109,17 @@ All URIs are relative to *https://api.tryleap.ai*
 
 Tag | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*Generate Images* | [**create**](docs/apis/tags/GenerateImagesApi.md#create) | **POST** /api/v1/images/models/{modelId}/inferences | Generate an Image
-*Generate Images* | [**find_all**](docs/apis/tags/GenerateImagesApi.md#find_all) | **GET** /api/v1/images/models/{modelId}/inferences | List All Image Jobs
-*Generate Images* | [**find_one**](docs/apis/tags/GenerateImagesApi.md#find_one) | **GET** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Get Single Image Job
-*Generate Images* | [**remove**](docs/apis/tags/GenerateImagesApi.md#remove) | **DELETE** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Delete Image Job
-*Generate Music* | [**create_audio**](docs/apis/tags/GenerateMusicApi.md#create_audio) | **POST** /api/v1/music | Generate Music
-*Generate Music* | [**find_all_audio**](docs/apis/tags/GenerateMusicApi.md#find_all_audio) | **GET** /api/v1/music | List Music Generation Jobs
-*Generate Music* | [**find_one_audio**](docs/apis/tags/GenerateMusicApi.md#find_one_audio) | **GET** /api/v1/music/{inferenceId} | Get a Music Generation Job
-*Train Image Models* | [**delete_model**](docs/apis/tags/TrainImageModelsApi.md#delete_model) | **DELETE** /api/v2/images/models/{modelId} | Delete a Model
-*Train Image Models* | [**get_model**](docs/apis/tags/TrainImageModelsApi.md#get_model) | **GET** /api/v2/images/models/{modelId} | Get a Single Model
-*Train Image Models* | [**list_all_models**](docs/apis/tags/TrainImageModelsApi.md#list_all_models) | **GET** /api/v2/images/models | List All Models
-*Train Image Models* | [**train_model**](docs/apis/tags/TrainImageModelsApi.md#train_model) | **POST** /api/v2/images/models/new | Train Model
+*Image Models* | [**delete_model**](docs/apis/tags/ImageModelsApi.md#delete_model) | **DELETE** /api/v2/images/models/{modelId} | Delete a Model
+*Image Models* | [**get_model**](docs/apis/tags/ImageModelsApi.md#get_model) | **GET** /api/v2/images/models/{modelId} | Get a Single Model
+*Image Models* | [**list_all_models**](docs/apis/tags/ImageModelsApi.md#list_all_models) | **GET** /api/v2/images/models | List All Models
+*Image Models* | [**train_model**](docs/apis/tags/ImageModelsApi.md#train_model) | **POST** /api/v2/images/models/new | Train Model
+*Images* | [**delete**](docs/apis/tags/ImagesApi.md#delete) | **DELETE** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Delete Image Job
+*Images* | [**find_one**](docs/apis/tags/ImagesApi.md#find_one) | **GET** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Get Single Image Job
+*Images* | [**generate**](docs/apis/tags/ImagesApi.md#generate) | **POST** /api/v1/images/models/{modelId}/inferences | Generate an Image
+*Images* | [**list_all**](docs/apis/tags/ImagesApi.md#list_all) | **GET** /api/v1/images/models/{modelId}/inferences | List All Image Jobs
+*Music* | [**find_one**](docs/apis/tags/MusicApi.md#find_one) | **GET** /api/v1/music/{inferenceId} | Get a Music Generation Job
+*Music* | [**generate**](docs/apis/tags/MusicApi.md#generate) | **POST** /api/v1/music | Generate Music
+*Music* | [**list_all**](docs/apis/tags/MusicApi.md#list_all) | **GET** /api/v1/music | List Music Generation Jobs
 
 ## Documentation For Models
 
