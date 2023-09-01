@@ -3,12 +3,9 @@
   "paths": {
     "/api/v1/images/models/{modelId}/inferences": {
       "post": {
-        "operationId": "InferencesController_create",
+        "operationId": "InferencesController_generate",
         "summary": "Generate an Image",
         "description": "Generate an image by providing a text description. Generations usually take bettween 4-20 seconds per image. Total generation time depends on the number of `steps` and `noOfImages` you select. This endpoint will submit the generation job and return immediately. To retrieve the results you must provide a webhook URL or query/poll the [Get a Single Image Job](https://reference.tryleap.ai/reference/inferencescontroller_findone-1) endpoint.",
-        "tags": [
-          "Generate Images"
-        ],
         "parameters": [
           {
             "name": "modelId",
@@ -43,7 +40,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Successfully submitted image generation job.",
             "content": {
               "application/json": {
@@ -54,6 +51,9 @@
             }
           }
         },
+        "tags": [
+          "Images"
+        ],
         "security": [
           {
             "bearer": []
@@ -61,12 +61,9 @@
         ]
       },
       "get": {
-        "operationId": "InferencesController_findAll",
+        "operationId": "InferencesController_listAll",
         "summary": "List All Image Jobs",
         "description": "Fetch a list of inference jobs for a specific model.",
-        "tags": [
-          "Generate Images"
-        ],
         "parameters": [
           {
             "name": "modelId",
@@ -123,6 +120,9 @@
             }
           }
         },
+        "tags": [
+          "Images"
+        ],
         "security": [
           {
             "bearer": []
@@ -135,9 +135,6 @@
         "operationId": "InferencesController_findOne",
         "summary": "Get Single Image Job",
         "description": "Retrieve a single image generation job, including the urls for the images generated.",
-        "tags": [
-          "Generate Images"
-        ],
         "parameters": [
           {
             "name": "modelId",
@@ -172,6 +169,9 @@
             }
           }
         },
+        "tags": [
+          "Images"
+        ],
         "security": [
           {
             "bearer": []
@@ -179,12 +179,9 @@
         ]
       },
       "delete": {
-        "operationId": "InferencesController_remove",
+        "operationId": "InferencesController_delete",
         "summary": "Delete Image Job",
         "description": "Delete the image job and all related images.",
-        "tags": [
-          "Generate Images"
-        ],
         "parameters": [
           {
             "name": "modelId",
@@ -212,6 +209,9 @@
             "description": "Successfully deleted image generation job."
           }
         },
+        "tags": [
+          "Images"
+        ],
         "security": [
           {
             "bearer": []
