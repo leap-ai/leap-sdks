@@ -34,8 +34,8 @@ class TestSimple(unittest.TestCase):
 
     def test_multiple_requests(self):
         leap = Leap(host=MOCK_SERVER_URL, access_token="TEST")
-        inference = leap.generate_images.create(model_id="test", prompt="A red bird")
-        images = leap.generate_images.find_one(
+        inference = leap.images.generate(model_id="test", prompt="A red bird")
+        images = leap.images.find_one(
             model_id="test", inference_id=inference.body["id"]
         )
         self.assertIsNotNone(images.body)
@@ -58,15 +58,15 @@ class TestSimple(unittest.TestCase):
     def test_generate_music(self):
         leap = Leap(host=MOCK_SERVER_URL, access_token="TEST")
 
-        create_audio_response = leap.generate_music.create_audio(
+        create_audio_response = leap.music.generate(
             prompt="An electronic music soundtrack with a trumpet solo",  # required
             mode="melody",  # required
             duration=28,  # required
         )
 
-        find_all_audio_response = leap.generate_music.find_all_audio()
+        find_all_audio_response = leap.music.list_all()
 
-        find_one_audio_response = leap.generate_music.find_one_audio(
+        find_one_audio_response = leap.music.find_one(
             inference_id="inferenceId_example",  # required
         )
 
@@ -77,7 +77,7 @@ class TestSimple(unittest.TestCase):
     def test_generate_images(self):
         leap = Leap(host=MOCK_SERVER_URL, access_token="TEST")
 
-        create_response = leap.generate_images.create(
+        create_response = leap.images.generate(
             prompt="A photo of an astronaut riding a horse",  # required
             model_id="26a1a203-3a46-42cb-8cfa-f4de075907d8",  # required
             negative_prompt="asymmetric, bad hands, bad hair",  # optional
@@ -90,19 +90,19 @@ class TestSimple(unittest.TestCase):
             webhook_url="string_example",  # optional
         )
 
-        find_all_response = leap.generate_images.find_all(
+        find_all_response = leap.images.list_all(
             model_id="26a1a203-3a46-42cb-8cfa-f4de075907d8",  # required
             only_finished=True,  # optional
             page=3.14,  # optional
             page_size=3.14,  # optional
         )
 
-        find_one_response = leap.generate_images.find_one(
+        find_one_response = leap.images.find_one(
             model_id="26a1a203-3a46-42cb-8cfa-f4de075907d8",  # required
             inference_id="a047df00-8bdd-4d57-a9bd-6eebef36ecaa",  # required
         )
 
-        remove_response = leap.generate_images.remove(
+        remove_response = leap.images.delete(
             model_id="26a1a203-3a46-42cb-8cfa-f4de075907d8",  # required
             inference_id="a047df00-8bdd-4d57-a9bd-6eebef36ecaa",  # required
         )
@@ -115,15 +115,15 @@ class TestSimple(unittest.TestCase):
     def test_train_model(self):
         leap = Leap(host=MOCK_SERVER_URL, access_token="TEST")
 
-        delete_model_response = leap.train_image_models.delete_model(
+        delete_model_response = leap.image_models.delete_model(
             model_id="5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e",  # required
         )
 
-        get_model_response = leap.train_image_models.get_model(
+        get_model_response = leap.image_models.get_model(
             model_id="5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e",  # required
         )
 
-        list_all_models_response = leap.train_image_models.list_all_models()
+        list_all_models_response = leap.image_models.list_all_models()
 
         self.assertIsNotNone(delete_model_response.body)
         self.assertIsNotNone(get_model_response.body)

@@ -30,8 +30,8 @@ public class SimpleTest {
         configuration.host = MOCK_SERVER_URL;
         configuration.token = "TEST";
         Leap client = new Leap(configuration);
-        InferenceEntity execute = client.generateImages.create("A red bird", "test").execute();
-        InferenceEntity poll = client.generateImages.findOne("test", execute.getId()).execute();
+        InferenceEntity execute = client.images.generate("A red bird", "test").execute();
+        InferenceEntity poll = client.images.findOne("test", execute.getId()).execute();
         assertNotNull(poll);
     }
 
@@ -64,8 +64,8 @@ public class SimpleTest {
                                 // generate different images, keep this empty or provide a random number.
         String webhookUrl = "webhookUrl_example"; // An optional webhook URL that will be called with a POST request
                                                   // when the image generation request completes.
-        InferenceEntity generateImagesResponse = client.generateImages
-                .create(prompt, modelId)
+        InferenceEntity generateImagesResponse = client.images
+                .generate(prompt, modelId)
                 .negativePrompt(negativePrompt)
                 .steps(steps)
                 .width(width)
@@ -84,8 +84,8 @@ public class SimpleTest {
                                      // not set, all inference jobs will be returned.
         Double page = 3.4D; // The page to request.
         Double pageSize = 3.4D; // The number of items to return per page.
-        List<InferenceEntity> findAllResponse = client.generateImages
-                .findAll(modelId)
+        List<InferenceEntity> findAllResponse = client.images
+                .listAll(modelId)
                 .onlyFinished(onlyFinished)
                 .page(page)
                 .pageSize(pageSize)
@@ -94,12 +94,12 @@ public class SimpleTest {
         String inferenceId = "a047df00-8bdd-4d57-a9bd-6eebef36ecaa"; // The ID of the image generation job to retrieve.
                                                                      // This is the same ID that is returned when you
                                                                      // submit a new image generation job.
-        InferenceEntity findOneResponse = client.generateImages
+        InferenceEntity findOneResponse = client.images
                 .findOne(modelId, inferenceId)
                 .execute();
 
-        client.generateImages
-                .remove(modelId, inferenceId)
+        client.images
+                .delete(modelId, inferenceId)
                 .execute();
 
         assertNotNull(generateImagesResponse);
@@ -118,18 +118,18 @@ public class SimpleTest {
         String mode = "melody"; // Select a mode, each option generates different results. Melody is best for
                                 // melody, music is best for full songs
         Double duration = 28D; // Duration of the generated audio in seconds. Max 30 seconds.
-        MusicgenInferenceEntity createAudioResponse = client.generateMusic
-                .createAudio(prompt, mode, duration)
+        MusicgenInferenceEntity createAudioResponse = client.music
+                .generate(prompt, mode, duration)
                 .execute();
 
-        List<MusicgenInferenceEntity> findAllAudioResponse = client.generateMusic
-                .findAllAudio()
+        List<MusicgenInferenceEntity> findAllAudioResponse = client.music
+                .listAll()
                 .execute();
 
         String inferenceId = "inferenceId_example"; // The ID of the music generation job to retrieve. This is the same
                                                     // ID returned when you submit a job.
-        MusicgenInferenceEntity findOneAudioResponse = client.generateMusic
-                .findOneAudio(inferenceId)
+        MusicgenInferenceEntity findOneAudioResponse = client.music
+                .findOne(inferenceId)
                 .execute();
 
         assertNotNull(createAudioResponse);
@@ -144,16 +144,16 @@ public class SimpleTest {
         configuration.token = "TEST";
         Leap client = new Leap(configuration);
         String modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e"; // The ID of the model to delete.
-        ModelV2Entity deleteModelResponse = client.trainImageModels
+        ModelV2Entity deleteModelResponse = client.imageModels
                 .deleteModel(modelId)
                 .execute();
 
         modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e"; // The ID of the model to retrieve.
-        ModelV2Entity getModelResponse = client.trainImageModels
+        ModelV2Entity getModelResponse = client.imageModels
                 .getModel(modelId)
                 .execute();
 
-        ListModelsV2Response listAllModelsResponse = client.trainImageModels
+        ListModelsV2Response listAllModelsResponse = client.imageModels
                 .listAllModels()
                 .execute();
 
@@ -190,7 +190,7 @@ public class SimpleTest {
                                                            // this
         // or imageSampleUrls is required, but not both.
 
-        ModelV2Entity result = client.trainImageModels
+        ModelV2Entity result = client.imageModels
                 .trainModel()
                 .name(name)
                 .subjectKeyword(subjectKeyword)
