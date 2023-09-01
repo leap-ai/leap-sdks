@@ -130,7 +130,7 @@ export const ImagesApiAxiosParamCreator = function (configuration?: Configuratio
          * Generate an image by providing a text description. Generations usually take bettween 4-20 seconds per image. Total generation time depends on the number of `steps` and `noOfImages` you select. This endpoint will submit the generation job and return immediately. To retrieve the results you must provide a webhook URL or query/poll the [Get a Single Image Job](https://reference.tryleap.ai/reference/inferencescontroller_findone-1) endpoint.
          * @summary Generate an Image
          * @param {string} modelId The ID of the model to use to generate images. This can be a custom model, or a public model. To view the list of public models, visit: https://docs.tryleap.ai/public-models
-         * @param {CreateInferenceDto} createInferenceDto 
+         * @param {CreateInferenceDto} createInferenceDto The parameters to use to generate the image.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */

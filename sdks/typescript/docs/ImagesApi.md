@@ -155,7 +155,7 @@ console.log(generateResponse);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createInferenceDto** | **CreateInferenceDto**|  |
+ **createInferenceDto** | **CreateInferenceDto**| The parameters to use to generate the image. |
  **modelId** | [**string**] | The ID of the model to use to generate images. This can be a custom model, or a public model. To view the list of public models, visit: https://docs.tryleap.ai/public-models | defaults to undefined
 
 

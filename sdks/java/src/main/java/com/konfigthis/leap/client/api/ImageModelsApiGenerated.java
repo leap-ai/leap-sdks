@@ -704,7 +704,7 @@ public class ImageModelsApiGenerated {
          * @http.response.details
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully submitted training job. </td><td>  -  </td></tr>
+            <tr><td> 201 </td><td> Successfully submitted training job. </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
@@ -719,7 +719,7 @@ public class ImageModelsApiGenerated {
          * @http.response.details
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully submitted training job. </td><td>  -  </td></tr>
+            <tr><td> 201 </td><td> Successfully submitted training job. </td><td>  -  </td></tr>
          </table>
          */
         public ModelV2Entity execute() throws ApiException {
@@ -734,7 +734,7 @@ public class ImageModelsApiGenerated {
          * @http.response.details
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully submitted training job. </td><td>  -  </td></tr>
+            <tr><td> 201 </td><td> Successfully submitted training job. </td><td>  -  </td></tr>
          </table>
          */
         public ApiResponse<ModelV2Entity> executeWithHttpInfo() throws ApiException {
@@ -749,7 +749,7 @@ public class ImageModelsApiGenerated {
          * @http.response.details
          <table summary="Response Details" border="1">
             <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-            <tr><td> 200 </td><td> Successfully submitted training job. </td><td>  -  </td></tr>
+            <tr><td> 201 </td><td> Successfully submitted training job. </td><td>  -  </td></tr>
          </table>
          */
         public okhttp3.Call executeAsync(final ApiCallback<ModelV2Entity> _callback) throws ApiException {
@@ -764,7 +764,7 @@ public class ImageModelsApiGenerated {
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Successfully submitted training job. </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td> Successfully submitted training job. </td><td>  -  </td></tr>
      </table>
      */
     public TrainModelRequestBuilder trainModel() throws IllegalArgumentException {

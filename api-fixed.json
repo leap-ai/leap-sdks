@@ -52,10 +52,18 @@
           }
         ],
         "requestBody": {
+          "description": "The parameters to use to generate the image.",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
+                "example": {
+                  "prompt": "A photo of an astronaut riding a horse",
+                  "steps": 50,
+                  "height": 1024,
+                  "width": 1024,
+                  "numberOfImages": 1
+                },
                 "$ref": "#/components/schemas/CreateInferenceDto"
               },
               "examples": {
@@ -271,7 +279,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": "Successfully submitted training job.",
             "content": {
               "application/json": {

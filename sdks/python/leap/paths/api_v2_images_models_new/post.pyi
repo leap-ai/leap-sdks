@@ -52,25 +52,25 @@ request_body_create_and_train_model_dto = api_client.RequestBody(
     },
     required=True,
 )
-SchemaFor200ResponseBodyApplicationJson = ModelV2EntitySchema
+SchemaFor201ResponseBodyApplicationJson = ModelV2EntitySchema
 
 
 @dataclass
-class ApiResponseFor200(api_client.ApiResponse):
+class ApiResponseFor201(api_client.ApiResponse):
     body: ModelV2Entity
 
 
 @dataclass
-class ApiResponseFor200Async(api_client.AsyncApiResponse):
+class ApiResponseFor201Async(api_client.AsyncApiResponse):
     body: ModelV2Entity
 
 
-_response_for_200 = api_client.OpenApiResponse(
-    response_cls=ApiResponseFor200,
-    response_cls_async=ApiResponseFor200Async,
+_response_for_201 = api_client.OpenApiResponse(
+    response_cls=ApiResponseFor201,
+    response_cls_async=ApiResponseFor201Async,
     content={
         'application/json': api_client.MediaType(
-            schema=SchemaFor200ResponseBodyApplicationJson),
+            schema=SchemaFor201ResponseBodyApplicationJson),
     },
 )
 _all_accept_content_types = (
@@ -115,7 +115,7 @@ class BaseApi(api_client.Api):
         content_type: str = 'multipart/form-data',
         stream: bool = False,
     ) -> typing.Union[
-        ApiResponseFor200Async,
+        ApiResponseFor201Async,
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
@@ -228,7 +228,7 @@ class BaseApi(api_client.Api):
         content_type: str = 'multipart/form-data',
         stream: bool = False,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor201,
         api_client.ApiResponseWithoutDeserialization,
     ]:
         """
@@ -313,7 +313,7 @@ class TrainModel(BaseApi):
         image_sample_urls: typing.Optional[CreateAndTrainModelDtoImageSampleUrls] = None,
         image_sample_files: typing.Optional[CreateAndTrainModelDtoImageSampleFiles] = None,
     ) -> typing.Union[
-        ApiResponseFor200Async,
+        ApiResponseFor201Async,
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
@@ -338,7 +338,7 @@ class TrainModel(BaseApi):
         image_sample_urls: typing.Optional[CreateAndTrainModelDtoImageSampleUrls] = None,
         image_sample_files: typing.Optional[CreateAndTrainModelDtoImageSampleFiles] = None,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor201,
         api_client.ApiResponseWithoutDeserialization,
     ]:
         args = self._train_model_mapped_args(
@@ -365,7 +365,7 @@ class ApiForpost(BaseApi):
         image_sample_urls: typing.Optional[CreateAndTrainModelDtoImageSampleUrls] = None,
         image_sample_files: typing.Optional[CreateAndTrainModelDtoImageSampleFiles] = None,
     ) -> typing.Union[
-        ApiResponseFor200Async,
+        ApiResponseFor201Async,
         api_client.ApiResponseWithoutDeserializationAsync,
         AsyncGeneratorResponse,
     ]:
@@ -390,7 +390,7 @@ class ApiForpost(BaseApi):
         image_sample_urls: typing.Optional[CreateAndTrainModelDtoImageSampleUrls] = None,
         image_sample_files: typing.Optional[CreateAndTrainModelDtoImageSampleFiles] = None,
     ) -> typing.Union[
-        ApiResponseFor200,
+        ApiResponseFor201,
         api_client.ApiResponseWithoutDeserialization,
     ]:
         args = self._train_model_mapped_args(

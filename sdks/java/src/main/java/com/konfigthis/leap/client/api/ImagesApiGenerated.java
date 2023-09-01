@@ -660,7 +660,7 @@ public class ImagesApiGenerated {
      * Generate an Image
      * Generate an image by providing a text description. Generations usually take bettween 4-20 seconds per image. Total generation time depends on the number of &#x60;steps&#x60; and &#x60;noOfImages&#x60; you select. This endpoint will submit the generation job and return immediately. To retrieve the results you must provide a webhook URL or query/poll the [Get a Single Image Job](https://reference.tryleap.ai/reference/inferencescontroller_findone-1) endpoint.
      * @param modelId The ID of the model to use to generate images. This can be a custom model, or a public model. To view the list of public models, visit: https://docs.tryleap.ai/public-models (required)
-     * @param createInferenceDto  (required)
+     * @param createInferenceDto The parameters to use to generate the image. (required)
      * @return GenerateRequestBuilder
      * @http.response.details
      <table summary="Response Details" border="1">

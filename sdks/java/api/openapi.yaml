@@ -107,6 +107,7 @@ paths:
                   numberOfImages: 1
             schema:
               $ref: '#/components/schemas/CreateInferenceDto'
+        description: The parameters to use to generate the image.
         required: true
       responses:
         "201":
@@ -223,7 +224,7 @@ paths:
               $ref: '#/components/schemas/CreateAndTrainModelDto'
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:

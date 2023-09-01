@@ -323,7 +323,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **modelId** | **String**| The ID of the model to use to generate images. This can be a custom model, or a public model. To view the list of public models, visit: https://docs.tryleap.ai/public-models | |
-| **createInferenceDto** | [**CreateInferenceDto**](CreateInferenceDto.md)|  | |
+| **createInferenceDto** | [**CreateInferenceDto**](CreateInferenceDto.md)| The parameters to use to generate the image. | |
 
 ### Return type
 
