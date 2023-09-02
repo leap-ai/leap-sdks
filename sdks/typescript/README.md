@@ -32,11 +32,19 @@ const leap = new Leap({
   accessToken: "ACCESS_TOKEN",
 });
 
-const deleteModelResponse = await leap.imageModels.deleteModel({
+const generateResponse = await leap.images.generate({
   modelId: "modelId_example",
+  prompt: "A photo of an astronaut riding a horse",
+  negativePrompt: "asymmetric, bad hands, bad hair",
+  steps: 50,
+  width: 1024,
+  height: 1024,
+  numberOfImages: 1,
+  promptStrength: 7,
+  seed: 4523184,
 });
 
-console.log(deleteModelResponse);
+console.log(generateResponse);
 ```
 
 ## Documentation for API Endpoints
@@ -45,14 +53,14 @@ All URIs are relative to *https://api.tryleap.ai*
 
 Tag | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*Images* | [**generate**](docs/ImagesApi.md#generate) | **POST** /api/v1/images/models/{modelId}/inferences | Generate an Image
+*Images* | [**delete**](docs/ImagesApi.md#delete) | **DELETE** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Delete Image Job
+*Images* | [**findOne**](docs/ImagesApi.md#findOne) | **GET** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Get Single Image Job
+*Images* | [**listAll**](docs/ImagesApi.md#listAll) | **GET** /api/v1/images/models/{modelId}/inferences | List All Image Jobs
 *Image Models* | [**deleteModel**](docs/ImageModelsApi.md#deleteModel) | **DELETE** /api/v2/images/models/{modelId} | Delete a Model
 *Image Models* | [**getModel**](docs/ImageModelsApi.md#getModel) | **GET** /api/v2/images/models/{modelId} | Get a Single Model
 *Image Models* | [**listAllModels**](docs/ImageModelsApi.md#listAllModels) | **GET** /api/v2/images/models | List All Models
 *Image Models* | [**trainModel**](docs/ImageModelsApi.md#trainModel) | **POST** /api/v2/images/models/new | Train Model
-*Images* | [**delete**](docs/ImagesApi.md#delete) | **DELETE** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Delete Image Job
-*Images* | [**findOne**](docs/ImagesApi.md#findOne) | **GET** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Get Single Image Job
-*Images* | [**generate**](docs/ImagesApi.md#generate) | **POST** /api/v1/images/models/{modelId}/inferences | Generate an Image
-*Images* | [**listAll**](docs/ImagesApi.md#listAll) | **GET** /api/v1/images/models/{modelId}/inferences | List All Image Jobs
 *Music* | [**findOne**](docs/MusicApi.md#findOne) | **GET** /api/v1/music/{inferenceId} | Get a Music Generation Job
 *Music* | [**generate**](docs/MusicApi.md#generate) | **POST** /api/v1/music | Generate Music
 *Music* | [**listAll**](docs/MusicApi.md#listAll) | **GET** /api/v1/music | List Music Generation Jobs

@@ -12,7 +12,7 @@
  */
 
 
-export * from './api/image-models-api';
 export * from './api/images-api';
+export * from './api/image-models-api';
 export * from './api/music-api';
 

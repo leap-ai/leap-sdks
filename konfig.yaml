@@ -5,6 +5,10 @@ specRemotePath: https://api.tryleap.ai/api-json
 specInputPath: api.json
 infoContactUrl: https://tryleap.ai/
 specPath: api-fixed.json
+tagPriority:
+  - Images
+readmeOperation:
+  operationId: InferencesController_generate
 fixConfig:
   modify:
     $.paths./api/v2/images/models.get.security:

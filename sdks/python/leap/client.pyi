@@ -15,8 +15,8 @@ from leap.client_custom import ClientCustom
 from leap.configuration import Configuration
 from leap.api_client import ApiClient
 from leap.type_util import copy_signature
-from leap.apis.tags.image_models_api import ImageModelsApi
 from leap.apis.tags.images_api import ImagesApi
+from leap.apis.tags.image_models_api import ImageModelsApi
 from leap.apis.tags.music_api import MusicApi
 
 
@@ -30,6 +30,6 @@ class Leap(ClientCustom):
         if (configuration is None):
             raise Exception("configuration is required")
         api_client = ApiClient(configuration)
-        self.image_models: ImageModelsApi = ImageModelsApi(api_client)
         self.images: ImagesApi = ImagesApi(api_client)
+        self.image_models: ImageModelsApi = ImageModelsApi(api_client)
         self.music: MusicApi = MusicApi(api_client)

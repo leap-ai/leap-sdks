@@ -108,7 +108,7 @@ import com.konfigthis.leap.client.Leap;
 import com.konfigthis.leap.client.Configuration;
 import com.konfigthis.leap.client.auth.*;
 import com.konfigthis.leap.client.model.*;
-import com.konfigthis.leap.client.api.ImageModelsApi;
+import com.konfigthis.leap.client.api.ImagesApi;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -122,22 +122,47 @@ public class Example {
     configuration.token = "BEARER TOKEN";
 
     Leap client = new Leap(configuration);
-    String modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e"; // The ID of the model to delete.
+    String prompt = "A photo of an astronaut riding a horse"; // A text description of the image you what you want to generate.
+    String modelId = "26a1a203-3a46-42cb-8cfa-f4de075907d8"; // The ID of the model to use to generate images. This can be a custom model, or a public model. To view the list of public models, visit: https://docs.tryleap.ai/public-models
+    String negativePrompt = "asymmetric, watermarks"; // A text description of what the image should try to avoid generating.
+    Double steps = 50D; // How many steps the AI will take to generate the image. Lower is faster but less detailed, higher is slower more detailed.
+    Double width = 1024D; // The width of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models.
+    Double height = 1024D; // The height of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models.
+    Double numberOfImages = 1D; // The number of images to generate, up to 4.
+    Double promptStrength = 7D; // The higher the prompt strength, the closer the generated image will be to the prompt. Must be between 0 and 30.
+    Double seed = 4523184D; // A random number to use as a seed when generating the image. This is helpful if you want to generate the same image multiple times. If you want to generate different images, keep this empty or provide a random number.
+    String webhookUrl = "webhookUrl_example"; // An optional webhook URL that will be called with a POST request when the image generation request completes.
     try {
-      ModelV2Entity result = client
-              .imageModels
-              .deleteModel(modelId)
+      InferenceEntity result = client
+              .images
+              .generate(prompt, modelId)
+              .negativePrompt(negativePrompt)
+              .steps(steps)
+              .width(width)
+              .height(height)
+              .numberOfImages(numberOfImages)
+              .promptStrength(promptStrength)
+              .seed(seed)
+              .webhookUrl(webhookUrl)
               .execute();
       System.out.println(result);
       System.out.println(result.getId());
-      System.out.println(result.getName());
       System.out.println(result.getCreatedAt());
-      System.out.println(result.getSubjectKeyword());
-      System.out.println(result.getSubjectType());
+      System.out.println(result.getPrompt());
+      System.out.println(result.getNegativePrompt());
+      System.out.println(result.getSeed());
+      System.out.println(result.getWidth());
+      System.out.println(result.getHeight());
+      System.out.println(result.getPromptStrength());
+      System.out.println(result.getNumberOfImages());
+      System.out.println(result.getState());
       System.out.println(result.getStatus());
-      System.out.println(result.getImageSamples());
+      System.out.println(result.getSteps());
+      System.out.println(result.getImages());
+      System.out.println(result.getModelId());
+      System.out.println(result.getUpscalingOption());
     } catch (ApiException e) {
-      System.err.println("Exception when calling ImageModelsApi#deleteModel");
+      System.err.println("Exception when calling ImagesApi#generate");
       System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -146,9 +171,17 @@ public class Example {
 
     // Use .executeWithHttpInfo() to retrieve HTTP Status Code, Headers and Request
     try {
-      ApiResponse<ModelV2Entity> response = client
-              .imageModels
-              .deleteModel(modelId)
+      ApiResponse<InferenceEntity> response = client
+              .images
+              .generate(prompt, modelId)
+              .negativePrompt(negativePrompt)
+              .steps(steps)
+              .width(width)
+              .height(height)
+              .numberOfImages(numberOfImages)
+              .promptStrength(promptStrength)
+              .seed(seed)
+              .webhookUrl(webhookUrl)
               .executeWithHttpInfo();
       System.out.println(response.getResponseBody());
       System.out.println(response.getResponseHeaders());
@@ -156,7 +189,7 @@ public class Example {
       System.out.println(response.getRoundTripTime());
       System.out.println(response.getRequest());
     } catch (ApiException e) {
-      System.err.println("Exception when calling ImageModelsApi#deleteModel");
+      System.err.println("Exception when calling ImagesApi#generate");
       System.err.println("Status code: " + e.getStatusCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -173,14 +206,14 @@ All URIs are relative to *https://api.tryleap.ai*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ImagesApi* | [**generate**](docs/ImagesApi.md#generate) | **POST** /api/v1/images/models/{modelId}/inferences | Generate an Image
+*ImagesApi* | [**delete**](docs/ImagesApi.md#delete) | **DELETE** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Delete Image Job
+*ImagesApi* | [**findOne**](docs/ImagesApi.md#findOne) | **GET** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Get Single Image Job
+*ImagesApi* | [**listAll**](docs/ImagesApi.md#listAll) | **GET** /api/v1/images/models/{modelId}/inferences | List All Image Jobs
 *ImageModelsApi* | [**deleteModel**](docs/ImageModelsApi.md#deleteModel) | **DELETE** /api/v2/images/models/{modelId} | Delete a Model
 *ImageModelsApi* | [**getModel**](docs/ImageModelsApi.md#getModel) | **GET** /api/v2/images/models/{modelId} | Get a Single Model
 *ImageModelsApi* | [**listAllModels**](docs/ImageModelsApi.md#listAllModels) | **GET** /api/v2/images/models | List All Models
 *ImageModelsApi* | [**trainModel**](docs/ImageModelsApi.md#trainModel) | **POST** /api/v2/images/models/new | Train Model
-*ImagesApi* | [**delete**](docs/ImagesApi.md#delete) | **DELETE** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Delete Image Job
-*ImagesApi* | [**findOne**](docs/ImagesApi.md#findOne) | **GET** /api/v1/images/models/{modelId}/inferences/{inferenceId} | Get Single Image Job
-*ImagesApi* | [**generate**](docs/ImagesApi.md#generate) | **POST** /api/v1/images/models/{modelId}/inferences | Generate an Image
-*ImagesApi* | [**listAll**](docs/ImagesApi.md#listAll) | **GET** /api/v1/images/models/{modelId}/inferences | List All Image Jobs
 *MusicApi* | [**findOne**](docs/MusicApi.md#findOne) | **GET** /api/v1/music/{inferenceId} | Get a Music Generation Job
 *MusicApi* | [**generate**](docs/MusicApi.md#generate) | **POST** /api/v1/music | Generate Music
 *MusicApi* | [**listAll**](docs/MusicApi.md#listAll) | **GET** /api/v1/music | List Music Generation Jobs

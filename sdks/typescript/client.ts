@@ -11,23 +11,23 @@
 
 import { AxiosRequestConfig } from "axios";
 import {
-  ImageModelsApi,
   ImagesApi,
+  ImageModelsApi,
   MusicApi,
 } from "./api";
 import { Configuration, ConfigurationParameters } from "./configuration";
 import { LeapCustom } from "./client-custom";
 
 export class Leap extends LeapCustom {
-  readonly imageModels: ImageModelsApi;
   readonly images: ImagesApi;
+  readonly imageModels: ImageModelsApi;
   readonly music: MusicApi;
 
   constructor(configurationParameters: ConfigurationParameters = {}) {
     super(configurationParameters);
     const configuration = new Configuration(configurationParameters);
-    this.imageModels = new ImageModelsApi(configuration);
     this.images = new ImagesApi(configuration);
+    this.imageModels = new ImageModelsApi(configuration);
     this.music = new MusicApi(configuration);
   }
 
