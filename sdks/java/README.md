@@ -1,6 +1,6 @@
 # leap-java-sdk
 
-[![Maven Central](https://img.shields.io/badge/Maven%20Central-v1.1.2-blue)](https://central.sonatype.com/artifact/com.konfigthis.leap/leap-java-sdk/1.1.2)
+[![Maven Central](https://img.shields.io/badge/Maven%20Central-v1.1.3-blue)](https://central.sonatype.com/artifact/com.konfigthis.leap/leap-java-sdk/1.1.3)
 [![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](https://tryleap.ai/)
 
 The Official Leap API
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.konfigthis.leap</groupId>
   <artifactId>leap-java-sdk</artifactId>
-  <version>1.1.2</version>
+  <version>1.1.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -56,7 +56,7 @@ repositories {
 }
 
 dependencies {
-   implementation "com.konfigthis.leap:leap-java-sdk:1.1.2"
+   implementation "com.konfigthis.leap:leap-java-sdk:1.1.3"
 }
 ```
 
@@ -93,7 +93,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/leap-java-sdk-1.1.2.jar`
+* `target/leap-java-sdk-1.1.3.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

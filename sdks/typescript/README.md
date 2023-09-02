@@ -1,6 +1,6 @@
 # @leap-ai/sdk
 
-[![npm](https://img.shields.io/badge/npm-v1.1.2-blue)](https://www.npmjs.com/package/@leap-ai/sdk/v/1.1.2)
+[![npm](https://img.shields.io/badge/npm-v1.1.3-blue)](https://www.npmjs.com/package/@leap-ai/sdk/v/1.1.3)
 [![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](https://tryleap.ai/)
 
 The Official Leap API
