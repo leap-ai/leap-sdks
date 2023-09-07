@@ -28,10 +28,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -505,6 +508,11 @@ public interface ApiApi {
         @Parameter(name = "imageSampleUrls", description = "An array of strings containing the URLs of the images to upload. Either this or imageSampleFiles is required, but not both.") @Valid @RequestParam(value = "imageSampleUrls", required = false) List<String> imageSampleUrls,
         @Parameter(name = "imageSampleFiles", description = "An array of files containing the images to upload. Either this or imageSampleUrls is required, but not both.") @RequestPart(value = "imageSampleFiles", required = false) List<MultipartFile> imageSampleFiles
     ) {
+        // ensure CORS is enabled from any origin
+        Map<String, CorsConfiguration> corsConfigurations = new HashMap<>();
+        corsConfigurations.put("*", new CorsConfiguration().applyPermitDefaultValues());
+        getRequest().ifPresent(request -> request.setAttribute("handlerCorsConfigurations", corsConfigurations, WebRequest.SCOPE_REQUEST));
+
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
