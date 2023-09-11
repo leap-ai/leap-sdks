@@ -5,6 +5,11 @@ specRemotePath: https://api.tryleap.ai/api-json
 specInputPath: api.json
 infoContactUrl: https://tryleap.ai/
 specPath: api-fixed.json
+portal:
+  primaryColor: "#52BAFF"
+  title: Leap
+  socials:
+    website: https://tryleap.ai/
 tagPriority:
   - Images
 readmeOperation:
