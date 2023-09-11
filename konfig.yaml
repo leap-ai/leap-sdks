@@ -6,7 +6,7 @@ specInputPath: api.json
 infoContactUrl: https://tryleap.ai/
 specPath: api-fixed.json
 portal:
-  primaryColor: "#52BAFF"
+  primaryColor: "#008ae6"
   title: Leap
   socials:
     website: https://tryleap.ai/
