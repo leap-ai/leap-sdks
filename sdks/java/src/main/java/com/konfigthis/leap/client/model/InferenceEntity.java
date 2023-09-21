@@ -210,7 +210,7 @@ public class InferenceEntity {
 
   public static final String SERIALIZED_NAME_MODEL_ID = "modelId";
   @SerializedName(SERIALIZED_NAME_MODEL_ID)
-  private List<String> modelId = new ArrayList<>();
+  private String modelId;
 
   /**
    * Gets or Sets upscalingOption
@@ -736,18 +736,13 @@ public class InferenceEntity {
   }
 
 
-  public InferenceEntity modelId(List<String> modelId) {
+  public InferenceEntity modelId(String modelId) {
 
     
     
     
     
     this.modelId = modelId;
-    return this;
-  }
-
-  public InferenceEntity addModelIdItem(String modelIdItem) {
-    this.modelId.add(modelIdItem);
     return this;
   }
 
@@ -758,12 +753,12 @@ public class InferenceEntity {
   @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
 
-  public List<String> getModelId() {
+  public String getModelId() {
     return modelId;
   }
 
 
-  public void setModelId(List<String> modelId) {
+  public void setModelId(String modelId) {
 
     
     
@@ -1001,11 +996,8 @@ public class InferenceEntity {
       for (int i = 0; i < jsonArrayimages.size(); i++) {
         InferenceImageEntity.validateJsonObject(jsonArrayimages.get(i).getAsJsonObject());
       };
-      // ensure the required json array is present
-      if (jsonObj.get("modelId") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("modelId").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `modelId` to be an array in the JSON string but got `%s`", jsonObj.get("modelId").toString()));
+      if (!jsonObj.get("modelId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `modelId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("modelId").toString()));
       }
       if (!jsonObj.get("upscalingOption").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `upscalingOption` to be a primitive type in the JSON string but got `%s`", jsonObj.get("upscalingOption").toString()));

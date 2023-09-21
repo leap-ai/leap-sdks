@@ -163,7 +163,6 @@ Tag | Method | HTTP request | Description
  - [CreateInferenceDto](docs/models/CreateInferenceDto.md)
  - [CreateMusicgenInferenceDto](docs/models/CreateMusicgenInferenceDto.md)
  - [InferenceEntity](docs/models/InferenceEntity.md)
- - [InferenceEntityModelId](docs/models/InferenceEntityModelId.md)
  - [InferenceImageEntity](docs/models/InferenceImageEntity.md)
  - [InferencesControllerFindAllResponse](docs/models/InferencesControllerFindAllResponse.md)
  - [ListModelsV2Response](docs/models/ListModelsV2Response.md)

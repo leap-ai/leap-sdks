@@ -652,10 +652,7 @@
             }
           },
           "modelId": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "type": "string"
           },
           "upscalingOption": {
             "type": "string",

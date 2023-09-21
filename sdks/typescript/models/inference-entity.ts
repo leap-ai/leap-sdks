@@ -101,10 +101,10 @@ export interface InferenceEntity {
     'images': Array<InferenceImageEntity>;
     /**
      * 
-     * @type {Array<string>}
+     * @type {string}
      * @memberof InferenceEntity
      */
-    'modelId': Array<string>;
+    'modelId': string;
     /**
      * 
      * @type {string}
