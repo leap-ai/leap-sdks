@@ -6,7 +6,7 @@ specInputPath: api.json
 infoContactUrl: https://tryleap.ai/
 specPath: api-fixed.json
 portal:
-  primaryColor: "#008ae6"
+  primaryColor: '#008ae6'
   title: Leap
   socials:
     website: https://tryleap.ai/
@@ -20,7 +20,7 @@ fixConfig:
       - bearer: []
 generators:
   java:
-    version: 1.1.3
+    version: 1.1.4
     groupId: com.konfigthis.leap
     artifactId: leap-java-sdk
     clientName: Leap
@@ -29,7 +29,7 @@ generators:
       userId: leap-ai
       repoId: leap-sdks/tree/main/sdks/java
   python:
-    version: 1.1.3
+    version: 1.1.4
     packageName: leap
     projectName: leap-python-sdk
     outputDirectory: sdks/python
@@ -38,7 +38,7 @@ generators:
       userId: leap-ai
       repoId: leap-sdks/tree/main/sdks/python
   typescript:
-    version: 1.1.3
+    version: 1.1.4
     npmName: '@leap-ai/sdk'
     outputDirectory: sdks/typescript
     clientName: Leap

@@ -1,6 +1,6 @@
 # leap-python-sdk
 
-[![PyPI](https://img.shields.io/badge/PyPI-v1.1.3-blue)](https://pypi.org/project/leap-python-sdk/1.1.3)
+[![PyPI](https://img.shields.io/badge/PyPI-v1.1.4-blue)](https://pypi.org/project/leap-python-sdk/1.1.4)
 [![More Info](https://img.shields.io/badge/More%20Info-Click%20Here-orange)](https://tryleap.ai/)
 
 The Official Leap API
@@ -13,7 +13,7 @@ Python >=3.7
 ## Installing
 
 ```sh
-pip install leap-python-sdk==1.1.3
+pip install leap-python-sdk==1.1.4
 ```
 
 ## Getting Started
@@ -163,7 +163,6 @@ Tag | Method | HTTP request | Description
  - [CreateInferenceDto](docs/models/CreateInferenceDto.md)
  - [CreateMusicgenInferenceDto](docs/models/CreateMusicgenInferenceDto.md)
  - [InferenceEntity](docs/models/InferenceEntity.md)
- - [InferenceEntityModelId](docs/models/InferenceEntityModelId.md)
  - [InferenceImageEntity](docs/models/InferenceImageEntity.md)
  - [InferencesControllerFindAllResponse](docs/models/InferencesControllerFindAllResponse.md)
  - [ListModelsV2Response](docs/models/ListModelsV2Response.md)

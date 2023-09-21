@@ -17,7 +17,6 @@ from leap.model.create_and_train_model_dto_image_sample_urls import CreateAndTra
 from leap.model.create_inference_dto import CreateInferenceDto
 from leap.model.create_musicgen_inference_dto import CreateMusicgenInferenceDto
 from leap.model.inference_entity import InferenceEntity
-from leap.model.inference_entity_model_id import InferenceEntityModelId
 from leap.model.inference_image_entity import InferenceImageEntity
 from leap.model.inferences_controller_find_all_response import InferencesControllerFindAllResponse
 from leap.model.list_models_v2_response import ListModelsV2Response

@@ -10,7 +10,7 @@ Key | Input Type | Accessed Type | Description | Notes
 ------------ | ------------- | ------------- | ------------- | -------------
 **[images](#images)** | list, tuple,  | tuple,  |  | 
 **seed** | decimal.Decimal, int, float,  | decimal.Decimal,  |  | 
-**modelId** | [**InferenceEntityModelId**](InferenceEntityModelId.md) | [**InferenceEntityModelId**](InferenceEntityModelId.md) |  | 
+**modelId** | str,  | str,  |  | 
 **upscalingOption** | str,  | str,  |  | must be one of ["x1", "x2", "x4", ] 
 **steps** | decimal.Decimal, int, float,  | decimal.Decimal,  |  | 
 **promptStrength** | decimal.Decimal, int, float,  | decimal.Decimal,  |  | 

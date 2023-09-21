@@ -20,7 +20,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**steps** | **Double** |  |  |
 |**images** | [**List&lt;InferenceImageEntity&gt;**](InferenceImageEntity.md) |  |  |
-|**modelId** | **List&lt;String&gt;** |  |  |
+|**modelId** | **String** |  |  |
 |**upscalingOption** | [**UpscalingOptionEnum**](#UpscalingOptionEnum) |  |  |
 
 

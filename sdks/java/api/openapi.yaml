@@ -511,9 +511,7 @@ components:
           id: id
           uri: uri
         seed: 0.8008281904610115
-        modelId:
-        - modelId
-        - modelId
+        modelId: modelId
         upscalingOption: x1
         steps: 2.3021358869347655
         promptStrength: 5.962133916683182
@@ -567,9 +565,7 @@ components:
             $ref: '#/components/schemas/InferenceImageEntity'
           type: array
         modelId:
-          items:
-            type: string
-          type: array
+          type: string
         upscalingOption:
           enum:
           - x1

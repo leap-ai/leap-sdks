@@ -2,10 +2,19 @@ import unittest
 from unittest.mock import patch
 
 from leap.api_client import ApiClient, DeprecationWarningOnce
+from leap.configuration import Configuration
 
 
 class RandomClass:
-    api_client = ApiClient()
+    configuration = Configuration(
+        # Defining the host is optional and defaults to https://api.tryleap.ai
+        # See configuration.py for a list of all supported configuration parameters.
+        host = "https://api.tryleap.ai",
+    
+        # Configure Bearer authorization (JWT): bearer
+        access_token = 'YOUR_BEARER_TOKEN'
+    )
+    api_client = ApiClient(configuration)
 
     @DeprecationWarningOnce
     def deprecated_method(self):

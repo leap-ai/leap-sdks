@@ -14,7 +14,6 @@ import typing
 from enum import Enum
 from typing_extensions import TypedDict, Literal
 
-from leap.type.inference_entity_model_id import InferenceEntityModelId
 from leap.type.inference_image_entity import InferenceImageEntity
 
 class RequiredInferenceEntity(TypedDict):
@@ -44,7 +43,7 @@ class RequiredInferenceEntity(TypedDict):
 
     images: typing.List[InferenceImageEntity]
 
-    modelId: InferenceEntityModelId
+    modelId: str
 
     upscalingOption: str
 

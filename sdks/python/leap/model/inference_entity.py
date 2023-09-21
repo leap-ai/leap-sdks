@@ -149,10 +149,7 @@ class InferenceEntity(
             
                 def __getitem__(self, i: int) -> 'InferenceImageEntity':
                     return super().__getitem__(i)
-        
-            @staticmethod
-            def modelId() -> typing.Type['InferenceEntityModelId']:
-                return InferenceEntityModelId
+            modelId = schemas.StrSchema
             
             
             class upscalingOption(
@@ -199,7 +196,7 @@ class InferenceEntity(
     
     images: MetaOapg.properties.images
     seed: MetaOapg.properties.seed
-    modelId: 'InferenceEntityModelId'
+    modelId: MetaOapg.properties.modelId
     upscalingOption: MetaOapg.properties.upscalingOption
     steps: MetaOapg.properties.steps
     promptStrength: MetaOapg.properties.promptStrength
@@ -253,7 +250,7 @@ class InferenceEntity(
     def __getitem__(self, name: typing_extensions.Literal["images"]) -> MetaOapg.properties.images: ...
     
     @typing.overload
-    def __getitem__(self, name: typing_extensions.Literal["modelId"]) -> 'InferenceEntityModelId': ...
+    def __getitem__(self, name: typing_extensions.Literal["modelId"]) -> MetaOapg.properties.modelId: ...
     
     @typing.overload
     def __getitem__(self, name: typing_extensions.Literal["upscalingOption"]) -> MetaOapg.properties.upscalingOption: ...
@@ -306,7 +303,7 @@ class InferenceEntity(
     def get_item_oapg(self, name: typing_extensions.Literal["images"]) -> MetaOapg.properties.images: ...
     
     @typing.overload
-    def get_item_oapg(self, name: typing_extensions.Literal["modelId"]) -> 'InferenceEntityModelId': ...
+    def get_item_oapg(self, name: typing_extensions.Literal["modelId"]) -> MetaOapg.properties.modelId: ...
     
     @typing.overload
     def get_item_oapg(self, name: typing_extensions.Literal["upscalingOption"]) -> MetaOapg.properties.upscalingOption: ...
@@ -323,7 +320,7 @@ class InferenceEntity(
         *args: typing.Union[dict, frozendict.frozendict, ],
         images: typing.Union[MetaOapg.properties.images, list, tuple, ],
         seed: typing.Union[MetaOapg.properties.seed, decimal.Decimal, int, float, ],
-        modelId: 'InferenceEntityModelId',
+        modelId: typing.Union[MetaOapg.properties.modelId, str, ],
         upscalingOption: typing.Union[MetaOapg.properties.upscalingOption, str, ],
         steps: typing.Union[MetaOapg.properties.steps, decimal.Decimal, int, float, ],
         promptStrength: typing.Union[MetaOapg.properties.promptStrength, decimal.Decimal, int, float, ],
@@ -361,5 +358,4 @@ class InferenceEntity(
             **kwargs,
         )
 
-from leap.model.inference_entity_model_id import InferenceEntityModelId
 from leap.model.inference_image_entity import InferenceImageEntity
