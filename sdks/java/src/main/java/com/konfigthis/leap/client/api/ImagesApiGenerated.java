@@ -28,6 +28,8 @@ import java.io.IOException;
 
 import com.konfigthis.leap.client.model.CreateInferenceDto;
 import com.konfigthis.leap.client.model.InferenceEntity;
+import com.konfigthis.leap.client.model.InferenceImageEntity;
+import java.time.OffsetDateTime;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

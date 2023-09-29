@@ -34,12 +34,14 @@ from leap import schemas  # noqa: F401
 from leap.model.model_v2_entity import ModelV2Entity as ModelV2EntitySchema
 from leap.model.create_and_train_model_dto_image_sample_files import CreateAndTrainModelDtoImageSampleFiles as CreateAndTrainModelDtoImageSampleFilesSchema
 from leap.model.create_and_train_model_dto_image_sample_urls import CreateAndTrainModelDtoImageSampleUrls as CreateAndTrainModelDtoImageSampleUrlsSchema
+from leap.model.model_v2_entity_image_samples import ModelV2EntityImageSamples as ModelV2EntityImageSamplesSchema
 from leap.model.create_and_train_model_dto import CreateAndTrainModelDto as CreateAndTrainModelDtoSchema
 
 from leap.type.model_v2_entity import ModelV2Entity
 from leap.type.create_and_train_model_dto_image_sample_files import CreateAndTrainModelDtoImageSampleFiles
 from leap.type.create_and_train_model_dto import CreateAndTrainModelDto
 from leap.type.create_and_train_model_dto_image_sample_urls import CreateAndTrainModelDtoImageSampleUrls
+from leap.type.model_v2_entity_image_samples import ModelV2EntityImageSamples
 
 from . import path
 

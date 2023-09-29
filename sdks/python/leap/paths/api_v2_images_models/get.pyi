@@ -32,8 +32,12 @@ import frozendict  # noqa: F401
 from leap import schemas  # noqa: F401
 
 from leap.model.list_models_v2_response import ListModelsV2Response as ListModelsV2ResponseSchema
+from leap.model.model_v2_entity import ModelV2Entity as ModelV2EntitySchema
+from leap.model.model_v2_entity_image_samples import ModelV2EntityImageSamples as ModelV2EntityImageSamplesSchema
 
+from leap.type.model_v2_entity import ModelV2Entity
 from leap.type.list_models_v2_response import ListModelsV2Response
+from leap.type.model_v2_entity_image_samples import ModelV2EntityImageSamples
 
 SchemaFor200ResponseBodyApplicationJson = ListModelsV2ResponseSchema
 

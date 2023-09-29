@@ -32,7 +32,9 @@ import frozendict  # noqa: F401
 from leap import schemas  # noqa: F401
 
 from leap.model.inference_entity import InferenceEntity as InferenceEntitySchema
+from leap.model.inference_image_entity import InferenceImageEntity as InferenceImageEntitySchema
 
+from leap.type.inference_image_entity import InferenceImageEntity
 from leap.type.inference_entity import InferenceEntity
 
 # Path params

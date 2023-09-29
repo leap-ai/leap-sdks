@@ -202,11 +202,11 @@ export const ImageModelsApiAxiosParamCreator = function (configuration?: Configu
             if (webhookUrl !== undefined) { 
                 localVarFormParams.append('webhookUrl', webhookUrl as any);
             }
-                if (imageSampleUrls) {
-                localVarFormParams.append('imageSampleUrls', imageSampleUrls.join(COLLECTION_FORMATS.csv));
+            if (imageSampleUrls) {
+            localVarFormParams.append('imageSampleUrls', imageSampleUrls.join(COLLECTION_FORMATS.csv));
             }
 
-                if (imageSampleFiles) {
+            if (imageSampleFiles) {
                 const baseName = 'imageSampleFiles'
                 for (const element of imageSampleFiles) { 
                     if (element instanceof Uint8Array) {
@@ -217,7 +217,7 @@ export const ImageModelsApiAxiosParamCreator = function (configuration?: Configu
                         // Browser
                         localVarFormParams.append(baseName, element as any, element.name);
                     }
-                                }
+                }
             }
 
     

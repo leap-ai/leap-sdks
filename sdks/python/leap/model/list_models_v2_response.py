@@ -106,3 +106,4 @@ class ListModelsV2Response(
         )
 
 from leap.model.model_v2_entity import ModelV2Entity
+from leap.model.model_v2_entity_image_samples import ModelV2EntityImageSamples

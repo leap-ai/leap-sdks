@@ -24,6 +24,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 import { CreateInferenceDto } from '../models';
 // @ts-ignore
 import { InferenceEntity } from '../models';
+// @ts-ignore
+import { InferenceImageEntity } from '../models';
 import { paginate } from "../pagination/paginate";
 import { requestBeforeHook } from '../requestBeforeHook';
 /**

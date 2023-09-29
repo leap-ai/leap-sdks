@@ -15,6 +15,7 @@ from enum import Enum
 from typing_extensions import TypedDict, Literal
 
 from leap.type.model_v2_entity import ModelV2Entity
+from leap.type.model_v2_entity_image_samples import ModelV2EntityImageSamples
 
 class RequiredListModelsV2Response(TypedDict):
     models: typing.List[ModelV2Entity]

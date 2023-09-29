@@ -18,6 +18,8 @@ import com.konfigthis.leap.client.ApiException;
 import com.konfigthis.leap.client.Configuration;
 import com.konfigthis.leap.client.model.CreateInferenceDto;
 import com.konfigthis.leap.client.model.InferenceEntity;
+import com.konfigthis.leap.client.model.InferenceImageEntity;
+import java.time.OffsetDateTime;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;

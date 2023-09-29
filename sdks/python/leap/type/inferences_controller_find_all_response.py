@@ -15,5 +15,6 @@ from enum import Enum
 from typing_extensions import TypedDict, Literal
 
 from leap.type.inference_entity import InferenceEntity
+from leap.type.inference_image_entity import InferenceImageEntity
 
 InferencesControllerFindAllResponse = typing.List[InferenceEntity]

@@ -33,7 +33,9 @@ from leap import schemas  # noqa: F401
 
 from leap.model.inference_entity import InferenceEntity as InferenceEntitySchema
 from leap.model.create_inference_dto import CreateInferenceDto as CreateInferenceDtoSchema
+from leap.model.inference_image_entity import InferenceImageEntity as InferenceImageEntitySchema
 
+from leap.type.inference_image_entity import InferenceImageEntity
 from leap.type.inference_entity import InferenceEntity
 from leap.type.create_inference_dto import CreateInferenceDto
 

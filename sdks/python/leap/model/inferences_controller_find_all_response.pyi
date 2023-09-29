@@ -52,3 +52,4 @@ class InferencesControllerFindAllResponse(
         return super().__getitem__(i)
 
 from leap.model.inference_entity import InferenceEntity
+from leap.model.inference_image_entity import InferenceImageEntity

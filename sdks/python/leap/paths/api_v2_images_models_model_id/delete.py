@@ -32,8 +32,10 @@ import frozendict  # noqa: F401
 from leap import schemas  # noqa: F401
 
 from leap.model.model_v2_entity import ModelV2Entity as ModelV2EntitySchema
+from leap.model.model_v2_entity_image_samples import ModelV2EntityImageSamples as ModelV2EntityImageSamplesSchema
 
 from leap.type.model_v2_entity import ModelV2Entity
+from leap.type.model_v2_entity_image_samples import ModelV2EntityImageSamples
 
 from . import path
 
