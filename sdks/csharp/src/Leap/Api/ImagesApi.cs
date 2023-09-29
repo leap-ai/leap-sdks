@@ -114,7 +114,7 @@ namespace Leap.Api
         /// <param name="pageSize">The number of items to return per page. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;InferenceEntity&gt;</returns>
-        List<InferenceEntity> ListAll(string modelId, bool? onlyFinished = default(bool?), decimal? page = default(decimal?), decimal? pageSize = default(decimal?), int operationIndex = 0);
+        List<InferenceEntity> ListAll(string modelId, bool? onlyFinished = default(bool?), double? page = default(double?), double? pageSize = default(double?), int operationIndex = 0);
 
         /// <summary>
         /// List All Image Jobs
@@ -129,7 +129,7 @@ namespace Leap.Api
         /// <param name="pageSize">The number of items to return per page. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InferenceEntity&gt;</returns>
-        ApiResponse<List<InferenceEntity>> ListAllWithHttpInfo(string modelId, bool? onlyFinished = default(bool?), decimal? page = default(decimal?), decimal? pageSize = default(decimal?), int operationIndex = 0);
+        ApiResponse<List<InferenceEntity>> ListAllWithHttpInfo(string modelId, bool? onlyFinished = default(bool?), double? page = default(double?), double? pageSize = default(double?), int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -234,7 +234,7 @@ namespace Leap.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InferenceEntity&gt;</returns>
-        System.Threading.Tasks.Task<List<InferenceEntity>> ListAllAsync(string modelId, bool? onlyFinished = default(bool?), decimal? page = default(decimal?), decimal? pageSize = default(decimal?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<InferenceEntity>> ListAllAsync(string modelId, bool? onlyFinished = default(bool?), double? page = default(double?), double? pageSize = default(double?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List All Image Jobs
@@ -250,7 +250,7 @@ namespace Leap.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InferenceEntity&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InferenceEntity>>> ListAllWithHttpInfoAsync(string modelId, bool? onlyFinished = default(bool?), decimal? page = default(decimal?), decimal? pageSize = default(decimal?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<InferenceEntity>>> ListAllWithHttpInfoAsync(string modelId, bool? onlyFinished = default(bool?), double? page = default(double?), double? pageSize = default(double?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -901,7 +901,7 @@ namespace Leap.Api
         /// <param name="pageSize">The number of items to return per page. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;InferenceEntity&gt;</returns>
-        public List<InferenceEntity> ListAll(string modelId, bool? onlyFinished = default(bool?), decimal? page = default(decimal?), decimal? pageSize = default(decimal?), int operationIndex = 0)
+        public List<InferenceEntity> ListAll(string modelId, bool? onlyFinished = default(bool?), double? page = default(double?), double? pageSize = default(double?), int operationIndex = 0)
         {
             Leap.Client.ApiResponse<List<InferenceEntity>> localVarResponse = ListAllWithHttpInfo(modelId, onlyFinished, page, pageSize);
             return localVarResponse.Data;
@@ -917,7 +917,7 @@ namespace Leap.Api
         /// <param name="pageSize">The number of items to return per page. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;InferenceEntity&gt;</returns>
-        public Leap.Client.ApiResponse<List<InferenceEntity>> ListAllWithHttpInfo(string modelId, bool? onlyFinished = default(bool?), decimal? page = default(decimal?), decimal? pageSize = default(decimal?), int operationIndex = 0)
+        public Leap.Client.ApiResponse<List<InferenceEntity>> ListAllWithHttpInfo(string modelId, bool? onlyFinished = default(bool?), double? page = default(double?), double? pageSize = default(double?), int operationIndex = 0)
         {
             // verify the required parameter 'modelId' is set
             if (modelId == null)
@@ -996,7 +996,7 @@ namespace Leap.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;InferenceEntity&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InferenceEntity>> ListAllAsync(string modelId, bool? onlyFinished = default(bool?), decimal? page = default(decimal?), decimal? pageSize = default(decimal?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<InferenceEntity>> ListAllAsync(string modelId, bool? onlyFinished = default(bool?), double? page = default(double?), double? pageSize = default(double?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Leap.Client.ApiResponse<List<InferenceEntity>> localVarResponse = await ListAllWithHttpInfoAsync(modelId, onlyFinished, page, pageSize, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1013,7 +1013,7 @@ namespace Leap.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;InferenceEntity&gt;)</returns>
-        public async System.Threading.Tasks.Task<Leap.Client.ApiResponse<List<InferenceEntity>>> ListAllWithHttpInfoAsync(string modelId, bool? onlyFinished = default(bool?), decimal? page = default(decimal?), decimal? pageSize = default(decimal?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Leap.Client.ApiResponse<List<InferenceEntity>>> ListAllWithHttpInfoAsync(string modelId, bool? onlyFinished = default(bool?), double? page = default(double?), double? pageSize = default(double?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'modelId' is set
             if (modelId == null)

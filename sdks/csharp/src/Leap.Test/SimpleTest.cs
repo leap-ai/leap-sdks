@@ -36,12 +36,9 @@ namespace Leap.Test
         [Fact]
         public void ClientTest()
         {
-
             LeapClient client = new LeapClient();
-            // Configure custom BasePath if desired
-            client.SetBasePath("https://api.tryleap.ai");
-            // Configure Bearer token for authorization: bearer
-            client.SetAccessToken("YOUR_BEARER_TOKEN");
+            // Configure token for authorization
+            client.SetAccessToken("YOUR_TOKEN");
 
             Assert.NotNull(client);
         }

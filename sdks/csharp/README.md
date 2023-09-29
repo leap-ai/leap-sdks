@@ -53,16 +53,13 @@ namespace Example
     {
         public static void Main()
         {
-
             LeapClient client = new LeapClient();
-            // Configure custom BasePath if desired
-            client.SetBasePath("https://api.tryleap.ai");
-            // Configure Bearer token for authorization: bearer
-            client.SetAccessToken("YOUR_BEARER_TOKEN");
+            // Configure token for authorization
+            client.SetAccessToken("YOUR_TOKEN");
 
             var modelId = "26a1a203-3a46-42cb-8cfa-f4de075907d8";  // string | The ID of the model to use to generate images. This can be a custom model, or a public model. To view the list of public models, visit: https://docs.tryleap.ai/public-models
             var createInferenceDto = new CreateInferenceDto(); // CreateInferenceDto | The parameters to use to generate the image.
-
+            
             try
             {
                 // Generate an Image

@@ -41,14 +41,14 @@ namespace Leap.Model
         /// </summary>
         /// <param name="prompt">A text description of the image you what you want to generate. (required) (default to &quot;A photo of an astronaut riding a horse&quot;).</param>
         /// <param name="negativePrompt">A text description of what the image should try to avoid generating. (default to &quot;asymmetric, watermarks&quot;).</param>
-        /// <param name="steps">How many steps the AI will take to generate the image. Lower is faster but less detailed, higher is slower more detailed. (default to 50M).</param>
-        /// <param name="width">The width of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models. (default to 1024M).</param>
-        /// <param name="height">The height of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models. (default to 1024M).</param>
-        /// <param name="numberOfImages">The number of images to generate, up to 4. (default to 1M).</param>
-        /// <param name="promptStrength">The higher the prompt strength, the closer the generated image will be to the prompt. Must be between 0 and 30. (default to 7M).</param>
-        /// <param name="seed">A random number to use as a seed when generating the image. This is helpful if you want to generate the same image multiple times. If you want to generate different images, keep this empty or provide a random number. (default to 4523184M).</param>
+        /// <param name="steps">How many steps the AI will take to generate the image. Lower is faster but less detailed, higher is slower more detailed. (default to 50D).</param>
+        /// <param name="width">The width of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models. (default to 1024D).</param>
+        /// <param name="height">The height of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models. (default to 1024D).</param>
+        /// <param name="numberOfImages">The number of images to generate, up to 4. (default to 1D).</param>
+        /// <param name="promptStrength">The higher the prompt strength, the closer the generated image will be to the prompt. Must be between 0 and 30. (default to 7D).</param>
+        /// <param name="seed">A random number to use as a seed when generating the image. This is helpful if you want to generate the same image multiple times. If you want to generate different images, keep this empty or provide a random number. (default to 4523184D).</param>
         /// <param name="webhookUrl">An optional webhook URL that will be called with a POST request when the image generation request completes..</param>
-        public CreateInferenceDto(string prompt = "A photo of an astronaut riding a horse", string negativePrompt = "asymmetric, watermarks", decimal steps = 50M, decimal width = 1024M, decimal height = 1024M, decimal numberOfImages = 1M, decimal promptStrength = 7M, decimal seed = 4523184M, string webhookUrl = default(string))
+        public CreateInferenceDto(string prompt = "A photo of an astronaut riding a horse", string negativePrompt = "asymmetric, watermarks", double steps = 50D, double width = 1024D, double height = 1024D, double numberOfImages = 1D, double promptStrength = 7D, double seed = 4523184D, string webhookUrl = default(string))
         {
             // to ensure "prompt" is required (not null)
             if (prompt == null)
@@ -86,42 +86,42 @@ namespace Leap.Model
         /// </summary>
         /// <value>How many steps the AI will take to generate the image. Lower is faster but less detailed, higher is slower more detailed.</value>
         [DataMember(Name = "steps", EmitDefaultValue = false)]
-        public decimal Steps { get; set; }
+        public double Steps { get; set; }
 
         /// <summary>
         /// The width of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models.
         /// </summary>
         /// <value>The width of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models.</value>
         [DataMember(Name = "width", EmitDefaultValue = false)]
-        public decimal Width { get; set; }
+        public double Width { get; set; }
 
         /// <summary>
         /// The height of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models.
         /// </summary>
         /// <value>The height of the image to use for the inference. Must be a multiple of 8. For best results use 1024x1024 for SDXL, and 512x512 for other models.</value>
         [DataMember(Name = "height", EmitDefaultValue = false)]
-        public decimal Height { get; set; }
+        public double Height { get; set; }
 
         /// <summary>
         /// The number of images to generate, up to 4.
         /// </summary>
         /// <value>The number of images to generate, up to 4.</value>
         [DataMember(Name = "numberOfImages", EmitDefaultValue = false)]
-        public decimal NumberOfImages { get; set; }
+        public double NumberOfImages { get; set; }
 
         /// <summary>
         /// The higher the prompt strength, the closer the generated image will be to the prompt. Must be between 0 and 30.
         /// </summary>
         /// <value>The higher the prompt strength, the closer the generated image will be to the prompt. Must be between 0 and 30.</value>
         [DataMember(Name = "promptStrength", EmitDefaultValue = false)]
-        public decimal PromptStrength { get; set; }
+        public double PromptStrength { get; set; }
 
         /// <summary>
         /// A random number to use as a seed when generating the image. This is helpful if you want to generate the same image multiple times. If you want to generate different images, keep this empty or provide a random number.
         /// </summary>
         /// <value>A random number to use as a seed when generating the image. This is helpful if you want to generate the same image multiple times. If you want to generate different images, keep this empty or provide a random number.</value>
         [DataMember(Name = "seed", EmitDefaultValue = false)]
-        public decimal Seed { get; set; }
+        public double Seed { get; set; }
 
         /// <summary>
         /// An optional webhook URL that will be called with a POST request when the image generation request completes.

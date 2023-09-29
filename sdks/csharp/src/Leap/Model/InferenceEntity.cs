@@ -162,7 +162,7 @@ namespace Leap.Model
         /// <param name="images">images (required).</param>
         /// <param name="modelId">modelId (required).</param>
         /// <param name="upscalingOption">upscalingOption (required).</param>
-        public InferenceEntity(string id = default(string), DateTime createdAt = default(DateTime), string prompt = default(string), string negativePrompt = default(string), decimal seed = default(decimal), decimal width = default(decimal), decimal height = default(decimal), decimal promptStrength = default(decimal), decimal numberOfImages = default(decimal), StateEnum state = default(StateEnum), StatusEnum status = default(StatusEnum), decimal steps = default(decimal), List<InferenceImageEntity> images = default(List<InferenceImageEntity>), string modelId = default(string), UpscalingOptionEnum upscalingOption = default(UpscalingOptionEnum))
+        public InferenceEntity(string id = default(string), DateTime createdAt = default(DateTime), string prompt = default(string), string negativePrompt = default(string), double seed = default(double), double width = default(double), double height = default(double), double promptStrength = default(double), double numberOfImages = default(double), StateEnum state = default(StateEnum), StatusEnum status = default(StatusEnum), double steps = default(double), List<InferenceImageEntity> images = default(List<InferenceImageEntity>), string modelId = default(string), UpscalingOptionEnum upscalingOption = default(UpscalingOptionEnum))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -234,37 +234,37 @@ namespace Leap.Model
         /// Gets or Sets Seed
         /// </summary>
         [DataMember(Name = "seed", IsRequired = true, EmitDefaultValue = true)]
-        public decimal Seed { get; set; }
+        public double Seed { get; set; }
 
         /// <summary>
         /// Gets or Sets Width
         /// </summary>
         [DataMember(Name = "width", IsRequired = true, EmitDefaultValue = true)]
-        public decimal Width { get; set; }
+        public double Width { get; set; }
 
         /// <summary>
         /// Gets or Sets Height
         /// </summary>
         [DataMember(Name = "height", IsRequired = true, EmitDefaultValue = true)]
-        public decimal Height { get; set; }
+        public double Height { get; set; }
 
         /// <summary>
         /// Gets or Sets PromptStrength
         /// </summary>
         [DataMember(Name = "promptStrength", IsRequired = true, EmitDefaultValue = true)]
-        public decimal PromptStrength { get; set; }
+        public double PromptStrength { get; set; }
 
         /// <summary>
         /// Gets or Sets NumberOfImages
         /// </summary>
         [DataMember(Name = "numberOfImages", IsRequired = true, EmitDefaultValue = true)]
-        public decimal NumberOfImages { get; set; }
+        public double NumberOfImages { get; set; }
 
         /// <summary>
         /// Gets or Sets Steps
         /// </summary>
         [DataMember(Name = "steps", IsRequired = true, EmitDefaultValue = true)]
-        public decimal Steps { get; set; }
+        public double Steps { get; set; }
 
         /// <summary>
         /// Gets or Sets Images

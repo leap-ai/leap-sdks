@@ -9,9 +9,8 @@ All URIs are relative to *https://api.tryleap.ai*
 | [**ListAllModels**](ImageModelsApi.md#listallmodels) | **GET** /api/v2/images/models | List All Models |
 | [**TrainModel**](ImageModelsApi.md#trainmodel) | **POST** /api/v2/images/models/new | Train Model |
 
-<a name="deletemodel"></a>
+
 # **DeleteModel**
-> ModelV2Entity DeleteModel (string modelId)
 
 Delete a Model
 
@@ -31,15 +30,12 @@ namespace Example
     {
         public static void Main()
         {
-
             LeapClient client = new LeapClient();
-            // Configure custom BasePath if desired
-            client.SetBasePath("https://api.tryleap.ai");
-            // Configure Bearer token for authorization: bearer
-            client.SetAccessToken("YOUR_BEARER_TOKEN");
+            // Configure token for authorization
+            client.SetAccessToken("YOUR_TOKEN");
 
             var modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e";  // string | The ID of the model to delete.
-
+            
             try
             {
                 // Delete a Model
@@ -93,15 +89,6 @@ catch (ApiException e)
 
 [**ModelV2Entity**](ModelV2Entity.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -110,9 +97,8 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="getmodel"></a>
+
 # **GetModel**
-> ModelV2Entity GetModel (string modelId)
 
 Get a Single Model
 
@@ -132,15 +118,12 @@ namespace Example
     {
         public static void Main()
         {
-
             LeapClient client = new LeapClient();
-            // Configure custom BasePath if desired
-            client.SetBasePath("https://api.tryleap.ai");
-            // Configure Bearer token for authorization: bearer
-            client.SetAccessToken("YOUR_BEARER_TOKEN");
+            // Configure token for authorization
+            client.SetAccessToken("YOUR_TOKEN");
 
             var modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e";  // string | The ID of the model to retrieve.
-
+            
             try
             {
                 // Get a Single Model
@@ -194,15 +177,6 @@ catch (ApiException e)
 
 [**ModelV2Entity**](ModelV2Entity.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -212,9 +186,8 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listallmodels"></a>
+
 # **ListAllModels**
-> ListModelsV2Response ListAllModels ()
 
 List All Models
 
@@ -234,14 +207,11 @@ namespace Example
     {
         public static void Main()
         {
-
             LeapClient client = new LeapClient();
-            // Configure custom BasePath if desired
-            client.SetBasePath("https://api.tryleap.ai");
-            // Configure Bearer token for authorization: bearer
-            client.SetAccessToken("YOUR_BEARER_TOKEN");
+            // Configure token for authorization
+            client.SetAccessToken("YOUR_TOKEN");
 
-
+            
             try
             {
                 // List All Models
@@ -291,15 +261,6 @@ This endpoint does not need any parameter.
 
 [**ListModelsV2Response**](ListModelsV2Response.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -308,9 +269,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="trainmodel"></a>
+
 # **TrainModel**
-> ModelV2Entity TrainModel (string name = null, string subjectKeyword = null, string subjectType = null, string webhookUrl = null, List<string> imageSampleUrls = null, List<System.IO.Stream> imageSampleFiles = null)
 
 Train Model
 
@@ -330,12 +290,9 @@ namespace Example
     {
         public static void Main()
         {
-
             LeapClient client = new LeapClient();
-            // Configure custom BasePath if desired
-            client.SetBasePath("https://api.tryleap.ai");
-            // Configure Bearer token for authorization: bearer
-            client.SetAccessToken("YOUR_BEARER_TOKEN");
+            // Configure token for authorization
+            client.SetAccessToken("YOUR_TOKEN");
 
             var name = "name_example";  // string | Provide a name so you can more easily identify the model. (optional) 
             var subjectKeyword = "subjectKeyword_example";  // string | This is the keyword you will use during image generation to trigger your custom subject. For example \\\"a photo of @me\\\". (optional) 
@@ -343,7 +300,7 @@ namespace Example
             var webhookUrl = "webhookUrl_example";  // string | An optional webhook URL that will be called with a POST request when the model completes training or fails. (optional) 
             var imageSampleUrls = new List<string>(); // List<string> | An array of strings containing the URLs of the images to upload. Either this or imageSampleFiles is required, but not both. (optional) 
             var imageSampleFiles = new List<System.IO.Stream>(); // List<System.IO.Stream> | An array of files containing the images to upload. Either this or imageSampleUrls is required, but not both. (optional) 
-
+            
             try
             {
                 // Train Model
@@ -401,15 +358,6 @@ catch (ApiException e)
 ### Return type
 
 [**ModelV2Entity**](ModelV2Entity.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: multipart/form-data
- - **Accept**: application/json
 
 
 ### HTTP response details

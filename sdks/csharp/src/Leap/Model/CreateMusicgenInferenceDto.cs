@@ -69,8 +69,8 @@ namespace Leap.Model
         /// </summary>
         /// <param name="prompt">A description of the music you want to generate. (required) (default to &quot;An electronic music soundtrack with a trumpet solo&quot;).</param>
         /// <param name="mode">Select a mode, each option generates different results. Melody is best for melody, music is best for full songs (required) (default to ModeEnum.Melody).</param>
-        /// <param name="duration">Duration of the generated audio in seconds. Max 30 seconds. (required) (default to 28M).</param>
-        public CreateMusicgenInferenceDto(string prompt = "An electronic music soundtrack with a trumpet solo", ModeEnum mode = ModeEnum.Melody, decimal duration = 28M)
+        /// <param name="duration">Duration of the generated audio in seconds. Max 30 seconds. (required) (default to 28D).</param>
+        public CreateMusicgenInferenceDto(string prompt = "An electronic music soundtrack with a trumpet solo", ModeEnum mode = ModeEnum.Melody, double duration = 28D)
         {
             // to ensure "prompt" is required (not null)
             if (prompt == null)
@@ -94,7 +94,7 @@ namespace Leap.Model
         /// </summary>
         /// <value>Duration of the generated audio in seconds. Max 30 seconds.</value>
         [DataMember(Name = "duration", IsRequired = true, EmitDefaultValue = true)]
-        public decimal Duration { get; set; }
+        public double Duration { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

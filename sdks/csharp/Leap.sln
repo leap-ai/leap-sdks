@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leap", "src\Leap\Leap.csproj", "{C1BD32FB-E4D2-415B-823A-10C28D958D84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leap", "src\Leap\Leap.csproj", "{621D9AAB-1A0F-4003-A0D1-9C25D1AE5362}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leap.Test", "src\Leap.Test\Leap.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
@@ -12,10 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C1BD32FB-E4D2-415B-823A-10C28D958D84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1BD32FB-E4D2-415B-823A-10C28D958D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1BD32FB-E4D2-415B-823A-10C28D958D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1BD32FB-E4D2-415B-823A-10C28D958D84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{621D9AAB-1A0F-4003-A0D1-9C25D1AE5362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{621D9AAB-1A0F-4003-A0D1-9C25D1AE5362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{621D9AAB-1A0F-4003-A0D1-9C25D1AE5362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{621D9AAB-1A0F-4003-A0D1-9C25D1AE5362}.Release|Any CPU.Build.0 = Release|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19F1DEBC-DE5E-4517-8062-F000CD499087}.Release|Any CPU.ActiveCfg = Release|Any CPU

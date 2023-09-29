@@ -8,9 +8,8 @@ All URIs are relative to *https://api.tryleap.ai*
 | [**Generate**](MusicApi.md#generate) | **POST** /api/v1/music | Generate Music |
 | [**ListAll**](MusicApi.md#listall) | **GET** /api/v1/music | List Music Generation Jobs |
 
-<a name="findone"></a>
+
 # **FindOne**
-> MusicgenInferenceEntity FindOne (string inferenceId)
 
 Get a Music Generation Job
 
@@ -30,13 +29,10 @@ namespace Example
     {
         public static void Main()
         {
-
             LeapClient client = new LeapClient();
-            // Configure custom BasePath if desired
-            client.SetBasePath("https://api.tryleap.ai");
-
+            
             var inferenceId = "inferenceId_example";  // string | The ID of the music generation job to retrieve. This is the same ID returned when you submit a job.
-
+            
             try
             {
                 // Get a Music Generation Job
@@ -90,15 +86,6 @@ catch (ApiException e)
 
 [**MusicgenInferenceEntity**](MusicgenInferenceEntity.md)
 
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -107,9 +94,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="generate"></a>
+
 # **Generate**
-> MusicgenInferenceEntity Generate (CreateMusicgenInferenceDto createMusicgenInferenceDto)
 
 Generate Music
 
@@ -129,15 +115,12 @@ namespace Example
     {
         public static void Main()
         {
-
             LeapClient client = new LeapClient();
-            // Configure custom BasePath if desired
-            client.SetBasePath("https://api.tryleap.ai");
-            // Configure Bearer token for authorization: bearer
-            client.SetAccessToken("YOUR_BEARER_TOKEN");
+            // Configure token for authorization
+            client.SetAccessToken("YOUR_TOKEN");
 
             var createMusicgenInferenceDto = new CreateMusicgenInferenceDto(); // CreateMusicgenInferenceDto | 
-
+            
             try
             {
                 // Generate Music
@@ -191,15 +174,6 @@ catch (ApiException e)
 
 [**MusicgenInferenceEntity**](MusicgenInferenceEntity.md)
 
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -208,9 +182,8 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="listall"></a>
+
 # **ListAll**
-> List&lt;MusicgenInferenceEntity&gt; ListAll ()
 
 List Music Generation Jobs
 
@@ -230,14 +203,11 @@ namespace Example
     {
         public static void Main()
         {
-
             LeapClient client = new LeapClient();
-            // Configure custom BasePath if desired
-            client.SetBasePath("https://api.tryleap.ai");
-            // Configure Bearer token for authorization: bearer
-            client.SetAccessToken("YOUR_BEARER_TOKEN");
+            // Configure token for authorization
+            client.SetAccessToken("YOUR_TOKEN");
 
-
+            
             try
             {
                 // List Music Generation Jobs
@@ -286,15 +256,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**List&lt;MusicgenInferenceEntity&gt;**](MusicgenInferenceEntity.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
 
 
 ### HTTP response details
