@@ -46,10 +46,9 @@ generators:
       userId: leap-ai
       repoId: leap-sdks/tree/main/sdks/typescript
   csharp:
-    disabled: true
     version: 1.0.0
-    packageName: Leap.Net
-    clientName: Leap
+    packageName: Leap
+    clientName: LeapClient
     outputDirectory: sdks/csharp
     logoPath: logo.png
     git:
