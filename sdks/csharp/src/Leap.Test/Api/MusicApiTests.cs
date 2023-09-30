@@ -49,7 +49,7 @@ namespace Leap.Test.Api
         [Fact]
         public void FindOneTest()
         {
-            var inferenceId = "inferenceId_example";  // string | The ID of the music generation job to retrieve. This is the same ID returned when you submit a job.
+            var inferenceId = "inferenceId_example";  // The ID of the music generation job to retrieve. This is the same ID returned when you submit a job.
             
             try
             {
@@ -77,7 +77,15 @@ namespace Leap.Test.Api
         [Fact]
         public void GenerateTest()
         {
-            var createMusicgenInferenceDto = new CreateMusicgenInferenceDto(); // CreateMusicgenInferenceDto | 
+            var prompt = "An electronic music soundtrack with a trumpet solo"; // A description of the music you want to generate.
+            var mode = CreateMusicgenInferenceDto.ModeEnum.Melody; // Select a mode, each option generates different results. Melody is best for melody, music is best for full songs
+            var duration = 28; // Duration of the generated audio in seconds. Max 30 seconds.
+            
+            var createMusicgenInferenceDto = new CreateMusicgenInferenceDto(
+                prompt,
+                mode,
+                duration
+            );
             
             try
             {

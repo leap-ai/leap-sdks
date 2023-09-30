@@ -34,7 +34,7 @@ namespace Example
             // Configure token for authorization
             client.SetAccessToken("YOUR_TOKEN");
 
-            var modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e";  // string | The ID of the model to delete.
+            var modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e";  // The ID of the model to delete.
             
             try
             {
@@ -122,7 +122,7 @@ namespace Example
             // Configure token for authorization
             client.SetAccessToken("YOUR_TOKEN");
 
-            var modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e";  // string | The ID of the model to retrieve.
+            var modelId = "5f9b9c0e-7c1f-4b5c-9c0e-7c1f4b5c9c0e";  // The ID of the model to retrieve.
             
             try
             {
@@ -294,12 +294,16 @@ namespace Example
             // Configure token for authorization
             client.SetAccessToken("YOUR_TOKEN");
 
-            var name = "name_example";  // string | Provide a name so you can more easily identify the model. (optional) 
-            var subjectKeyword = "subjectKeyword_example";  // string | This is the keyword you will use during image generation to trigger your custom subject. For example \\\"a photo of @me\\\". (optional) 
-            var subjectType = "\"person\"";  // string | The subject type - a short description, usually a noun, that describes what the underlying model is learning. For example: person, man, woman, cat, dog, icon, style. Defaults to \\\"person\\\". (optional)  (default to "person")
-            var webhookUrl = "webhookUrl_example";  // string | An optional webhook URL that will be called with a POST request when the model completes training or fails. (optional) 
-            var imageSampleUrls = new List<string>(); // List<string> | An array of strings containing the URLs of the images to upload. Either this or imageSampleFiles is required, but not both. (optional) 
-            var imageSampleFiles = new List<System.IO.Stream>(); // List<System.IO.Stream> | An array of files containing the images to upload. Either this or imageSampleUrls is required, but not both. (optional) 
+            var name = "name_example";  // Provide a name so you can more easily identify the model. (optional) 
+            var subjectKeyword = "subjectKeyword_example";  // This is the keyword you will use during image generation to trigger your custom subject. For example \\\"a photo of @me\\\". (optional) 
+            var subjectType = "person";  // The subject type - a short description, usually a noun, that describes what the underlying model is learning. For example: person, man, woman, cat, dog, icon, style. Defaults to \\\"person\\\". (optional)  (default to "person")
+            var webhookUrl = "webhookUrl_example";  // An optional webhook URL that will be called with a POST request when the model completes training or fails. (optional) 
+            // An array of strings containing the URLs of the images to upload. Either this or imageSampleFiles is required, but not both. (optional) 
+            var imageSampleUrls = new List<string>(
+            );
+            // An array of files containing the images to upload. Either this or imageSampleUrls is required, but not both. (optional) 
+            var imageSampleFiles = new List<System.IO.Stream>(
+            );
             
             try
             {
