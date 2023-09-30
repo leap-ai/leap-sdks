@@ -12,7 +12,7 @@ All URIs are relative to *https://api.tryleap.ai*
 
 # **DeleteModel**
 
-Delete a Model
+
 
 This endpoint will delete a model. This is not reversible.
 
@@ -100,7 +100,7 @@ catch (ApiException e)
 
 # **GetModel**
 
-Get a Single Model
+
 
 This endpoint will return a single model.
 
@@ -189,7 +189,7 @@ catch (ApiException e)
 
 # **ListAllModels**
 
-List All Models
+
 
 This endpoint will return a list of all models for the workspace.
 
@@ -272,7 +272,7 @@ This endpoint does not need any parameter.
 
 # **TrainModel**
 
-Train Model
+
 
 Upload a few image samples, and train a new model. Training usually takes 20-40 minutes. To be notified when the model completes training you must provide a `webhookUrl` in the training request, or check for completion by calling [Get a Single Model](https://reference.tryleap.ai/reference/get-model-1). After training completes, you can use the model to generate images with [Generate Images](https://reference.tryleap.ai/reference/inferencescontroller_create-1).
 

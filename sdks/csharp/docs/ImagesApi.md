@@ -12,7 +12,7 @@ All URIs are relative to *https://api.tryleap.ai*
 
 # **Delete**
 
-Delete Image Job
+
 
 Delete the image job and all related images.
 
@@ -98,7 +98,7 @@ void (empty response body)
 
 # **FindOne**
 
-Get Single Image Job
+
 
 Retrieve a single image generation job, including the urls for the images generated.
 
@@ -188,7 +188,7 @@ catch (ApiException e)
 
 # **Generate**
 
-Generate an Image
+
 
 Generate an image by providing a text description. Generations usually take bettween 4-20 seconds per image. Total generation time depends on the number of `steps` and `noOfImages` you select. This endpoint will submit the generation job and return immediately. To retrieve the results you must provide a webhook URL or query/poll the [Get a Single Image Job](https://reference.tryleap.ai/reference/inferencescontroller_findone-1) endpoint.
 
@@ -299,7 +299,7 @@ catch (ApiException e)
 
 # **ListAll**
 
-List All Image Jobs
+
 
 Fetch a list of inference jobs for a specific model.
 

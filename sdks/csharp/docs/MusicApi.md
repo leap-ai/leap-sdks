@@ -11,7 +11,7 @@ All URIs are relative to *https://api.tryleap.ai*
 
 # **FindOne**
 
-Get a Music Generation Job
+
 
 Get a specific music generation job.
 
@@ -97,7 +97,7 @@ catch (ApiException e)
 
 # **Generate**
 
-Generate Music
+
 
 Generate music by providing a text description. Generations usually take bettween 1-3 minutes. Total generation time depends on the `duration` you select. This endpoint will submit the generation job and return immediately. To retrieve the results you must provide a webhook URL or query/poll the [Get a Music Generation Job](https://reference.tryleap.ai/reference/musiccontroller_findoneaudio) endpoint.
 
@@ -193,7 +193,7 @@ catch (ApiException e)
 
 # **ListAll**
 
-List Music Generation Jobs
+
 
 List all music generation jobs for a workspace.
 
