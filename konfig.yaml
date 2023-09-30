@@ -46,11 +46,11 @@ generators:
       userId: leap-ai
       repoId: leap-sdks/tree/main/sdks/typescript
   csharp:
-    version: 1.0.0
+    version: 1.0.1
     packageName: Leap
     clientName: LeapClient
     outputDirectory: sdks/csharp
-    logoPath: logo.png
+    logoPath: logo-icon.png
     git:
       userId: leap-ai
       repoId: leap-sdks/tree/main/sdks/csharp
