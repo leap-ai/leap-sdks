@@ -137,11 +137,9 @@ namespace Leap.Test.Api
             var subjectType = "person";  // The subject type - a short description, usually a noun, that describes what the underlying model is learning. For example: person, man, woman, cat, dog, icon, style. Defaults to \\\"person\\\". (optional)  (default to "person")
             var webhookUrl = "webhookUrl_example";  // An optional webhook URL that will be called with a POST request when the model completes training or fails. (optional) 
             // An array of strings containing the URLs of the images to upload. Either this or imageSampleFiles is required, but not both. (optional) 
-            var imageSampleUrls = new List<string>(
-            );
+            var imageSampleUrls = new List<string>();
             // An array of files containing the images to upload. Either this or imageSampleUrls is required, but not both. (optional) 
-            var imageSampleFiles = new List<System.IO.Stream>(
-            );
+            var imageSampleFiles = new List<System.IO.Stream>();
             
             try
             {
