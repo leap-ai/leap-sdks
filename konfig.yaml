@@ -31,7 +31,6 @@ generators:
   python:
     version: 1.1.4
     packageName: leap
-    responseTypeVersion: '1'
     projectName: leap-python-sdk
     outputDirectory: sdks/python
     clientName: Leap
