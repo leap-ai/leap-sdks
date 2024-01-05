@@ -41,6 +41,7 @@ generators:
   typescript:
     version: 1.1.4
     npmName: '@leap-ai/sdk'
+    useAxios0_27_2: true
     outputDirectory: sdks/typescript
     clientName: Leap
     git:
